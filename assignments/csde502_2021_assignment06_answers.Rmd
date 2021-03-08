@@ -1,0 +1,348 @@
+---
+title: "Assignment 6 example answer key"
+author: "Phil Hurvitz | [e-mail](mailto:phurvitz@uw.edu) | [www](http://gis.washington.edu/phurvitz)"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+header-includes: #allows you to add in your own Latex packages
+- \usepackage{float} #use the 'float' package
+- \floatplacement{figure}{H} #make every figure with caption = h
+output: 
+    bookdown::html_document2:
+        number_sections: true
+        self_contained: true
+        code_folding: show
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: false
+urlcolor: blue
+---
+
+<!--these following settings control width and also make a DIV tag for black outlines for figures-->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<style>
+.outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+</style>
+
+```{r setup, message=FALSE, warning=FALSE}
+# key setups
+library(knitr) # knitr for kable tables
+library(kableExtra) # pretty tables
+library(ggplot2)
+library(tidyverse)
+library(pdftools)
+library(labelled)
+
+# captions
+library(captioner)
+table_nums <- captioner(prefix = "Table")
+figure_nums <- captioner(prefix = "Figure")
+
+# for having DIV tags
+knitr::knit_hooks$set(class = function(before, options, envir) {
+    if(before){
+        sprintf("<div class = '%s'>", options$class)
+    }else{
+        "</div>"
+    }
+})
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+<!-- for a wide presentation -->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<!-- a DIV for black outline, good for figures-->
+<style>
+.outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+</style>
+
+<h2>Q. 2.1</h2>
+__In what pdf document is the documentation for the race items for the Wave I In-Home questionnaire?__
+
+The following function matches strings in PDF files. Because we are searching for the _word_ race, we use the regular expression `\\brace\\`. The second backslash is needed in R to specify this is a literal backslash character.
+
+The R help on regular expressions shows:
+
+>The caret ^ and the dollar sign $ are metacharacters that respectively match the empty string at the beginning and end of a line. The symbols \< and \> match the empty string at the beginning and end of a word. The symbol \b matches the empty string at either edge of a word, and \B matches the empty string provided it is not at an edge of a word. (The interpretation of ‘word’ depends on the locale and implementation: these are all extensions.)
+
+The results show the regular expression that was used, the page number on which the regular expression was found, and that the pattern match was case insensitive (i.e., search for `race`, `Race`, `RACE`, etc.).
+
+```{r}
+# a function to get matching strings in a PDF, ignore case
+f_pdf_str_match <- function(x, pat, ignore.case = TRUE){
+    # convert the PDF to text
+    mytext <- pdf_text(x)
+    # pattern
+    if(ignore.case){
+        mypat <- regex(pat, ignore_case = TRUE)
+    } else {
+        mypat <- pat
+    }
+    # match strings = pages
+    pages <- str_which(string = mytext, pattern = mypat)
+    if(length(pages) == 0){
+        return(data.frame(fname = basename(x), pat, page_num = as.integer(NA), ignore.case))
+    }
+    # create a data frame
+    data.frame(fname = basename(x), pat, page_num = pages, ignore.case)
+}
+
+# a list of my PDFs
+mypdfs <- list.files(path = "../data/metadata/Wave1_InHome_Codebooks", pattern = "*.pdf$", full.names = TRUE)
+
+# an empty data frame
+x <- NULL
+
+# run each one
+for(i in mypdfs){
+    x <- rbind(x, f_pdf_str_match(i, "\\brace\\b", ignore.case = TRUE))
+}
+
+# ignore NAs
+x %>% filter(!is.na(page_num))
+```
+
+
+<h2>Q. 3.2</h2>	
+__Using questions 6 and 8 in `inh01pub.pdf`, create a new variable named "race" that uses recoded values (white = 1; black/African American = 2; American Indian = 3; Asian/Pacific Islander = 4; other = 5; unknown/missing = 9).__
+
+Before answering the question, we should understand the structure of responses to questions 6 and 8.
+
+The variables and variable labels for question 6 are shown in Table \@ref(tab:q6).
+
+```{r q6}
+# read the data set
+dat <- haven::read_dta("http://staff.washington.edu/phurvitz/csde502_winter_2021/data/AHwave1_v1.dta")
+dat %>% 
+    select(str_subset(names(dat), "^h1gi6|^h1gi8")) %>% 
+    map(~attributes(.)$label) %>% 
+    unlist() %>% 
+    data.frame(label = .) %>% 
+    kable(caption = "Question 6 variables") %>% 
+    kable_styling(full_width = FALSE, position = "left")
+```
+
+Response values for question 6 are shown in Table \@ref(tab:race6). A value of `1` indicates that the respondent confirmed having the particular racial designation in question.
+
+```{r race6}
+attributes(dat$h1gi6a)$labels %>% data.frame(value = .) %>% 
+    kable(caption = "Values for question 6") %>% 
+    kable_styling(full_width = FALSE, position = "left")
+```
+
+For question 8, it is a single race question with responses shown in Table \@ref(tab:race8). A response of `7` indicates that they only chose one race in question 6. So for example, if they marked `h1gi6c == 1` and `h1gi8 == 7`, they classified themselves as only "American Indian/Native American". 
+
+
+```{r race8}
+# american indian/native american for text below
+# responded 1 to question 6c but included other races as well
+n_ai_q6c <- dat %>% filter(h1gi6c == 1) %>% nrow()
+# responded 3 to question 8
+n_ai_q8 <- dat %>% filter(h1gi8 == 3) %>% nrow()
+# responded 1 to question 6c and responded 7 to question 8 (marked only one race in q6)
+n_ai_q6c_q8 <- dat %>% filter(h1gi6c == 1 & h1gi8 == 7) %>% nrow()
+
+attributes(dat$h1gi8)$labels %>% data.frame(value = .) %>% 
+    kable(caption = "Responses for question 8") %>% 
+    kable_styling(full_width = FALSE, position = "left")
+```
+
+Let's unpack this a bit. For those who responded `h1gi6c` = `1`, that is, consider themselves American Indian/Native American (AI/NA, ``r attributes(dat$h1gi6c)$label``), there were `r n_ai_q6c` positive responses. However, that included persons who also marked being more than one race for other parts of questions 6. To get those who considered themselves _only_ AI/NA, we need to find those with `h1gi8 == 3` (i.e., ``r attributes(dat$h1gi8)$labels[3] %>% names()``), a count of `r n_ai_q8`, plus those who had a combination of `h1gi6c == 1` and `h1gi8 == 7` (i.e., ``r attributes(dat$h1gi8)$labels[7] %>% names()``), a count of `r n_ai_q6c_q8`, for a total of `r n_ai_q8 + n_ai_q6c_q8`.
+
+In the following code, the new variable will be created using `mutate()` (to create the new column) `case_when()` (to handle different cases), `Hmisc::label()` (to label the column), and `factor()` (to label the numerical values). Additionally, we create the `labels` attribute of the `race` column to be compliant with the attribute value naming scheme of the other columns.
+
+```{r case_when}
+# a function to label a column
+labelled <- function(x, label) {
+    Hmisc::label(x) <- label
+    x
+}
+
+dat %<>% 
+    mutate(race = case_when(
+        # the cases cover q. 6 and 8
+        # for example, the first test is 
+            # h1gi8 = 1 OR h1gi8 = 7 and h1gi6a = 1 (i.e., White)
+        h1gi8 == 1 | (h1gi8 == 7 & h1gi6a == 1) ~ 1,
+        h1gi8 == 2 | (h1gi8 == 7 & h1gi6b == 1) ~ 2,
+        h1gi8 == 3 | (h1gi8 == 7 & h1gi6c == 1) ~ 3,
+        h1gi8 == 4 | (h1gi8 == 7 & h1gi6d == 1) ~ 4,
+        h1gi8 == 5 | (h1gi8 == 7 & h1gi6e == 1) ~ 5,
+        # missing
+        h1gi8 %in% c(6, 8, 9) ~ 9)
+    ) %>% 
+    # anything that was NA becomes 9
+    mutate(
+        race = replace_na(race, 9) %>% labelled("race as mutually exclusive")
+    ) %>% 
+    # create factor labels
+    mutate(race = factor(race, labels = c(
+        "white", 
+        "black/African American", 
+        "American Indian", 
+        "Asian/Pacific Islander", 
+        "other", 
+        "unknown/missing"
+)))
+
+# column labels attribute
+attributes(dat$race)$labels <- c(
+        "white" = 1, 
+        "black/African American" = 2, 
+        "American Indian" = 3, 
+        "Asian/Pacific Islander" = 4, 
+        "other" = 5, 
+        "unknown/missing" = 9)
+```
+
+The tabulation of subject counts by the new variable is shown in Table \@ref(tab:racetab).
+
+```{r racetab}
+dat %>% 
+    group_by(race) %>% 
+    summarise(n = n()) %>% 
+    kable(caption = "Tabulation of new single race variable") %>% 
+    kable_styling(full_width = FALSE, position = "left")
+```
+
+<h2>Q. 3.3</h2>
+__Rename the variables, and update variable labels using Table 1 as a guide and save the data frame as the file as `AHwave1_v2.rds`. Use a single R code file for your edits to the data file.__
+
+There are at least two approaches to this.
+
+The first approach here will use a single dplyr statement, through the use of `mutate()` (to create new variables with specified names), `Hmisc::label()` (to label those new variables), and `select(-c(...))` (to drop columns that are redundant from renaming/labeling).
+
+```{r}
+# a function to label a column
+labelled <- function(x, label) {
+    Hmisc::label(x) <- label
+    x
+}
+
+# rename variables
+dat2 <- dat %>% 
+  mutate(
+        aid = aid %>% labelled("unique case (student) identifier"),
+        imonth = imonth %>% labelled("month interview completed"),
+        iday = iday  %>% labelled("day interview completed"),
+        iyear = iyear %>% labelled("year interview completed"),
+        bio_sex = bio_sex  %>% labelled("interviewer confirmed sex"),
+        bmonth = h1gi1m %>% labelled("birth month"),
+        byear = h1gi1y %>% labelled("birth year"),
+        hispanic = h1gi4 %>% labelled("Hispanic/Latino"),
+        white = h1gi6a %>% labelled("race white"),
+        black = h1gi6b %>% labelled("race black or African American"),
+        AI = h1gi6c %>% labelled("race American Indian or Native American"),
+        asian = h1gi6d %>% labelled("race Asian or Pacific Islander"),
+        raceother = h1gi6e %>% labelled("race other"),
+        onerace = h1gi8 %>% labelled("one category best describes racial background"),
+        observedrace = h1gi9 %>% labelled("interviewer observed race"),
+        health = h1gh1 %>% labelled("how is your health")) %>% 
+    select(-c(h1gi1m, h1gi1y, h1gi4, h1gi6a, h1gi6b, h1gi6c, h1gi6d, h1gi6e, h1gi8, h1gi9, h1gh1))
+```
+
+The second approach uses `rename()` to rename a set of columns _en masse_:
+
+```{r}
+dat3 <- dat %>% 
+  rename(bmonth = h1gi1m,
+         byear = h1gi1y,
+         hispanic = h1gi4,
+         white = h1gi6a,
+         black = h1gi6b,
+         AI = h1gi6c,
+         asian = h1gi6d,
+         raceother = h1gi6e,
+         onerace = h1gi8,
+         observedrace = h1gi9,
+         health = h1gh1)
+```
+
+The third (base R) approach uses `grep()` to find the position of the column name and reassign.
+
+```{r}
+# copy the data frame
+dat4 <- dat
+# find the named columns and rename them
+colnames(dat4)[grep("^h1gi1m$", colnames(dat4))] <- "bmonth"
+colnames(dat4)[grep("^h1gi1y$", colnames(dat4))] <- "byear"
+colnames(dat4)[grep("^h1gi4$", colnames(dat4))] <- "hispanic"
+colnames(dat4)[grep("^h1gi6a$", colnames(dat4))] <- "white"
+colnames(dat4)[grep("^h1gi6b$", colnames(dat4))] <- "black"
+colnames(dat4)[grep("^h1gi6c$", colnames(dat4))] <- "AI"
+colnames(dat4)[grep("^h1gi6d$", colnames(dat4))] <- "asian"
+colnames(dat4)[grep("^h1gi6e$", colnames(dat4))] <- "raceother"
+colnames(dat4)[grep("^h1gi8$", colnames(dat4))] <- "onerace"
+colnames(dat4)[grep("^h1gi9$", colnames(dat4))] <- "observedrace"
+colnames(dat4)[grep("^h1gh1$", colnames(dat4))] <- "health"
+```
+
+For both the second and third method, column labels can be handled using `labelled::var_label()`:
+
+```{r labels}
+# change labels as specified
+var_label(dat3$aid) <- "unique case (student) identifier"
+var_label(dat3$imonth) <- "month interview completed"
+var_label(dat3$iday) <- "day interview completed"
+var_label(dat3$iyear) <- "year interview completed"
+var_label(dat3$bio_sex) <- "interviewer confirmed sex"
+var_label(dat3$bmonth) <- "birth month"
+var_label(dat3$byear) <- "birth year"
+var_label(dat3$hispanic) <- "Hispanic/Latino"
+var_label(dat3$white) <- "race white"
+var_label(dat3$black) <- "race black or African American"
+var_label(dat3$AI) <- "race American Indian or Native American"
+var_label(dat3$asian) <- "race Asian or Pacific Islander"
+var_label(dat3$raceother) <- "race other"
+var_label(dat3$onerace) <- "one category best describes racial background"
+var_label(dat3$observedrace) <- "interviewer observed race"
+var_label(dat3$health) <- "how is your health"
+
+var_label(dat4$aid) <- "unique case (student) identifier"
+var_label(dat4$imonth) <- "month interview completed"
+var_label(dat4$iday) <- "day interview completed"
+var_label(dat4$iyear) <- "year interview completed"
+var_label(dat4$bio_sex) <- "interviewer confirmed sex"
+var_label(dat4$bmonth) <- "birth month"
+var_label(dat4$byear) <- "birth year"
+var_label(dat4$hispanic) <- "Hispanic/Latino"
+var_label(dat4$white) <- "race white"
+var_label(dat4$black) <- "race black or African American"
+var_label(dat4$AI) <- "race American Indian or Native American"
+var_label(dat4$asian) <- "race Asian or Pacific Islander"
+var_label(dat4$raceother) <- "race other"
+var_label(dat4$onerace) <- "one category best describes racial background"
+var_label(dat4$observedrace) <- "interviewer observed race"
+var_label(dat4$health) <- "how is your health"
+```
+
+Note that for the first method, the order of the columns is changed. This may cause problems for any code that uses hard-coded column positions rather than column names.
+
+```{r}
+# save 
+write_rds(x = dat2, file = "C:/users/phurvitz/csde502/data/AHwave1_v1_tidy1.rds")
+write_rds(x = dat3, file = "C:/users/phurvitz/csde502/data/AHwave1_v1__tidy2.rds")
+write_rds(x = dat4, file = "C:/users/phurvitz/csde502/data/AHwave1_v1.rds")
+```

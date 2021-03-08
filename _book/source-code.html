@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Source code | CSDE 502 Winter 2021</title>
+  <meta name="description" content="These are the class notes and assignments for CSDE 502." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Source code | CSDE 502 Winter 2021" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the class notes and assignments for CSDE 502." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Source code | CSDE 502 Winter 2021" />
+  
+  <meta name="twitter:description" content="These are the class notes and assignments for CSDE 502." />
+  
+
+<meta name="author" content="Phil Hurvitz" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week3.html"/>
+
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.17/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">CSDE 502</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-logistics"><i class="fa fa-check"></i>Course logistics</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#canvas"><i class="fa fa-check"></i>Canvas</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i>Computing</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="week1.html"><a href="week1.html"><i class="fa fa-check"></i><b>1</b> Week 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="week1.html"><a href="week1.html#getting-started-on-terminal-server-4"><i class="fa fa-check"></i><b>1.1</b> Getting started on Terminal Server 4</a></li>
+<li class="chapter" data-level="1.2" data-path="week1.html"><a href="week1.html#introduction-to-r-markdown-in-rstudio"><i class="fa fa-check"></i><b>1.2</b> Introduction to R Markdown in RStudio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="week1.html"><a href="week1.html#create-a-project"><i class="fa fa-check"></i><b>1.2.1</b> Create a project</a></li>
+<li class="chapter" data-level="1.2.2" data-path="week1.html"><a href="week1.html#create-an-r-markdown-file-from-built-in-rstudio-functionality"><i class="fa fa-check"></i><b>1.2.2</b> Create an R Markdown file from built-in RStudio functionality</a><ul>
+<li class="chapter" data-level="1.2.2.1" data-path="week1.html"><a href="week1.html#render-the-rmd-file-as-html"><i class="fa fa-check"></i><b>1.2.2.1</b> Render the Rmd file as HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2.3" data-path="week1.html"><a href="week1.html#create-an-r-markdown-file-with-some-enhancements"><i class="fa fa-check"></i><b>1.2.3</b> Create an R Markdown file with some enhancements</a><ul>
+<li class="chapter" data-level="1.2.3.1" data-path="week1.html"><a href="week1.html#render-and-view-the-enhanced-output"><i class="fa fa-check"></i><b>1.2.3.1</b> Render and view the enhanced output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="week1.html"><a href="week1.html#file-systems"><i class="fa fa-check"></i><b>1.3</b> File systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week2.html"><a href="week2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="week2.html"><a href="week2.html#code-to-run-for-the-in-class-exercise"><i class="fa fa-check"></i><b>2.1</b> Code to run for the in-class exercise</a></li>
+<li class="chapter" data-level="2.2" data-path="week2.html"><a href="week2.html#r-data-types"><i class="fa fa-check"></i><b>2.2</b> R data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="week2.html"><a href="week2.html#logical"><i class="fa fa-check"></i><b>2.2.1</b> Logical</a></li>
+<li class="chapter" data-level="2.2.2" data-path="week2.html"><a href="week2.html#numeric"><i class="fa fa-check"></i><b>2.2.2</b> Numeric</a></li>
+<li class="chapter" data-level="2.2.3" data-path="week2.html"><a href="week2.html#integer"><i class="fa fa-check"></i><b>2.2.3</b> Integer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="week2.html"><a href="week2.html#complex"><i class="fa fa-check"></i><b>2.2.4</b> Complex</a></li>
+<li class="chapter" data-level="2.2.5" data-path="week2.html"><a href="week2.html#character"><i class="fa fa-check"></i><b>2.2.5</b> Character</a></li>
+<li class="chapter" data-level="2.2.6" data-path="week2.html"><a href="week2.html#raw"><i class="fa fa-check"></i><b>2.2.6</b> Raw</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="week2.html"><a href="week2.html#r-data-structures"><i class="fa fa-check"></i><b>2.3</b> R data structures</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="week2.html"><a href="week2.html#vector"><i class="fa fa-check"></i><b>2.3.1</b> Vector</a></li>
+<li class="chapter" data-level="2.3.2" data-path="week2.html"><a href="week2.html#matrix"><i class="fa fa-check"></i><b>2.3.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.3.3" data-path="week2.html"><a href="week2.html#array"><i class="fa fa-check"></i><b>2.3.3</b> Array</a></li>
+<li class="chapter" data-level="2.3.4" data-path="week2.html"><a href="week2.html#list"><i class="fa fa-check"></i><b>2.3.4</b> List</a></li>
+<li class="chapter" data-level="2.3.5" data-path="week2.html"><a href="week2.html#factor"><i class="fa fa-check"></i><b>2.3.5</b> Factor</a></li>
+<li class="chapter" data-level="2.3.6" data-path="week2.html"><a href="week2.html#data-frame"><i class="fa fa-check"></i><b>2.3.6</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="week2.html"><a href="week2.html#tidyverse"><i class="fa fa-check"></i><b>2.4</b> tidyverse</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="week2.html"><a href="week2.html#magrittr"><i class="fa fa-check"></i><b>2.4.1</b> magrittr</a></li>
+<li class="chapter" data-level="2.4.2" data-path="week2.html"><a href="week2.html#data-subsetting-dplyr"><i class="fa fa-check"></i><b>2.4.2</b> Data subsetting (dplyr)</a><ul>
+<li class="chapter" data-level="2.4.2.0.1" data-path="week2.html"><a href="week2.html#logical-tests"><i class="fa fa-check"></i><b>2.4.2.0.1</b> Logical tests</a></li>
+<li class="chapter" data-level="2.4.2.1" data-path="week2.html"><a href="week2.html#subset-rows-filter"><i class="fa fa-check"></i><b>2.4.2.1</b> Subset rows (<code>filter()</code>)</a></li>
+<li class="chapter" data-level="2.4.2.2" data-path="week2.html"><a href="week2.html#subset-columns-select"><i class="fa fa-check"></i><b>2.4.2.2</b> Subset columns (<code>select()</code>)</a></li>
+<li class="chapter" data-level="2.4.2.3" data-path="week2.html"><a href="week2.html#subset-rows-and-columns-filter-and-select"><i class="fa fa-check"></i><b>2.4.2.3</b> Subset rows and columns: <code>filter()</code> and <code>select()</code></a></li>
+<li class="chapter" data-level="2.4.2.4" data-path="week2.html"><a href="week2.html#create-or-calculate-columns-mutate"><i class="fa fa-check"></i><b>2.4.2.4</b> Create or calculate columns: <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.4.2.5" data-path="week2.html"><a href="week2.html#summarizingaggregating-data"><i class="fa fa-check"></i><b>2.4.2.5</b> Summarizing/aggregating data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="week2.html"><a href="week2.html#source-code-for-this-document"><i class="fa fa-check"></i><b>2.5</b> Source code for this document</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week3.html"><a href="week3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="week3.html"><a href="week3.html#graphics-in-r-markdown"><i class="fa fa-check"></i><b>3.1</b> Graphics in R Markdown</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="week3.html"><a href="week3.html#base-r-graphics"><i class="fa fa-check"></i><b>3.1.1</b> Base R graphics</a></li>
+<li class="chapter" data-level="3.1.2" data-path="week3.html"><a href="week3.html#ggplot2-graphics"><i class="fa fa-check"></i><b>3.1.2</b> <code>ggplot2</code> graphics</a></li>
+<li class="chapter" data-level="3.1.3" data-path="week3.html"><a href="week3.html#embedding-graphics-files"><i class="fa fa-check"></i><b>3.1.3</b> Embedding graphics files</a><ul>
+<li class="chapter" data-level="3.1.3.1" data-path="week3.html"><a href="week3.html#knitr"><i class="fa fa-check"></i><b>3.1.3.1</b> <code>knitr</code></a></li>
+<li class="chapter" data-level="3.1.3.2" data-path="week3.html"><a href="week3.html#markdown-captionfilename"><i class="fa fa-check"></i><b>3.1.3.2</b> Markdown: <code>![caption](filename)</code></a></li>
+<li class="chapter" data-level="3.1.3.3" data-path="week3.html"><a href="week3.html#html-img-tag"><i class="fa fa-check"></i><b>3.1.3.3</b> HTML <code>&lt;img&gt;</code> tag</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="week3.html"><a href="week3.html#tables-in-r-markdown"><i class="fa fa-check"></i><b>3.2</b> Tables in R Markdown</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="week3.html"><a href="week3.html#kntir-kable-and-kableextra"><i class="fa fa-check"></i><b>3.2.1</b> <code>kntir</code> (<code>kable()</code>) and <code>kableExtra</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="week3.html"><a href="week3.html#stargazer"><i class="fa fa-check"></i><b>3.2.2</b> <code>stargazer</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="week3.html"><a href="week3.html#pander"><i class="fa fa-check"></i><b>3.2.3</b> <code>pander</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="week3.html"><a href="week3.html#captions-to-support-both-tables-and-graphics"><i class="fa fa-check"></i><b>3.3</b> Captions to support both tables and graphics</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="week3.html"><a href="week3.html#figures"><i class="fa fa-check"></i><b>3.3.1</b> Figures</a><ul>
+<li class="chapter" data-level="3.3.1.1" data-path="week3.html"><a href="week3.html#r-markdown-code-chunk-fig.cap"><i class="fa fa-check"></i><b>3.3.1.1</b> R Markdown code chunk <code>fig.cap</code></a></li>
+<li class="chapter" data-level="3.3.1.2" data-path="week3.html"><a href="week3.html#bookdown-with-html_document2-output-type"><i class="fa fa-check"></i><b>3.3.1.2</b> <code>bookdown</code> with <code>html_document2</code> output type</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3.2" data-path="week3.html"><a href="week3.html#tables-kable-caption"><i class="fa fa-check"></i><b>3.3.2</b> Tables: <code>kable()</code> &quot;caption&quot;</a><ul>
+<li class="chapter" data-level="3.3.2.1" data-path="week3.html"><a href="week3.html#bookdown-with-html_document2-output-type-1"><i class="fa fa-check"></i><b>3.3.2.1</b> <code>bookdown</code> with <code>html_document2</code> output type</a></li>
+<li class="chapter" data-level="3.3.2.2" data-path="week3.html"><a href="week3.html#captioner"><i class="fa fa-check"></i><b>3.3.2.2</b> <code>captioner</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="week3.html"><a href="week3.html#r-markdown-to-microsoft-word"><i class="fa fa-check"></i><b>3.4</b> R Markdown to Microsoft Word</a></li>
+<li class="chapter" data-level="3.5" data-path="week3.html"><a href="week3.html#bibliography-in-r-markdown"><i class="fa fa-check"></i><b>3.5</b> Bibliography in R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="source-code.html"><a href="source-code.html"><i class="fa fa-check"></i><b>4</b> Source code</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">CSDE 502 Winter 2021</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="source-code" class="section level1">
+<h1><span class="header-section-number">4</span> Source code</h1>
+<pre><code># Week 3 {#week3}
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(magrittr)
+library(kableExtra)
+library(stargazer)
+library(pander)
+library(psych)
+library(readstata13)
+library(knitr)
+library(pander)
+library(stargazer)
+library(animation)
+```
+
+&lt;h2&gt;Topics: Graphics and Tables in R; R Markdown to MS Word; Bibliography&lt;/h2&gt;
+
+Because of its extensibility, HTML can be considered a preferred output from R Markdown. However, document formats are often necessary, particularly for term papers, theses/dissertations, and manuscripts for submission to scholarly journals. In this week;s lesson, we will focus on the creation of these two output types, including adding bibliographies (which also applies to HTML output), and some basic `ggplot` graphics. 
+
+For both PDF and Word output, much of the structure of your Rmd files will be the same as for HTML output. The major difference is how tables are handled, which we will explore in some detail. Static graphics are handled similarly across all output formats, other than HTML output can support dynamic graphics, such as the Leaflet map we saw in the first lesson, and responsive graphics as in [Shiny](https://shiny.rstudio.com/).
+
+## Graphics in R Markdown
+Data-driven graphics in Rmd files are typically created as base R graphics or the `ggplot2` package. This tutorial is not intended to provide anywhere near a comprehensive treatment of creating graphics from data, but will provide instruction on some options for creating and including data-driven graphics as well as inserting graphics from image files.
+
+See [Tips and tricks for working with images and figures in R Markdown documents](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/) for a good explanation.
+
+### Base R graphics
+To include base R graphics, simply place the code to generate the graphic in an R code block, e.g., using the Add Health data from last week ([AHWave1_v1.dta](data/AHWave1_v1.dta)):
+
+````
+```{r}`r &#39;&#39;`
+# since loading the data takes awhile, only do this if necessary
+if(!exists(&quot;dat&quot;)){
+    dat &lt;- read.dta13(&quot;data/AHwave1_v1.dta&quot;)
+}
+# birth year = h1gi1y
+# drop &quot;Refused&quot; birth year
+# for birth year and interview year, replace anything before white space, convert to numeric
+# subtract interview year - birth year
+ages &lt;- dat %&gt;% 
+    filter(! str_detect(h1gi1y, &quot;Refused&quot;)) %&gt;% 
+    select(iyear, h1gi1y) %&gt;% 
+    mutate(yi = str_replace(iyear, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           yb = str_replace(h1gi1y, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           age = yi - yb)
+           
+# create a histogramusing base graphics
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+```
+````
+
+... which will render the graph:
+
+```{r, echo=FALSE, warning=FALSE}
+# since loading the data takes awhile, only do this if necessary
+if(!exists(&quot;dat&quot;)){
+    dat &lt;- read.dta13(&quot;data/AHwave1_v1.dta&quot;)
+}
+# birth year = h1gi1y
+# drop &quot;Refused&quot; birth year
+# for birth year and interview year, replace anything before white space, convert to numeric
+# subtract interview year - birth year
+ages &lt;- dat %&gt;% 
+    filter(! str_detect(h1gi1y, &quot;Refused&quot;)) %&gt;% 
+    select(iyear, h1gi1y) %&gt;% 
+    mutate(yi = str_replace(iyear, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           yb = str_replace(h1gi1y, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           age = yi - yb)
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+```
+
+### `ggplot2` graphics
+The `ggplot2` package creates compelling graphics that use a common syntax. The main difference between base R graphics and `ggplot2` graphics is that simply issuing the `plot()` or related command (e.g., `hist()`, `barplot()`) adds the graphic to the output, whereas with `ggplot()` it is necessary to issue a command that prints the graphic.
+
+Following the previous example:
+
+```{r}
+# how many unique bins? 
+bins &lt;- length(unique(ages$age))
+
+# create the graphic
+g &lt;- ggplot(data = ages, mapping = aes(x = age)) +
+    geom_histogram(bins = bins)
+
+# print the graphic
+print(g)
+```
+
+
+### Embedding graphics files
+Journals frequently require graphics files to be submitted separately from the manuscript. In this case, the graphic can be created and saved as a file and then inserted in the Rmd using code, but also accessed as a a stand-alone file. Let&#39;s take the previous example, but add correlation coefficients and other embellishments, create a graphics file and add the graphics into the Rmd.
+
+The base graphics file is created using the `pdf()` function, although `png()` also works if that is the desired output format. PDF is a vector format, so it generally renders better over different zoom levels.
+
+```{r, message=FALSE}
+pdf(file = &quot;ah_age_hist.pdf&quot;, width = 5, height = 5)
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+x &lt;- dev.off()
+```
+
+Here we create a PNG format file:
+
+```{r, message=FALSE}
+png(file = &quot;ah_age_hist.png&quot;, width = 5, height = 5, units = &quot;in&quot;, res = 300)
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+x &lt;- dev.off()
+```
+
+`ggplot2` graphics can be saved using `ggsave()`, e.g., for both PDF and PNG outputs. The `dpi` argument is important for bitmap images.
+
+```{r}
+ggsave(filename = &quot;ah_age_hist_ggplot.pdf&quot;, plot = g, device = &quot;pdf&quot;, width = 5, height = 5)
+ggsave(filename = &quot;ah_age_hist_ggplot.png&quot;, plot = g, device = &quot;png&quot;, width = 5, height = 5, units = &quot;in&quot;, dpi = 300)
+```
+
+Graphics can be added using several methods.
+
+#### `knitr`
+The `knitr::include_graphics()` function can be used to insert image files, with the caution that inserted PDF files may produce unwanted results. The syntax is:
+
+````
+```{r}`r &#39;&#39;`
+include_graphics(&quot;graphics_filename&quot;)
+```
+````
+
+and the code chunk can include `out.width`, `out.height` and other options.
+\  
+Here we insert a PDF with no code chunk options, which presents the image with a scroll bar, rather than the full image:
+
+```{r}
+include_graphics(&quot;ah_age_hist.pdf&quot;)
+```
+
+Here we specify in the code chunk options `out.height = &quot;360px&quot;, out.width=&#39;360px&#39;, fig.align=&#39;left&#39;`, 
+
+```{r, out.height = &quot;360px&quot;, out.width=&#39;360px&#39;, fig.align=&#39;left&#39;}
+include_graphics(&quot;ah_age_hist.pdf&quot;)
+
+```
+
+\  
+
+... and with code chunk options `out.height = &quot;400px&quot;, out.width=&#39;100%&#39;, fig.align=&#39;left&#39;`
+
+```{r, out.height = &quot;400px&quot;, out.width=&#39;100%&#39;, fig.align=&#39;left&#39;}
+include_graphics(&quot;ah_age_hist.pdf&quot;)
+```
+
+\  
+
+It seems that embedding PDF files is not optimal.
+
+Here we insert a PNG: with no code chunk options:
+
+```{r}
+include_graphics(&quot;ah_age_hist_ggplot.png&quot;)
+```
+
+and with code chunk option `out.width = &quot;50%&quot;`
+
+```{r, out.width = &quot;50%&quot;}
+include_graphics(&quot;ah_age_hist_ggplot.png&quot;)
+```
+
+So embedding bitmapped images appears to work better than embedding PDF files. 
+
+#### Markdown: `![caption](filename)`
+
+The native Markdown syntax:
+
+```
+![](filename)
+```
+
+includes a graphics file with an optional caption, e.g., here, a PDF with no caption, 
+
+`![](ah_age_hist.pdf)`
+
+![](ah_age_hist.pdf)
+
+The structure `![]()` indicates this is an inserted graphic; a caption can be specified by including text within the square brackets, e.g., displays the caption below the inserted image. 
+
+```![Add Health respondent age histogram](ah_age_hist_ggplot.pdf)```
+
+![Add Health respondent age histogram](ah_age_hist_ggplot.pdf)
+
+... although it seems that inserting a PDF does odd things with image scrolling, while a PNG inserts the complete image without scroll bars.
+
+```![Add Health respondent age histogram](ah_age_hist_ggplot.png)```
+
+![Add Health respondent age histogram](ah_age_hist_ggplot.png)
+
+![](ah_age_hist.pdf){width=30%}
+
+#### HTML `&lt;img&gt;` tag
+If the file is to be rendered as HTML, _and_ the image is a bitmap, rather than vector PDF graphics, the &lt;img&gt; tag can be used. Different utilities can be used to convert PDF to bitmapped formats, e.g., [ImageMagick](https://imagemagick.org/index.php) and [GraphicsMagick](http://www.graphicsmagick.org/).
+
+&lt;img src=&quot;ah_age_hist_ggplot.png&quot;&gt;
+
+Including a percentage of page width:
+
+&lt;img src=&quot;ah_age_hist_ggplot.png&quot; width=&quot;100%&quot;&gt;
+
+
+## Tables in R Markdown
+
+We will look at three methods of including tables in R Markdown documents, using the packages `knitr` (with `kableExtra`), `pander`, and `stargazer`.
+
+For the example table, we will use the frequency table of health $\times$ White and African American from Assignment 2:
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+dat &lt;- readstata13::read.dta13(&quot;C:/junk/AHwave1_v1.dta&quot;)
+
+# ordered factor; use fct_rev to establish the correct ordering where better health ranks higher
+dat %&lt;&gt;% 
+    mutate(h1gh1 = fct_rev(as.ordered(h1gh1)))
+
+# stratify health; first we need to catch the &quot;don&#39;t know&quot; and &quot;refused&quot; as NAs
+dat %&lt;&gt;%  
+    mutate(health = 
+    case_when(
+        h1gh1 &lt;= &quot;(6) Refused&quot; ~ as.character(NA),
+        h1gh1 &gt;  &quot;(3) Good&quot; ~ &quot;high&quot;,
+        h1gh1 &lt;= &quot;(3) Good&quot; ~ &quot;low&quot;
+    ))
+
+# tabulate by White
+tabhealth_white &lt;- dat %&gt;% 
+    group_by(health, white = h1gi6a) %&gt;% 
+    summarise(n = n(), .groups = &quot;drop_last&quot;) %&gt;% 
+    mutate(&quot;%&quot; = round(n / sum(n) * 100, 2))
+
+# tabulate by African Americal
+tabhealth_afram &lt;- dat %&gt;% 
+    group_by(health, afram = h1gi6b) %&gt;% 
+    summarise(n = n(), .groups = &quot;drop_last&quot;) %&gt;% 
+    mutate(&quot;%&quot; = round(n / sum(n) * 100, 2))
+
+# column-bind and remove the second &quot;health&quot; column
+sum_health_white_afram &lt;- cbind(tabhealth_white, tabhealth_afram) %&gt;% 
+    select(-5)
+```
+
+### `kntir` (`kable()`) and `kableExtra`
+The simple table using `kable()` is not too easy to read.
+
+```{r}
+kable(sum_health_white_afram)
+```
+
+So we add some `kabelExtra` options:
+
+```{r}
+kable(sum_health_white_afram,
+      col.names = c(&quot;health&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;)) %&gt;% 
+        kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;), full_width = F, position = &quot;left&quot;) 
+```
+
+However, because some column names are duplicated, it is necessary to add some column grouping:
+
+```{r}
+kable(sum_health_white_afram,
+      col.names = c(&quot;health&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;)) %&gt;% 
+    kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;), full_width = F, position = &quot;left&quot;) %&gt;% 
+    add_header_above(c(&quot; &quot; = 1, &quot;White&quot; = 3, &quot;African American&quot; = 3))
+```
+
+We could also add some row groupings:
+
+```{r}
+
+sum_health_white_afram %&gt;% 
+    select(-1) %&gt;% 
+    kable(col.names = c(&quot;race&quot;, &quot;n&quot;, &quot;%&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;), align=c(rep(&#39;r&#39;,times=6))) %&gt;% 
+    kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;), full_width = F, position = &quot;left&quot;) %&gt;% 
+    add_header_above(c(&quot;White&quot; = 3, &quot;African American&quot; = 3)) %&gt;% 
+    pack_rows(&quot;health high&quot;, 1, 4) %&gt;% 
+    pack_rows(&quot;health low&quot;, 5, 8) %&gt;% 
+    pack_rows(&quot;N/A&quot;, 9, 12)
+```
+
+### `stargazer`
+The [`stargazer`](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf) package is especially good for PDF outputs, but is fairly limited for HTML output.
+
+```{r results=&#39;asis&#39;}
+stargazer(sum_health_white_afram, 
+          type = &quot;html&quot;, 
+          summary = FALSE,
+          rownames = FALSE)
+```
+
+### `pander`
+`pander` can be used to create output HTML tables as well, although also with fewer options than `knitr` with `kableExtra`.
+
+```{r}
+pander(sum_health_white_afram)
+```
+
+## Captions to support both tables and graphics
+There are several ways to support captions in R Markdown. The two main requirements for good captions: (1) automatic sequential numbering, and (2) ability to cross-reference.
+
+Here are some options for adding captions:
+
+### Figures
+
+#### R Markdown code chunk `fig.cap`
+Code chunks can include `fig_cap` as an option, as shown below. However, in standard Rmd $\rightarrow$ HTML there does not appear to be a method for cross-referencing.
+
+```{r plotcars, fig.cap=&quot;Cars: speed and distance&quot;}
+plot(cars)
+```
+
+#### `bookdown` with `html_document2` output type
+
+Using the `bookdown` package with `html_document2` output type, it is possible to cross-reference using the chunk name. For example, download and run this code [fig_cap_bookdown.Rmd](files/fig_cap_bookdown.Rmd)
+
+Which renders a file:
+
+![](images/week03/fig_ref.png)
+
+There seems to be no difference in the HTML output using
+
+```
+output: 
+    bookdown::html_document2:
+```
+
+versus 
+
+```
+output: 
+    html_document:
+````
+
+so the former is suggested as one way to include captions that support cross-referencing.
+
+### Tables: `kable()` &quot;caption&quot;
+Tables created with `kable()` can include the `caption` option. For example:
+
+```{r}
+kable(x = sum_health_white_afram, caption = &quot;Self-reported health by race&quot;)
+```
+
+But there appears to be no direct way of cross-referencing within standard  Rmd $\rightarrow$ HTML.
+
+#### `bookdown` with `html_document2` output type
+
+Similarly for figures, the `bookdown` package with `html_document2` output type, it is possible to cross-reference using the chunk name. For example, download and run this code [table_cap_bookdown.Rmd](files/table_cap_bookdown.Rmd)
+
+Which renders a file:
+
+![](images/week03/tab_ref.png)
+
+#### `captioner`
+The `captioner` package provides a flexible framework for captioning both tables and figures. 
+
+The R code to do this:
+
+```
+library(captioner)
+table_nums &lt;- captioner(prefix = &quot;Table&quot;)
+figure_nums &lt;- captioner(prefix = &quot;Figure&quot;)
+```
+
+The `table_nums` and `figure_nums` functions are used to create captions and cross-references, and are not tied to any specific figure or table, as is the case with `kable` table captions and R code chunk `fig.cap`.
+
+A caption is created, e.g., for a figure:
+
+`` `r
+figure_nums(name = &quot;figname&quot;, caption = &quot;My Caption&quot;)` ``
+
+and referenced, e.g., 
+
+`` `r
+figure_nums(name = &quot;figname&quot;, display = &quot;cite&quot;)` ``
+
+It does not matter whether the reference precedes or comes after the caption itself.
+
+Another benefit to using `captioner` is that the output can be formatted using markdown syntax. For example, to format the caption in italics, use underscores for italics:
+
+`` _`r
+figure_nums(name = &quot;figname&quot;, caption = &quot;My Caption&quot;)`_ ``
+
+Although this method requires a bit more coding, it allows great flexibility.
+
+## R Markdown to Microsoft Word
+Microsoft Word (&quot;Word&quot;), for better or worse, is used to document research. Because of its advanced word processing and &quot;track changes&quot; capabilities, it is commonly used for preparation of manuscripts. Using R to generate output for Word is often a tedious process (e.g., create CSV files, paste the contents, convert to table; export R graphics with `png()` or `ggsave()` and insert the file).  
+
+RMarkdown can be used to generate Word documents. This should be thought of as a one-way operation. That is to say, when a team works on a manuscript using Word, the typical work flow is that the lead author creates the first draft. Other authors make changes to the document using tracked changes. When the manuscript circulates over all authors, the lead author decides which changes to accept and which to reject, resulting in a new version. The process continues until the group of authors agrees that the manuscript is ready for publication.
+
+To export to a Word document, the following work flow should be followed:
+
+1. Create a bare-bones Rmd file that contains all of the elements you want in your output, but little actual content.
+1. Render the Rmd file to a Word docx file.
+1. Open the docx file in Word and make any stylistic changes __using Word styles__ (see the workshop  [Microsoft Word for the Social Sciences](https://csde.washington.edu/workshop/microsoft-word-for-the-social-sciences/))
+1. Use the style-edited docx file as a template in the Rmd file.
+1. Write your complete Rmd file with the content you want to have placed in the Word docx file and then render. The output docx file will have the same stylistic configuration as the template docx.
+
+
+Unfortunately there is no backwards path to take an existing Word docx and regenerate an Rmd (e.g., after you and your colleagues made a lot of changes to the Word docx). Nevertheless using this method could save you some &quot;busy work&quot; time in Word, as well as to provide a common stylistic template for your R outputs if you will be generating Word documents.
+
+A more detailed work flow:
+
+To use Word output, first make a minimal RMarkdown document with Word output. 
+
+![](images/week03/20200419_233754-C__Users_phurvitz_nextcloud_uw_csde_courses_msword_soc_sci_-_RStudio.png) 
+
+Save the Rmd file and knit to to Word.
+
+![](images/week03/20200419_233851-Window.png) 
+
+The output document will have the elements from the Rmd file.
+
+![](images/week03/20200419_234510-minimal.docx_[Read-Only]_[Compatibility_Mode]_-_Word.png) 
+
+The important part of this is that the Word document will have a number of styles. Make any changes to the styles or margins. This will become the template for the output containing the actual scientific content. ___Do not add, remove, or rename any styles in this document!___ Save a copy of the document with any stylistic changes. 
+
+For example, here are some changes to the header styles:
+
+![](images/week03/20200420_002233-Window.png) 
+
+Presumably, all of the styles in the output docx can be modified:
+
+![](images/week03/20210121_020407-Window.png)
+
+After you have made any changes, save the file as a &quot;template&quot;:
+
+![](images/week03/20200419_235426-Save_As.png)
+
+In the YAML header of the Rmd file with your scientific content, this construction, in which you specify the path name to the template document.
+
+```
+output:
+  word_document:  
+    reference_docx: &quot;template.docx&quot;
+```
+
+When the Rmd file is rendered to a Word document, the stylistic changes will be applied to the output. For example, just changing the head matter of the previous document and re-rendering shows that the heading styles were applied as defined.
+
+![](images/week03/20200420_002536-minimal.docx_[Read-Only]_[Compatibility_Mode]_-_Word.png)
+
+Although this overall functionality is somewhat limited, if you do have some Rmd code that generates some scientific content, and you want to output to a Word document with predefined formats, this will save you some busy work of reformatting.
+
+## Bibliography in R Markdown
+The `pandoc` engine that performs document conversion can generate bibliographies. See [Bibliographies and Citations](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) for detailed information.
+
+For this exercise, we will be using ${B\kern-0.1emi\kern-0.017emb}\kern-0.15em\TeX$ formatted references.
+
+The YAML header needs to be formatted to include the bibliography file, which should either have a complete path name or be located in the same directory as the Rmd file. Similarly, any CSL (Citation Style Language) file should be specified. CSL files can be obtained from the [Zotero Style Repository
+](https://www.zotero.org/styles)
+
+The YAML header would include something of the form:
+
+```
+---
+title: &quot;My glorious, shiny dissertation&quot;
+output: 
+    bookdown::html_document2
+bibliography: myreferences_20200121.bib
+csl: biomed-central.csl
+---
+```
+
+When citations are made to references, the corresponding record will be automatically added to the end of the document.
+
+For examples of syntax for both APA-like and AMA-like references and bibliographies, see the files 
+
+* APA: [HTML](files/bibliography.html); [Rmd](files/bibliography.Rmd)
+* AMA: [HTML](files/bibliography_ama.html); [Rmd](files/bibliography_ama.Rmd)
+
+
+# Source code
+```{r, comment=&#39;&#39;, echo=FALSE}
+cat(readLines(&quot;03-week03.Rmd&quot;), sep = &#39;\n&#39;)
+```</code></pre>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week3.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-week03.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

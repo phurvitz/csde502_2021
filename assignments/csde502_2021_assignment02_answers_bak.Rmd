@@ -1,0 +1,265 @@
+---
+title: "CSDE 502 Winter 2021 Assignment 2"
+author: "answer key"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+header-includes: #allows you to add in your own Latex packages
+- \usepackage{float} #use the 'float' package
+- \floatplacement{figure}{H} #make every figure with caption = h
+output: 
+    html_document:
+        number_sections: true
+        self_contained: true
+        code_folding: hide
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: false
+    pdf_document:
+        number_sections: true
+        toc: true
+        fig_cap: yes
+        keep_tex: yes
+urlcolor: blue        
+---
+
+<!--these following settings control width and also make a DIV tag for black outlines for figures-->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<style>
+.outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+</style>
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(magrittr)
+knitr::opts_chunk$set(echo = TRUE)
+
+# captions
+library(captioner)
+table_nums <- captioner(prefix = "Table")
+figure_nums <- captioner(prefix = "Figure")
+
+# for having DIV tags
+knitr::knit_hooks$set(class = function(before, options, envir) {
+  if(before){
+    sprintf("<div class = '%s'>", options$class)
+  }else{
+    "</div>"
+  }
+})
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+<!-- for a wide presentation -->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<!-- a DIV for black outline, good for figures-->
+<style>
+.outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+</style>
+
+<h1>Q 5.1</h1>
+__Present three tables that have all of the original variables, one for each species of iris.__
+
+The `iris` data frame can presented as three tables based on species using several different methods.
+
+<h3>Brute force</h3>
+The brute force method performs each step manually.
+
+Unique species: 
+
+```{r}
+# unique values of species
+(spp <- unique(iris$Species))
+
+# make each data frame
+setosa <- iris %>% filter(Species == "setosa")
+versicolor <- iris %>% filter(Species == "versicolor")
+virginica <- iris %>% filter(Species == "virginica")
+
+# print each data frame
+kable(setosa, caption = "setosa") %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left") 
+
+kable(versicolor, caption = "versicolor") %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left") 
+
+kable(virginica, caption = "virginica") %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left") 
+```
+
+<h3>`group_*()` (`dplyr`)</h3>
+Some automation can be applied. While this method took more lines of code to write, it did not require any interactive identification or naming of species, which could easily result in typographical errors.
+
+Because the code chunk generates printable HTML, use the the code chunk option `results='as-is'`.
+
+```{r, results='asis'}
+# group by species
+spp_g <- iris %>% 
+    group_by(Species)
+
+# split
+spp_gs <- spp_g %>% 
+    group_split()
+
+# unique species
+spp <- spp_g %>% 
+    group_keys() %>% 
+    pull(Species)
+
+# loop
+for(i in 1:length(spp)){
+    # species
+    spp_i <- spp[i]
+    # print table
+    print(kable(spp_gs[i][[1]], caption = spp[i]) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left"))
+}
+```
+
+<h1>Q 5.2</h1>
+__Present a table with only sepal length and sepal width for spp. virginica that also has columns indicating whether the sepal length and sepal width are greater than the mean for this species.__
+
+The mean of the different species' sepal length and witdth, for validation:
+
+```{r}
+iris %>% 
+    group_by(Species) %>% 
+    summarise(mean_sepal_length = mean(Sepal.Length),
+              mean_sepal_width = mean(Sepal.Width))
+```
+
+The following table restricts to species _virginica_ and gets only sepal length and width, and indicates whether the sepal length and width are greater than the mean for that species. It is not ncessary, and it is not advised to use a static number in the logical test for `<` or `>` compared to the mean.
+
+```{r}
+i <- iris %>% 
+    filter(Species == "virginica") %>% 
+    select(Species, Sepal.Length, Sepal.Width) %>% 
+    mutate("sepal length > mean" = Sepal.Length > mean(Sepal.Length),
+           "sepal width > mean" = Sepal.Width > mean(Sepal.Width))
+
+kable(i) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left")
+```
+
+<h1>Q 5.3</h1>
+__Create a new variable that classifies health, stratified at the break between "(2) Very good" and better versus "(3) Good" and worse. Make sure you explicitly handle missing or unknown values.__
+
+Looking at the structure of the data ([week 2]()http://staff.washington.edu/phurvitz/csde502_winter_2021/week2.html#tidyverse), we see that the "general health" variable is named `h1gh1` and has 7 levels:
+
+```{r, warning=FALSE}
+# I downloaded to C:/junk
+# only read if I haven't read it in this R session.
+if(!exists("dat")){
+    dat <- readstata13::read.dta13("C:/junk/AHwave1_v1.dta")
+}
+
+write.csv(levels(dat$h1gh1), row.names = FALSE)
+```
+
+There are a few different ways one could stratify the variable; this example will use the `case_when()` function one case at a time:
+
+```{r}
+# stratify health
+dat %<>%  
+    mutate(health = 
+    case_when(
+        h1gh1 == "(1) Excellent" ~ "high",
+        h1gh1 == "(2) Very good" ~ "high",
+        h1gh1 == "(3) Good" ~ "low",
+        h1gh1 == "(4) Fair" ~ "low",
+        h1gh1 == "(5) Poor" ~ "low",
+        TRUE ~ as.character(NA)
+    ))
+```
+
+We might simplify this a bit by creating an ordered factor variable, to use numerical comparisons. 
+
+```{r}
+# ordered factor; use fct_rev to establish the correct ordering where better health ranks higher
+dat %<>% 
+    mutate(h1gh1 = fct_rev(as.ordered(h1gh1)))
+
+# confirm ordering
+unique(dat$h1gh1)
+
+# stratify health; first we need to catch the "don't know" and "refused" as NAs
+dat %<>%  
+    mutate(health2 = 
+    case_when(
+        h1gh1 <= "(6) Refused" ~ as.character(NA),
+        h1gh1 >  "(3) Good" ~ "high",
+        h1gh1 <= "(3) Good" ~ "low"
+    ))
+```
+
+
+<h1>Q. 5.4</h1>
+__Tabulate (count and percent) this new variable for all respondents.__
+
+```{r}
+tabhealth <- dat %>% 
+    group_by(health) %>% 
+    summarise(n = n()) %>% 
+    mutate("%" = round(n / sum(n) * 100, 2))
+
+kable(tabhealth) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left") 
+```
+
+<h1>Q. 5.4</h1>
+__Tabulate (count and percent) this new variable for those who self-identified as White versus those who self-identified as African American.__
+
+There are two variables dealing with race: h1gi6a (S1Q6A RACE-WHITE-W1), and h1gi6b (S1Q6B RACE-AFRICAN AMERICAN-W1), that are not mutually exclusive, so each variable is treated separately.
+
+```{r}
+# tabulate by White
+tabhealth_white <- dat %>% 
+    group_by(health, white = h1gi6a) %>% 
+    summarise(n = n(), .groups = "drop_last") %>% 
+    mutate("%" = round(n / sum(n) * 100, 2))
+
+# tabulate by African Americal
+tabhealth_afram <- dat %>% 
+    group_by(health, afram = h1gi6b) %>% 
+    summarise(n = n(), .groups = "drop_last") %>% 
+    mutate("%" = round(n / sum(n) * 100, 2))
+
+# column-bind and remove the second "health" column
+x <- cbind(tabhealth_white, tabhealth_afram) %>% 
+    select(-5)
+
+# print the table with better printed names
+kable(x, col.names = c("health", "race", "n", "%", "race", "n", "%")) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left") %>% 
+    add_header_above(c(" " = 1, "White" = 3, "African American" = 3))
+```
+
+
+<h1>Source code for this document</h1>
+```{r comment=''}
+cat(readLines("csde502_2021_assignment02_answers.Rmd"), sep = '\n')
+```

@@ -1,0 +1,3959 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Week 3 | CSDE 502 Winter 2021</title>
+  <meta name="description" content="These are the class notes and assignments for CSDE 502." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Week 3 | CSDE 502 Winter 2021" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the class notes and assignments for CSDE 502." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Week 3 | CSDE 502 Winter 2021" />
+  
+  <meta name="twitter:description" content="These are the class notes and assignments for CSDE 502." />
+  
+
+<meta name="author" content="Phil Hurvitz" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week2.html"/>
+<link rel="next" href="week4.html"/>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.17/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">CSDE 502</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-logistics"><i class="fa fa-check"></i>Course logistics</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#canvas"><i class="fa fa-check"></i>Canvas</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i>Computing</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="week1.html"><a href="week1.html"><i class="fa fa-check"></i><b>1</b> Week 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="week1.html"><a href="week1.html#getting-started-on-terminal-server-4"><i class="fa fa-check"></i><b>1.1</b> Getting started on Terminal Server 4</a></li>
+<li class="chapter" data-level="1.2" data-path="week1.html"><a href="week1.html#introduction-to-r-markdown-in-rstudio"><i class="fa fa-check"></i><b>1.2</b> Introduction to R Markdown in RStudio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="week1.html"><a href="week1.html#create-a-project"><i class="fa fa-check"></i><b>1.2.1</b> Create a project</a></li>
+<li class="chapter" data-level="1.2.2" data-path="week1.html"><a href="week1.html#create-an-r-markdown-file-from-built-in-rstudio-functionality"><i class="fa fa-check"></i><b>1.2.2</b> Create an R Markdown file from built-in RStudio functionality</a><ul>
+<li class="chapter" data-level="1.2.2.1" data-path="week1.html"><a href="week1.html#render-the-rmd-file-as-html"><i class="fa fa-check"></i><b>1.2.2.1</b> Render the Rmd file as HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2.3" data-path="week1.html"><a href="week1.html#create-an-r-markdown-file-with-some-enhancements"><i class="fa fa-check"></i><b>1.2.3</b> Create an R Markdown file with some enhancements</a><ul>
+<li class="chapter" data-level="1.2.3.1" data-path="week1.html"><a href="week1.html#render-and-view-the-enhanced-output"><i class="fa fa-check"></i><b>1.2.3.1</b> Render and view the enhanced output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="week1.html"><a href="week1.html#file-systems"><i class="fa fa-check"></i><b>1.3</b> File systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week2.html"><a href="week2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="week2.html"><a href="week2.html#code-to-run-for-the-in-class-exercise"><i class="fa fa-check"></i><b>2.1</b> Code to run for the in-class exercise</a></li>
+<li class="chapter" data-level="2.2" data-path="week2.html"><a href="week2.html#r-data-types"><i class="fa fa-check"></i><b>2.2</b> R data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="week2.html"><a href="week2.html#logical"><i class="fa fa-check"></i><b>2.2.1</b> Logical</a></li>
+<li class="chapter" data-level="2.2.2" data-path="week2.html"><a href="week2.html#numeric"><i class="fa fa-check"></i><b>2.2.2</b> Numeric</a></li>
+<li class="chapter" data-level="2.2.3" data-path="week2.html"><a href="week2.html#integer"><i class="fa fa-check"></i><b>2.2.3</b> Integer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="week2.html"><a href="week2.html#complex"><i class="fa fa-check"></i><b>2.2.4</b> Complex</a></li>
+<li class="chapter" data-level="2.2.5" data-path="week2.html"><a href="week2.html#character"><i class="fa fa-check"></i><b>2.2.5</b> Character</a></li>
+<li class="chapter" data-level="2.2.6" data-path="week2.html"><a href="week2.html#raw"><i class="fa fa-check"></i><b>2.2.6</b> Raw</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="week2.html"><a href="week2.html#r-data-structures"><i class="fa fa-check"></i><b>2.3</b> R data structures</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="week2.html"><a href="week2.html#vector"><i class="fa fa-check"></i><b>2.3.1</b> Vector</a></li>
+<li class="chapter" data-level="2.3.2" data-path="week2.html"><a href="week2.html#matrix"><i class="fa fa-check"></i><b>2.3.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.3.3" data-path="week2.html"><a href="week2.html#array"><i class="fa fa-check"></i><b>2.3.3</b> Array</a></li>
+<li class="chapter" data-level="2.3.4" data-path="week2.html"><a href="week2.html#list"><i class="fa fa-check"></i><b>2.3.4</b> List</a></li>
+<li class="chapter" data-level="2.3.5" data-path="week2.html"><a href="week2.html#factor"><i class="fa fa-check"></i><b>2.3.5</b> Factor</a></li>
+<li class="chapter" data-level="2.3.6" data-path="week2.html"><a href="week2.html#data-frame"><i class="fa fa-check"></i><b>2.3.6</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="week2.html"><a href="week2.html#tidyverse"><i class="fa fa-check"></i><b>2.4</b> tidyverse</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="week2.html"><a href="week2.html#magrittr"><i class="fa fa-check"></i><b>2.4.1</b> magrittr</a></li>
+<li class="chapter" data-level="2.4.2" data-path="week2.html"><a href="week2.html#data-subsetting-dplyr"><i class="fa fa-check"></i><b>2.4.2</b> Data subsetting (dplyr)</a><ul>
+<li class="chapter" data-level="2.4.2.0.1" data-path="week2.html"><a href="week2.html#logical-tests"><i class="fa fa-check"></i><b>2.4.2.0.1</b> Logical tests</a></li>
+<li class="chapter" data-level="2.4.2.1" data-path="week2.html"><a href="week2.html#subset-rows-filter"><i class="fa fa-check"></i><b>2.4.2.1</b> Subset rows (<code>filter()</code>)</a></li>
+<li class="chapter" data-level="2.4.2.2" data-path="week2.html"><a href="week2.html#subset-columns-select"><i class="fa fa-check"></i><b>2.4.2.2</b> Subset columns (<code>select()</code>)</a></li>
+<li class="chapter" data-level="2.4.2.3" data-path="week2.html"><a href="week2.html#subset-rows-and-columns-filter-and-select"><i class="fa fa-check"></i><b>2.4.2.3</b> Subset rows and columns: <code>filter()</code> and <code>select()</code></a></li>
+<li class="chapter" data-level="2.4.2.4" data-path="week2.html"><a href="week2.html#create-or-calculate-columns-mutate"><i class="fa fa-check"></i><b>2.4.2.4</b> Create or calculate columns: <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.4.2.5" data-path="week2.html"><a href="week2.html#summarizingaggregating-data"><i class="fa fa-check"></i><b>2.4.2.5</b> Summarizing/aggregating data</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week3.html"><a href="week3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="week3.html"><a href="week3.html#graphics-in-r-markdown"><i class="fa fa-check"></i><b>3.1</b> Graphics in R Markdown</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="week3.html"><a href="week3.html#base-r-graphics"><i class="fa fa-check"></i><b>3.1.1</b> Base R graphics</a></li>
+<li class="chapter" data-level="3.1.2" data-path="week3.html"><a href="week3.html#ggplot2-graphics"><i class="fa fa-check"></i><b>3.1.2</b> <code>ggplot2</code> graphics</a></li>
+<li class="chapter" data-level="3.1.3" data-path="week3.html"><a href="week3.html#embedding-graphics-files"><i class="fa fa-check"></i><b>3.1.3</b> Embedding graphics files</a><ul>
+<li class="chapter" data-level="3.1.3.1" data-path="week3.html"><a href="week3.html#knitr"><i class="fa fa-check"></i><b>3.1.3.1</b> <code>knitr</code></a></li>
+<li class="chapter" data-level="3.1.3.2" data-path="week3.html"><a href="week3.html#markdown-captionfilename"><i class="fa fa-check"></i><b>3.1.3.2</b> Markdown: <code>![caption](filename)</code></a></li>
+<li class="chapter" data-level="3.1.3.3" data-path="week3.html"><a href="week3.html#html-img-tag"><i class="fa fa-check"></i><b>3.1.3.3</b> HTML <code>&lt;img&gt;</code> tag</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="week3.html"><a href="week3.html#tables-in-r-markdown"><i class="fa fa-check"></i><b>3.2</b> Tables in R Markdown</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="week3.html"><a href="week3.html#kntir-kable-and-kableextra"><i class="fa fa-check"></i><b>3.2.1</b> <code>kntir</code> (<code>kable()</code>) and <code>kableExtra</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="week3.html"><a href="week3.html#stargazer"><i class="fa fa-check"></i><b>3.2.2</b> <code>stargazer</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="week3.html"><a href="week3.html#pander"><i class="fa fa-check"></i><b>3.2.3</b> <code>pander</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="week3.html"><a href="week3.html#captions-to-support-tables-figures-and-equations"><i class="fa fa-check"></i><b>3.3</b> Captions to support tables, figures, and equations</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="week3.html"><a href="week3.html#figures"><i class="fa fa-check"></i><b>3.3.1</b> Figures</a><ul>
+<li class="chapter" data-level="3.3.1.1" data-path="week3.html"><a href="week3.html#r-markdown-code-chunk-fig.cap"><i class="fa fa-check"></i><b>3.3.1.1</b> R Markdown code chunk <code>fig.cap</code></a></li>
+<li class="chapter" data-level="3.3.1.2" data-path="week3.html"><a href="week3.html#bookdown-with-html_document2-output-type"><i class="fa fa-check"></i><b>3.3.1.2</b> <code>bookdown</code> with <code>html_document2</code> output type</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3.2" data-path="week3.html"><a href="week3.html#tables-kable-caption"><i class="fa fa-check"></i><b>3.3.2</b> Tables: <code>kable()</code> &quot;caption&quot;</a><ul>
+<li class="chapter" data-level="3.3.2.1" data-path="week3.html"><a href="week3.html#bookdown-with-html_document2-output-type-1"><i class="fa fa-check"></i><b>3.3.2.1</b> <code>bookdown</code> with <code>html_document2</code> output type</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3.3" data-path="week3.html"><a href="week3.html#equations"><i class="fa fa-check"></i><b>3.3.3</b> Equations</a></li>
+<li class="chapter" data-level="3.3.4" data-path="week3.html"><a href="week3.html#captioner-for-any-captioning-and-cross-referencing-figures-and-tables"><i class="fa fa-check"></i><b>3.3.4</b> <code>captioner</code> for any captioning and cross-referencing figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="week3.html"><a href="week3.html#r-markdown-to-microsoft-word"><i class="fa fa-check"></i><b>3.4</b> R Markdown to Microsoft Word</a></li>
+<li class="chapter" data-level="3.5" data-path="week3.html"><a href="week3.html#r-markdown-output"><i class="fa fa-check"></i><b>3.5</b> R Markdown output</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="week3.html"><a href="week3.html#r-markdown-rendering-to-specific-formats"><i class="fa fa-check"></i><b>3.5.1</b> R Markdown rendering to specific formats</a></li>
+<li class="chapter" data-level="3.5.2" data-path="week3.html"><a href="week3.html#testing-output_type"><i class="fa fa-check"></i><b>3.5.2</b> Testing <code>output_type()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="week3.html"><a href="week3.html#advantages-and-disadvantages-of-pdf"><i class="fa fa-check"></i><b>3.6</b> Advantages and disadvantages of PDF</a></li>
+<li class="chapter" data-level="3.7" data-path="week3.html"><a href="week3.html#bibliography-in-r-markdown"><i class="fa fa-check"></i><b>3.7</b> Bibliography in R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week4.html"><a href="week4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a><ul>
+<li class="chapter" data-level="4.1" data-path="week4.html"><a href="week4.html#environments"><i class="fa fa-check"></i><b>4.1</b> Environments</a></li>
+<li class="chapter" data-level="4.2" data-path="week4.html"><a href="week4.html#functions"><i class="fa fa-check"></i><b>4.2</b> Functions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="week4.html"><a href="week4.html#function-components"><i class="fa fa-check"></i><b>4.2.1</b> Function Components</a><ul>
+<li class="chapter" data-level="4.2.1.1" data-path="week4.html"><a href="week4.html#name"><i class="fa fa-check"></i><b>4.2.1.1</b> Name</a></li>
+<li class="chapter" data-level="4.2.1.2" data-path="week4.html"><a href="week4.html#arguments"><i class="fa fa-check"></i><b>4.2.1.2</b> Arguments</a><ul>
+<li class="chapter" data-level="4.2.1.2.1" data-path="week4.html"><a href="week4.html#default-values-for-arguments"><i class="fa fa-check"></i><b>4.2.1.2.1</b> Default values for arguments</a></li>
+<li class="chapter" data-level="4.2.1.2.2" data-path="week4.html"><a href="week4.html#the-...-argument"><i class="fa fa-check"></i><b>4.2.1.2.2</b> The <code>...</code> argument</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.1.3" data-path="week4.html"><a href="week4.html#body"><i class="fa fa-check"></i><b>4.2.1.3</b> Body</a></li>
+<li class="chapter" data-level="4.2.1.4" data-path="week4.html"><a href="week4.html#return-value"><i class="fa fa-check"></i><b>4.2.1.4</b> Return value</a></li>
+<li class="chapter" data-level="4.2.1.5" data-path="week4.html"><a href="week4.html#function-environments"><i class="fa fa-check"></i><b>4.2.1.5</b> Function environments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="week4.html"><a href="week4.html#sampling"><i class="fa fa-check"></i><b>4.3</b> Sampling</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="week4.html"><a href="week4.html#sampling-with-replacement"><i class="fa fa-check"></i><b>4.3.1</b> Sampling with replacement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="week4.html"><a href="week4.html#sampling-without-replacement"><i class="fa fa-check"></i><b>4.3.2</b> Sampling without replacement</a></li>
+<li class="chapter" data-level="4.3.3" data-path="week4.html"><a href="week4.html#bootstrapping"><i class="fa fa-check"></i><b>4.3.3</b> Bootstrapping</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week5.html"><a href="week5.html"><i class="fa fa-check"></i><b>5</b> Week 5</a><ul>
+<li class="chapter" data-level="5.1" data-path="week5.html"><a href="week5.html#why-use-version-control"><i class="fa fa-check"></i><b>5.1</b> Why use version control?</a></li>
+<li class="chapter" data-level="5.2" data-path="week5.html"><a href="week5.html#why-use-git"><i class="fa fa-check"></i><b>5.2</b> Why use Git?</a></li>
+<li class="chapter" data-level="5.3" data-path="week5.html"><a href="week5.html#limitations-of-version-control-systems"><i class="fa fa-check"></i><b>5.3</b> Limitations of version control systems</a></li>
+<li class="chapter" data-level="5.4" data-path="week5.html"><a href="week5.html#a-brief-git-tutorial"><i class="fa fa-check"></i><b>5.4</b> A brief Git tutorial</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="week5.html"><a href="week5.html#setting-up-git-in-rstudio"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git in RStudio</a></li>
+<li class="chapter" data-level="5.4.2" data-path="week5.html"><a href="week5.html#creating-a-repository"><i class="fa fa-check"></i><b>5.4.2</b> Creating a repository</a></li>
+<li class="chapter" data-level="5.4.3" data-path="week5.html"><a href="week5.html#tracking-changes"><i class="fa fa-check"></i><b>5.4.3</b> Tracking changes</a></li>
+<li class="chapter" data-level="5.4.4" data-path="week5.html"><a href="week5.html#git-bash-shell"><i class="fa fa-check"></i><b>5.4.4</b> Git bash shell</a></li>
+<li class="chapter" data-level="5.4.5" data-path="week5.html"><a href="week5.html#ignoring-specific-files"><i class="fa fa-check"></i><b>5.4.5</b> Ignoring specific files</a></li>
+<li class="chapter" data-level="5.4.6" data-path="week5.html"><a href="week5.html#exploring-file-change-history"><i class="fa fa-check"></i><b>5.4.6</b> Exploring file change history</a></li>
+<li class="chapter" data-level="5.4.7" data-path="week5.html"><a href="week5.html#restoring-a-previous-version"><i class="fa fa-check"></i><b>5.4.7</b> Restoring a previous version</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="week5.html"><a href="week5.html#conclusion"><i class="fa fa-check"></i><b>5.5</b> Conclusion</a></li>
+<li class="chapter" data-level="5.6" data-path="week5.html"><a href="week5.html#source-code"><i class="fa fa-check"></i><b>5.6</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="week6.html"><a href="week6.html"><i class="fa fa-check"></i><b>6</b> Week 6</a><ul>
+<li class="chapter" data-level="6.1" data-path="week6.html"><a href="week6.html#the-add-health-study-data"><i class="fa fa-check"></i><b>6.1</b> The Add Health study data</a></li>
+<li class="chapter" data-level="6.2" data-path="week6.html"><a href="week6.html#documentation"><i class="fa fa-check"></i><b>6.2</b> Documentation</a></li>
+<li class="chapter" data-level="6.3" data-path="week6.html"><a href="week6.html#data-sets"><i class="fa fa-check"></i><b>6.3</b> Data sets</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="week6.html"><a href="week6.html#ahwave1_v1.dta"><i class="fa fa-check"></i><b>6.3.1</b> <code>AHwave1_v1.dta</code></a><ul>
+<li class="chapter" data-level="6.3.1.1" data-path="week6.html"><a href="week6.html#havenread_dta"><i class="fa fa-check"></i><b>6.3.1.1</b> <code>haven::read_dta()</code></a></li>
+<li class="chapter" data-level="6.3.1.2" data-path="week6.html"><a href="week6.html#readstata13read.dta13"><i class="fa fa-check"></i><b>6.3.1.2</b> <code>readstata13::read.dta13()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3.2" data-path="week6.html"><a href="week6.html#data.dta"><i class="fa fa-check"></i><b>6.3.2</b> <code>21600-0001-Data.dta</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="week6.html"><a href="week6.html#searching-through-documentation"><i class="fa fa-check"></i><b>6.4</b> Searching through documentation</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="week6.html"><a href="week6.html#pdfgrep"><i class="fa fa-check"></i><b>6.4.1</b> <code>pdfgrep</code></a><ul>
+<li class="chapter" data-level="6.4.1.1" data-path="week6.html"><a href="week6.html#a-few-use-examples"><i class="fa fa-check"></i><b>6.4.1.1</b> A few use examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4.2" data-path="week6.html"><a href="week6.html#pdftoolspdf_text"><i class="fa fa-check"></i><b>6.4.2</b> <code>pdftools::pdf_text()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="week6.html"><a href="week6.html#conclusion-1"><i class="fa fa-check"></i><b>6.5</b> Conclusion</a></li>
+<li class="chapter" data-level="6.6" data-path="week6.html"><a href="week6.html#source-code-1"><i class="fa fa-check"></i><b>6.6</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="week7.html"><a href="week7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a><ul>
+<li class="chapter" data-level="7.1" data-path="week7.html"><a href="week7.html#creating-value-labels"><i class="fa fa-check"></i><b>7.1</b> Creating value labels</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="week7.html"><a href="week7.html#creating-factor-variables"><i class="fa fa-check"></i><b>7.1.1</b> Creating factor variables</a></li>
+<li class="chapter" data-level="7.1.2" data-path="week7.html"><a href="week7.html#creating-attributes"><i class="fa fa-check"></i><b>7.1.2</b> Creating attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="week7.html"><a href="week7.html#tabulation"><i class="fa fa-check"></i><b>7.2</b> Tabulation</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="week7.html"><a href="week7.html#raw-counts"><i class="fa fa-check"></i><b>7.2.1</b> Raw counts</a></li>
+<li class="chapter" data-level="7.2.2" data-path="week7.html"><a href="week7.html#proportionspercentages"><i class="fa fa-check"></i><b>7.2.2</b> Proportions/percentages</a></li>
+<li class="chapter" data-level="7.2.3" data-path="week7.html"><a href="week7.html#stratified-tabulation"><i class="fa fa-check"></i><b>7.2.3</b> Stratified tabulation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="week7.html"><a href="week7.html#source-code-2"><i class="fa fa-check"></i><b>7.3</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="week8.html"><a href="week8.html"><i class="fa fa-check"></i><b>8</b> Week 8</a><ul>
+<li class="chapter" data-level="8.1" data-path="week8.html"><a href="week8.html#scale-scoring"><i class="fa fa-check"></i><b>8.1</b> Scale scoring</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="week8.html"><a href="week8.html#selecting-specific-columns"><i class="fa fa-check"></i><b>8.1.1</b> Selecting specific columns</a></li>
+<li class="chapter" data-level="8.1.2" data-path="week8.html"><a href="week8.html#comparing-participant-answers-to-correct-answers"><i class="fa fa-check"></i><b>8.1.2</b> Comparing participant answers to correct answers</a></li>
+<li class="chapter" data-level="8.1.3" data-path="week8.html"><a href="week8.html#scoring-across-columns"><i class="fa fa-check"></i><b>8.1.3</b> Scoring across columns</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="week8.html"><a href="week8.html#reordering-values"><i class="fa fa-check"></i><b>8.2</b> Reordering values</a></li>
+<li class="chapter" data-level="8.3" data-path="week8.html"><a href="week8.html#source-code-3"><i class="fa fa-check"></i><b>8.3</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="week9.html"><a href="week9.html"><i class="fa fa-check"></i><b>9</b> Week 9</a><ul>
+<li class="chapter" data-level="9.1" data-path="week9.html"><a href="week9.html#substituting-text"><i class="fa fa-check"></i><b>9.1</b> Substituting text</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="week9.html"><a href="week9.html#paste-paste0"><i class="fa fa-check"></i><b>9.1.1</b> <code>paste()</code>, <code>paste0()</code></a></li>
+<li class="chapter" data-level="9.1.2" data-path="week9.html"><a href="week9.html#sprintf"><i class="fa fa-check"></i><b>9.1.2</b> <code>sprintf()</code></a><ul>
+<li class="chapter" data-level="9.1.2.1" data-path="week9.html"><a href="week9.html#formatting-numerical-values"><i class="fa fa-check"></i><b>9.1.2.1</b> Formatting numerical values</a></li>
+<li class="chapter" data-level="9.1.2.2" data-path="week9.html"><a href="week9.html#string-substitutions"><i class="fa fa-check"></i><b>9.1.2.2</b> String substitutions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.1.3" data-path="week9.html"><a href="week9.html#str_replace-str_replace_all"><i class="fa fa-check"></i><b>9.1.3</b> <code>str_replace()</code>, <code>str_replace_all()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="week9.html"><a href="week9.html#showing-progress"><i class="fa fa-check"></i><b>9.2</b> Showing progress</a></li>
+<li class="chapter" data-level="9.3" data-path="week9.html"><a href="week9.html#turning-text-into-code-evalparsetext-some-string"><i class="fa fa-check"></i><b>9.3</b> Turning text into code: <code>eval(parse(text = &quot;some string&quot;))</code></a></li>
+<li class="chapter" data-level="9.4" data-path="week9.html"><a href="week9.html#sql-in-r-with-rsqlite-and-sqldf"><i class="fa fa-check"></i><b>9.4</b> SQL in R with <code>RSQLite</code> and <code>sqldf</code></a></li>
+<li class="chapter" data-level="9.5" data-path="week9.html"><a href="week9.html#downloading-files-from-password-protected-web-sites"><i class="fa fa-check"></i><b>9.5</b> Downloading files from password-protected web sites</a></li>
+<li class="chapter" data-level="9.6" data-path="week9.html"><a href="week9.html#dates-and-time-stamps-posixct-and-lubridate"><i class="fa fa-check"></i><b>9.6</b> Dates and time stamps: <code>POSIXct</code> and <code>lubridate</code></a></li>
+<li class="chapter" data-level="9.7" data-path="week9.html"><a href="week9.html#timing-with-sys.time-and-difftime"><i class="fa fa-check"></i><b>9.7</b> Timing with <code>Sys.time()</code> and <code>difftime()</code></a></li>
+<li class="chapter" data-level="9.8" data-path="week9.html"><a href="week9.html#faster-files-with-fst"><i class="fa fa-check"></i><b>9.8</b> Faster files with <code>fst()</code></a></li>
+<li class="chapter" data-level="9.9" data-path="week9.html"><a href="week9.html#getting-us-census-data-with-tigris-tidycensus"><i class="fa fa-check"></i><b>9.9</b> Getting US Census data with <code>tigris</code>, <code>tidycensus</code></a></li>
+<li class="chapter" data-level="9.10" data-path="week9.html"><a href="week9.html#easier-regular-expressions-with-rverbalexpressions"><i class="fa fa-check"></i><b>9.10</b> Easier regular expressions with <code>RVerbalExpressions</code></a></li>
+<li class="chapter" data-level="9.11" data-path="week9.html"><a href="week9.html#quick-copy-from-excel-windows-only"><i class="fa fa-check"></i><b>9.11</b> Quick copy from Excel (Windows only)</a></li>
+<li class="chapter" data-level="9.12" data-path="week9.html"><a href="week9.html#running-system-commands"><i class="fa fa-check"></i><b>9.12</b> Running system commands</a></li>
+<li class="chapter" data-level="9.13" data-path="week9.html"><a href="week9.html#code-styling"><i class="fa fa-check"></i><b>9.13</b> Code styling</a></li>
+<li class="chapter" data-level="9.14" data-path="week9.html"><a href="week9.html#session-information"><i class="fa fa-check"></i><b>9.14</b> Session information</a></li>
+<li class="chapter" data-level="9.15" data-path="week9.html"><a href="week9.html#comment-out-rmdhtml-code"><i class="fa fa-check"></i><b>9.15</b> Comment out Rmd/HTML code</a></li>
+<li class="chapter" data-level="9.16" data-path="week9.html"><a href="week9.html#source-code-4"><i class="fa fa-check"></i><b>9.16</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="zoom.html"><a href="zoom.html"><i class="fa fa-check"></i><b>10</b> Zoom Recordings</a><ul>
+<li class="chapter" data-level="10.1" data-path="zoom.html"><a href="zoom.html#start-time-jan-8-2021-1027-am"><i class="fa fa-check"></i><b>10.1</b> Start Time: Jan 8, 2021 10:27 AM</a></li>
+<li class="chapter" data-level="10.2" data-path="zoom.html"><a href="zoom.html#start-time-jan-22-2021-1021-am"><i class="fa fa-check"></i><b>10.2</b> Start Time: Jan 22, 2021 10:21 AM</a></li>
+<li class="chapter" data-level="10.3" data-path="zoom.html"><a href="zoom.html#start-time-jan-29-2021-1025-am"><i class="fa fa-check"></i><b>10.3</b> Start Time: Jan 29, 2021 10:25 AM</a></li>
+<li class="chapter" data-level="10.4" data-path="zoom.html"><a href="zoom.html#start-time-feb-5-2021-1028-am"><i class="fa fa-check"></i><b>10.4</b> Start Time: Feb 5, 2021 10:28 AM</a></li>
+<li class="chapter" data-level="10.5" data-path="zoom.html"><a href="zoom.html#start-time-feb-12-2021-1027-am"><i class="fa fa-check"></i><b>10.5</b> Start Time: Feb 12, 2021 10:27 AM</a></li>
+<li class="chapter" data-level="10.6" data-path="zoom.html"><a href="zoom.html#start-time-feb-19-2021-1021-am"><i class="fa fa-check"></i><b>10.6</b> Start Time: Feb 19, 2021 10:21 AM</a></li>
+<li class="chapter" data-level="10.7" data-path="zoom.html"><a href="zoom.html#start-time-feb-26-2021-1029-am"><i class="fa fa-check"></i><b>10.7</b> Start Time : Feb 26, 2021 10:29 AM</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">CSDE 502 Winter 2021</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week3" class="section level1">
+<h1><span class="header-section-number">3</span> Week 3</h1>
+<style>
+.border1 {   
+    border-width: 1px;   
+    border-color: black;   
+    border-style: solid; } 
+</style>
+<h2>
+Topics: Graphics and Tables in R; Captions and cross-references; R Markdown to MS Word; Bibliography
+</h2>
+<p>Because of its extensibility, HTML can be considered a preferred output from R Markdown. However, document formats are often necessary, particularly for term papers, theses/dissertations, and manuscripts for submission to scholarly journals. In this week's lesson, we will focus on the creation of these two output types, including adding bibliographies (which also applies to HTML output), and some basic <code>ggplot</code> graphics.</p>
+<p>For both PDF and Word output, much of the structure of your Rmd files will be the same as for HTML output. The major difference is how tables are handled, which we will explore in some detail. Static graphics are handled similarly across all output formats, other than HTML output can support dynamic graphics, such as the Leaflet map we saw in the first lesson, and responsive graphics as in <a href="https://shiny.rstudio.com/">Shiny</a>.</p>
+<div id="graphics-in-r-markdown" class="section level2">
+<h2><span class="header-section-number">3.1</span> Graphics in R Markdown</h2>
+<p>Data-driven graphics in Rmd files are typically created as base R graphics or with the <code>ggplot2</code> package. This tutorial is not intended to provide anywhere near a comprehensive treatment of creating graphics from data, but will provide instruction on some options for creating and including data-driven graphics as well as inserting graphics from image files.</p>
+<p>See <a href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">Tips and tricks for working with images and figures in R Markdown documents</a> for a good explanation.</p>
+<div id="base-r-graphics" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Base R graphics</h3>
+<p>To include base R graphics, simply place the code to generate the graphic in an R code block, e.g., using the Add Health data from last week (<a href="data/AHWave1_v1.dta">AHWave1_v1.dta</a>):</p>
+<pre><code>```{r}
+# since loading the data takes awhile, only do this if necessary
+if(!exists(&quot;dat&quot;)){
+    dat &lt;- read.dta13(&quot;data/AHwave1_v1.dta&quot;)
+}
+# birth year = h1gi1y
+# drop &quot;Refused&quot; birth year
+# for birth year and interview year, replace anything before white space, convert to numeric
+# subtract interview year - birth year
+ages &lt;- dat %&gt;% 
+    filter(! str_detect(h1gi1y, &quot;Refused&quot;)) %&gt;% 
+    select(iyear, h1gi1y) %&gt;% 
+    mutate(yi = str_replace(iyear, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           yb = str_replace(h1gi1y, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           age = yi - yb)
+           
+# create a histogram using base graphics
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+```</code></pre>
+<p>... which will render the graph:</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+</div>
+<div id="ggplot2-graphics" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> <code>ggplot2</code> graphics</h3>
+<p>The <code>ggplot2</code> package creates compelling graphics that use a common syntax. The main difference between base R graphics and <code>ggplot2</code> graphics is that simply issuing the <code>plot()</code> or related command (e.g., <code>hist()</code>, <code>barplot()</code>) adds the graphic to the output, whereas with <code>ggplot()</code> it is necessary to issue a command that prints the graphic.</p>
+<p>Following the previous example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># how many unique bins? </span>
+bins &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(ages<span class="op">$</span>age))
+
+<span class="co"># create the graphic</span>
+g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> ages, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> age)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> bins)
+
+<span class="co"># print the graphic</span>
+<span class="kw">print</span>(g)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+</div>
+<div id="embedding-graphics-files" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Embedding graphics files</h3>
+<p>Journals frequently require graphics files to be submitted separately from the manuscript. In this case, the graphic can be created and saved as a file and then inserted in the Rmd using code, but also accessed as a a stand-alone file. Let's take the previous example, but add correlation coefficients and other embellishments, create a graphics file and add the graphics into the Rmd.</p>
+<p>The base graphics file is created using the <code>pdf()</code> function, although <code>png()</code> also works if that is the desired output format. PDF is a vector format, so it generally renders better over different zoom levels.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="dt">file =</span> <span class="st">&quot;ah_age_hist.pdf&quot;</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">height =</span> <span class="dv">5</span>)
+<span class="kw">hist</span>(ages<span class="op">$</span>age, <span class="dt">xlab =</span> <span class="st">&quot;age (years)&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>)
+x &lt;-<span class="st"> </span><span class="kw">dev.off</span>()</code></pre></div>
+<p>Here we create a PNG format file:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">png</span>(<span class="dt">file =</span> <span class="st">&quot;ah_age_hist.png&quot;</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">height =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>, <span class="dt">res =</span> <span class="dv">300</span>)
+<span class="kw">hist</span>(ages<span class="op">$</span>age, <span class="dt">xlab =</span> <span class="st">&quot;age (years)&quot;</span>, <span class="dt">las =</span> <span class="dv">1</span>)
+x &lt;-<span class="st"> </span><span class="kw">dev.off</span>()</code></pre></div>
+<p><code>ggplot2</code> graphics can be saved using <code>ggsave()</code>, e.g., for both PDF and PNG outputs. The <code>dpi</code> argument is important for bitmap images.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;ah_age_hist_ggplot.pdf&quot;</span>, <span class="dt">plot =</span> g, <span class="dt">device =</span> <span class="st">&quot;pdf&quot;</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">height =</span> <span class="dv">5</span>)
+<span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;ah_age_hist_ggplot.png&quot;</span>, <span class="dt">plot =</span> g, <span class="dt">device =</span> <span class="st">&quot;png&quot;</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">height =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>, <span class="dt">dpi =</span> <span class="dv">300</span>)</code></pre></div>
+<p>Graphics can be added using several methods.</p>
+<div id="knitr" class="section level4">
+<h4><span class="header-section-number">3.1.3.1</span> <code>knitr</code></h4>
+<p>The <code>knitr::include_graphics()</code> function can be used to insert image files, with the caution that inserted PDF files may produce unwanted results. The syntax is:</p>
+<pre><code>```{r}
+include_graphics(&quot;graphics_filename&quot;)
+```</code></pre>
+<p>and the code chunk can include <code>out.width</code>, <code>out.height</code> and other options.   Here we insert a PDF with no code chunk options, which presents the image with a scroll bar, rather than the full image:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">include_graphics</span>(<span class="st">&quot;ah_age_hist.pdf&quot;</span>)</code></pre></div>
+<p><embed src="ah_age_hist.pdf" /><!-- --></p>
+<p>Here we specify in the code chunk options <code>out.height = &quot;360px&quot;, out.width='360px', fig.align='left'</code>,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">include_graphics</span>(<span class="st">&quot;ah_age_hist.pdf&quot;</span>)</code></pre></div>
+<embed src="ah_age_hist.pdf" width="360px" height="360px" style="display: block; margin: auto auto auto 0;" type="application/pdf" />
+<p> </p>
+<p>... and with code chunk options <code>out.height = &quot;400px&quot;, out.width='100%', fig.align='left'</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">include_graphics</span>(<span class="st">&quot;ah_age_hist.pdf&quot;</span>)</code></pre></div>
+<embed src="ah_age_hist.pdf" width="100%" height="400px" style="display: block; margin: auto auto auto 0;" type="application/pdf" />
+<p> </p>
+<p>It seems that embedding PDF files is not optimal.</p>
+<p>Here we insert a PNG: with no code chunk options:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">include_graphics</span>(<span class="st">&quot;ah_age_hist_ggplot.png&quot;</span>)</code></pre></div>
+<p><img src="ah_age_hist_ggplot.png" width="750" /></p>
+<p>and with code chunk option <code>out.width = &quot;50%&quot;</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">include_graphics</span>(<span class="st">&quot;ah_age_hist_ggplot.png&quot;</span>)</code></pre></div>
+<p><img src="ah_age_hist_ggplot.png" width="50%" /></p>
+<p>So embedding bitmapped images appears to work better than embedding PDF files.</p>
+</div>
+<div id="markdown-captionfilename" class="section level4">
+<h4><span class="header-section-number">3.1.3.2</span> Markdown: <code>![caption](filename)</code></h4>
+<p>The native Markdown syntax:</p>
+<pre><code>![](filename)</code></pre>
+<p>includes a graphics file with an optional caption, e.g., here, a PDF with no caption,</p>
+<p><code>![](ah_age_hist.pdf)</code></p>
+<div class="figure">
+<embed src="ah_age_hist.pdf" />
+
+</div>
+<p> </p>
+<p>The structure <code>![]()</code> indicates this is an inserted graphic; a caption can be specified by including text within the square brackets, e.g., displays the caption below the inserted image (but with no caption number!).</p>
+<p><code>![Add Health respondent age histogram](ah_age_hist_ggplot.pdf)</code></p>
+<div class="figure">
+<embed src="ah_age_hist_ggplot.pdf" />
+<p class="caption">Add Health respondent age histogram</p>
+</div>
+<p>... although it seems that inserting a PDF does odd things with image scrolling, while a PNG inserts the complete image without scroll bars.</p>
+<p><code>![Add Health respondent age histogram](ah_age_hist_ggplot.png)</code>:</p>
+<div class="figure">
+<img src="ah_age_hist_ggplot.png" alt="Add Health respondent age histogram" />
+<p class="caption">Add Health respondent age histogram</p>
+</div>
+</div>
+<div id="html-img-tag" class="section level4">
+<h4><span class="header-section-number">3.1.3.3</span> HTML <code>&lt;img&gt;</code> tag</h4>
+<p>If the file is to be rendered as HTML, <em>and</em> the image is a bitmap, rather than vector PDF graphics, the <code>&lt;img&gt;</code> tag can be used. Different utilities can be used to convert PDF to bitmapped formats, e.g., <a href="https://imagemagick.org/index.php">ImageMagick</a> and <a href="http://www.graphicsmagick.org/">GraphicsMagick</a>.</p>
+<p><code>&lt;img src=&quot;ah_age_hist_ggplot.png&quot;&gt;</code></p>
+<p><img src="ah_age_hist_ggplot.png"></p>
+<p>Including a percentage of page width:</p>
+<p><code>&lt;img src=&quot;ah_age_hist_ggplot.png&quot; width=&quot;30%&quot;&gt;</code></p>
+<p><img src="ah_age_hist_ggplot.png" width="30%"></p>
+</div>
+</div>
+</div>
+<div id="tables-in-r-markdown" class="section level2">
+<h2><span class="header-section-number">3.2</span> Tables in R Markdown</h2>
+<p>We will look at three methods of including tables in R Markdown documents, using the packages <code>knitr</code> (with <code>kableExtra</code>), <code>pander</code>, and <code>stargazer</code>.</p>
+<p>For the example table, we will use the frequency table of health <span class="math inline">\(\times\)</span> White and African American from Assignment 2:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span>readstata13<span class="op">::</span><span class="kw">read.dta13</span>(<span class="st">&quot;http://staff.washington.edu/phurvitz/csde502_winter_2021/data/AHwave1_v1.dta&quot;</span>)
+
+
+<span class="co"># ordered factor; use fct_rev to establish the correct ordering where better health ranks higher</span>
+dat <span class="op">%&lt;&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">h1gh1 =</span> <span class="kw">fct_rev</span>(<span class="kw">as.ordered</span>(h1gh1)))
+
+<span class="co"># stratify health; first we need to catch the &quot;don&#39;t know&quot; and &quot;refused&quot; as NAs</span>
+dat <span class="op">%&lt;&gt;%</span><span class="st">  </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">health =</span> 
+    <span class="kw">case_when</span>(
+        h1gh1 <span class="op">&lt;=</span><span class="st"> &quot;(6) Refused&quot;</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(<span class="ot">NA</span>),
+        h1gh1 <span class="op">&gt;</span><span class="st">  &quot;(3) Good&quot;</span> <span class="op">~</span><span class="st"> &quot;high&quot;</span>,
+        h1gh1 <span class="op">&lt;=</span><span class="st"> &quot;(3) Good&quot;</span> <span class="op">~</span><span class="st"> &quot;low&quot;</span>
+    ))
+
+<span class="co"># tabulate by White</span>
+tabhealth_white &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(health, <span class="dt">white =</span> h1gi6a) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">.groups =</span> <span class="st">&quot;drop_last&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="st">&quot;%&quot;</span> =<span class="st"> </span><span class="kw">round</span>(n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>))
+
+<span class="co"># tabulate by African Americal</span>
+tabhealth_afram &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(health, <span class="dt">afram =</span> h1gi6b) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">.groups =</span> <span class="st">&quot;drop_last&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="st">&quot;%&quot;</span> =<span class="st"> </span><span class="kw">round</span>(n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>))
+
+<span class="co"># column-bind and remove the second &quot;health&quot; column</span>
+sum_health_white_afram &lt;-<span class="st"> </span><span class="kw">cbind</span>(tabhealth_white, tabhealth_afram) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(<span class="op">-</span><span class="dv">5</span>)</code></pre></div>
+<div id="kntir-kable-and-kableextra" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> <code>kntir</code> (<code>kable()</code>) and <code>kableExtra</code></h3>
+<p>The simple table using <code>kable()</code> is not too nice to read.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(sum_health_white_afram)</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+health...1
+</th>
+<th style="text-align:left;">
+white
+</th>
+<th style="text-align:right;">
+n...3
+</th>
+<th style="text-align:right;">
+%...4
+</th>
+<th style="text-align:left;">
+afram
+</th>
+<th style="text-align:right;">
+n...7
+</th>
+<th style="text-align:right;">
+%...8
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1486
+</td>
+<td style="text-align:right;">
+33.36
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+3309
+</td>
+<td style="text-align:right;">
+74.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+2962
+</td>
+<td style="text-align:right;">
+66.49
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1139
+</td>
+<td style="text-align:right;">
+25.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+704
+</td>
+<td style="text-align:right;">
+34.49
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1553
+</td>
+<td style="text-align:right;">
+76.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1328
+</td>
+<td style="text-align:right;">
+65.07
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+479
+</td>
+<td style="text-align:right;">
+23.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol>
+<p>So we add some <code>kabelExtra</code> options, :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(sum_health_white_afram,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;health&quot;</span>, <span class="st">&quot;race&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;%&quot;</span>, <span class="st">&quot;race&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;%&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="dt">full_width =</span> F, <span class="dt">position =</span> <span class="st">&quot;left&quot;</span>) </code></pre></div>
+<pre><code>## Warning in if (!full_width) {: the condition has length &gt; 1 and only the first element will be used</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="">
+<thead>
+<tr>
+<th style="text-align:left;">
+health
+</th>
+<th style="text-align:left;">
+race
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+%
+</th>
+<th style="text-align:left;">
+race
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1486
+</td>
+<td style="text-align:right;">
+33.36
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+3309
+</td>
+<td style="text-align:right;">
+74.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+2962
+</td>
+<td style="text-align:right;">
+66.49
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1139
+</td>
+<td style="text-align:right;">
+25.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+704
+</td>
+<td style="text-align:right;">
+34.49
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1553
+</td>
+<td style="text-align:right;">
+76.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1328
+</td>
+<td style="text-align:right;">
+65.07
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+479
+</td>
+<td style="text-align:right;">
+23.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol>
+<p>However, because some column names are duplicated, it is necessary to add some column grouping:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(sum_health_white_afram,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;health&quot;</span>, <span class="st">&quot;race&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;%&quot;</span>, <span class="st">&quot;race&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;%&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="dt">full_width =</span> F, <span class="dt">position =</span> <span class="st">&quot;left&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;White&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;African American&quot;</span> =<span class="st"> </span><span class="dv">3</span>))</code></pre></div>
+<pre><code>## Warning in if (!full_width) {: the condition has length &gt; 1 and only the first element will be used</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+White
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+African American
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+health
+</th>
+<th style="text-align:left;">
+race
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+%
+</th>
+<th style="text-align:left;">
+race
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1486
+</td>
+<td style="text-align:right;">
+33.36
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+3309
+</td>
+<td style="text-align:right;">
+74.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+2962
+</td>
+<td style="text-align:right;">
+66.49
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1139
+</td>
+<td style="text-align:right;">
+25.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+704
+</td>
+<td style="text-align:right;">
+34.49
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1553
+</td>
+<td style="text-align:right;">
+76.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1328
+</td>
+<td style="text-align:right;">
+65.07
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+479
+</td>
+<td style="text-align:right;">
+23.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol>
+<p>We could also add some row groupings:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum_health_white_afram <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(<span class="op">-</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">kable</span>(<span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;race&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;%&quot;</span>, <span class="st">&quot;race&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;%&quot;</span>), <span class="dt">align=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;r&#39;</span>,<span class="dt">times=</span><span class="dv">6</span>))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), <span class="dt">full_width =</span> F, <span class="dt">position =</span> <span class="st">&quot;left&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot;White&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;African American&quot;</span> =<span class="st"> </span><span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">pack_rows</span>(<span class="st">&quot;health high&quot;</span>, <span class="dv">1</span>, <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">pack_rows</span>(<span class="st">&quot;health low&quot;</span>, <span class="dv">5</span>, <span class="dv">8</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">pack_rows</span>(<span class="st">&quot;health N/A&quot;</span>, <span class="dv">9</span>, <span class="dv">12</span>)</code></pre></div>
+<pre><code>## Warning in if (!full_width) {: the condition has length &gt; 1 and only the first element will be used</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+White
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+African American
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:right;">
+race
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+%
+</th>
+<th style="text-align:right;">
+race
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="4">
+<td colspan="6" style="border-bottom: 1px solid;">
+<strong>health high</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1486
+</td>
+<td style="text-align:right;">
+33.36
+</td>
+<td style="text-align:right;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+3309
+</td>
+<td style="text-align:right;">
+74.28
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+2962
+</td>
+<td style="text-align:right;">
+66.49
+</td>
+<td style="text-align:right;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1139
+</td>
+<td style="text-align:right;">
+25.57
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="6" style="border-bottom: 1px solid;">
+<strong>health low</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+704
+</td>
+<td style="text-align:right;">
+34.49
+</td>
+<td style="text-align:right;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1553
+</td>
+<td style="text-align:right;">
+76.09
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1328
+</td>
+<td style="text-align:right;">
+65.07
+</td>
+<td style="text-align:right;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+479
+</td>
+<td style="text-align:right;">
+23.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:right;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="6" style="border-bottom: 1px solid;">
+<strong>health N/A</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:right;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+<td style="text-align:right;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:right;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:right;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol>
+</div>
+<div id="stargazer" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> <code>stargazer</code></h3>
+<p>The <a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf"><code>stargazer</code></a> package is especially good for PDF outputs, but is fairly limited for HTML output.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stargazer</span>(sum_health_white_afram, 
+          <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>, 
+          <span class="dt">summary =</span> <span class="ot">FALSE</span>,
+          <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+health...1
+</td>
+<td>
+white
+</td>
+<td>
+n...3
+</td>
+<td>
+%...4
+</td>
+<td>
+afram
+</td>
+<td>
+n...7
+</td>
+<td>
+%...8
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+high
+</td>
+<td>
+1
+</td>
+<td>
+1486
+</td>
+<td>
+33.36
+</td>
+<td>
+1
+</td>
+<td>
+3309
+</td>
+<td>
+74.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+high
+</td>
+<td>
+2
+</td>
+<td>
+2962
+</td>
+<td>
+66.49
+</td>
+<td>
+2
+</td>
+<td>
+1139
+</td>
+<td>
+25.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+high
+</td>
+<td>
+3
+</td>
+<td>
+2
+</td>
+<td>
+0.04
+</td>
+<td>
+3
+</td>
+<td>
+2
+</td>
+<td>
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+high
+</td>
+<td>
+4
+</td>
+<td>
+5
+</td>
+<td>
+0.11
+</td>
+<td>
+4
+</td>
+<td>
+5
+</td>
+<td>
+0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+low
+</td>
+<td>
+1
+</td>
+<td>
+704
+</td>
+<td>
+34.49
+</td>
+<td>
+1
+</td>
+<td>
+1553
+</td>
+<td>
+76.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+low
+</td>
+<td>
+2
+</td>
+<td>
+1328
+</td>
+<td>
+65.07
+</td>
+<td>
+2
+</td>
+<td>
+479
+</td>
+<td>
+23.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+low
+</td>
+<td>
+3
+</td>
+<td>
+1
+</td>
+<td>
+0.05
+</td>
+<td>
+3
+</td>
+<td>
+1
+</td>
+<td>
+0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+low
+</td>
+<td>
+4
+</td>
+<td>
+8
+</td>
+<td>
+0.39
+</td>
+<td>
+4
+</td>
+<td>
+8
+</td>
+<td>
+0.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+12.5
+</td>
+<td>
+1
+</td>
+<td>
+4
+</td>
+<td>
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+2
+</td>
+<td>
+4
+</td>
+<td>
+50
+</td>
+<td>
+2
+</td>
+<td>
+1
+</td>
+<td>
+12.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+3
+</td>
+<td>
+1
+</td>
+<td>
+12.5
+</td>
+<td>
+3
+</td>
+<td>
+1
+</td>
+<td>
+12.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+4
+</td>
+<td>
+2
+</td>
+<td>
+25
+</td>
+<td>
+4
+</td>
+<td>
+2
+</td>
+<td>
+25
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table>
+</div>
+<div id="pander" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> <code>pander</code></h3>
+<p><code>pander</code> can be used to create output HTML tables as well, although also with fewer options than <code>knitr</code> with <code>kableExtra</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pander</span>(sum_health_white_afram)</code></pre></div>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="21%" />
+<col width="10%" />
+<col width="10%" />
+<col width="21%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">health...1</th>
+<th align="center">white</th>
+<th align="center">n...3</th>
+<th align="center">%...4</th>
+<th align="center">afram</th>
+<th align="center">n...7</th>
+<th align="center">%...8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">high</td>
+<td align="center">(0) Not marked</td>
+<td align="center">1486</td>
+<td align="center">33.36</td>
+<td align="center">(0) Not marked</td>
+<td align="center">3309</td>
+<td align="center">74.28</td>
+</tr>
+<tr class="even">
+<td align="center">high</td>
+<td align="center">(1) Marked</td>
+<td align="center">2962</td>
+<td align="center">66.49</td>
+<td align="center">(1) Marked</td>
+<td align="center">1139</td>
+<td align="center">25.57</td>
+</tr>
+<tr class="odd">
+<td align="center">high</td>
+<td align="center">(6) Refused</td>
+<td align="center">2</td>
+<td align="center">0.04</td>
+<td align="center">(6) Refused</td>
+<td align="center">2</td>
+<td align="center">0.04</td>
+</tr>
+<tr class="even">
+<td align="center">high</td>
+<td align="center">(8) Don't know</td>
+<td align="center">5</td>
+<td align="center">0.11</td>
+<td align="center">(8) Don't know</td>
+<td align="center">5</td>
+<td align="center">0.11</td>
+</tr>
+<tr class="odd">
+<td align="center">low</td>
+<td align="center">(0) Not marked</td>
+<td align="center">704</td>
+<td align="center">34.49</td>
+<td align="center">(0) Not marked</td>
+<td align="center">1553</td>
+<td align="center">76.09</td>
+</tr>
+<tr class="even">
+<td align="center">low</td>
+<td align="center">(1) Marked</td>
+<td align="center">1328</td>
+<td align="center">65.07</td>
+<td align="center">(1) Marked</td>
+<td align="center">479</td>
+<td align="center">23.47</td>
+</tr>
+<tr class="odd">
+<td align="center">low</td>
+<td align="center">(6) Refused</td>
+<td align="center">1</td>
+<td align="center">0.05</td>
+<td align="center">(6) Refused</td>
+<td align="center">1</td>
+<td align="center">0.05</td>
+</tr>
+<tr class="even">
+<td align="center">low</td>
+<td align="center">(8) Don't know</td>
+<td align="center">8</td>
+<td align="center">0.39</td>
+<td align="center">(8) Don't know</td>
+<td align="center">8</td>
+<td align="center">0.39</td>
+</tr>
+<tr class="odd">
+<td align="center">NA</td>
+<td align="center">(0) Not marked</td>
+<td align="center">1</td>
+<td align="center">12.5</td>
+<td align="center">(0) Not marked</td>
+<td align="center">4</td>
+<td align="center">50</td>
+</tr>
+<tr class="even">
+<td align="center">NA</td>
+<td align="center">(1) Marked</td>
+<td align="center">4</td>
+<td align="center">50</td>
+<td align="center">(1) Marked</td>
+<td align="center">1</td>
+<td align="center">12.5</td>
+</tr>
+<tr class="odd">
+<td align="center">NA</td>
+<td align="center">(6) Refused</td>
+<td align="center">1</td>
+<td align="center">12.5</td>
+<td align="center">(6) Refused</td>
+<td align="center">1</td>
+<td align="center">12.5</td>
+</tr>
+<tr class="even">
+<td align="center">NA</td>
+<td align="center">(8) Don't know</td>
+<td align="center">2</td>
+<td align="center">25</td>
+<td align="center">(8) Don't know</td>
+<td align="center">2</td>
+<td align="center">25</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="captions-to-support-tables-figures-and-equations" class="section level2">
+<h2><span class="header-section-number">3.3</span> Captions to support tables, figures, and equations</h2>
+<p>There are several ways to support captions in R Markdown. The two main requirements for good captions: (1) automatic sequential numbering, and (2) ability to cross-reference.</p>
+<p>Here are some options for adding captions:</p>
+<div id="figures" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Figures</h3>
+<div id="r-markdown-code-chunk-fig.cap" class="section level4">
+<h4><span class="header-section-number">3.3.1.1</span> R Markdown code chunk <code>fig.cap</code></h4>
+<p>Code chunks can include <code>fig_cap</code> as an option, as shown below. However, in standard Rmd <span class="math inline">\(\rightarrow\)</span> HTML there does not appear to be a method for cross-referencing. The code chunk would look like</p>
+<pre><code>```{r plotcars, fig.cap="Cars: speed and distance"}
+plot(cars)
+```</code></pre>
+<div class="figure"><span id="fig:plotcars"></span>
+<img src="bookdown-demo_files/figure-html/plotcars-1.png" alt="Cars: speed and distance" width="672" />
+<p class="caption">
+Figure 3.1: Cars: speed and distance
+</p>
+</div>
+</div>
+<div id="bookdown-with-html_document2-output-type" class="section level4">
+<h4><span class="header-section-number">3.3.1.2</span> <code>bookdown</code> with <code>html_document2</code> output type</h4>
+<p>Using the <code>bookdown</code> package with <code>html_document2</code> output type, it is possible to cross-reference using the chunk name. For example, download and run this code <a href="files/fig_cap_bookdown.Rmd">fig_cap_bookdown.Rmd</a></p>
+<p>Which renders a file:</p>
+<div class="figure">
+<img src="images/week03/fig_ref.png" />
+
+</div>
+<p>There seems to be no difference in the HTML output using</p>
+<pre><code>output: 
+    bookdown::html_document2:</code></pre>
+<p>versus</p>
+<pre><code>output: 
+    html_document:</code></pre>
+<p>so the former is suggested as one way to include captions that support cross-referencing.</p>
+</div>
+</div>
+<div id="tables-kable-caption" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Tables: <code>kable()</code> &quot;caption&quot;</h3>
+<p>Tables created with <code>kable()</code> can include the <code>caption</code> option. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="dt">x =</span> sum_health_white_afram, <span class="dt">caption =</span> <span class="st">&quot;Self-reported health by race&quot;</span>)</code></pre></div>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-88">Table 3.1: </span>Self-reported health by race
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+health...1
+</th>
+<th style="text-align:left;">
+white
+</th>
+<th style="text-align:right;">
+n...3
+</th>
+<th style="text-align:right;">
+%...4
+</th>
+<th style="text-align:left;">
+afram
+</th>
+<th style="text-align:right;">
+n...7
+</th>
+<th style="text-align:right;">
+%...8
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1486
+</td>
+<td style="text-align:right;">
+33.36
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+3309
+</td>
+<td style="text-align:right;">
+74.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+2962
+</td>
+<td style="text-align:right;">
+66.49
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1139
+</td>
+<td style="text-align:right;">
+25.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+704
+</td>
+<td style="text-align:right;">
+34.49
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1553
+</td>
+<td style="text-align:right;">
+76.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1328
+</td>
+<td style="text-align:right;">
+65.07
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+479
+</td>
+<td style="text-align:right;">
+23.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:left;">
+<ol start="0" style="list-style-type: decimal">
+<li>Not marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+<td style="text-align:left;">
+<ol style="list-style-type: decimal">
+<li>Marked
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+<td style="text-align:left;">
+<ol start="6" style="list-style-type: decimal">
+<li>Refused
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:left;">
+<ol start="8" style="list-style-type: decimal">
+<li>Don't know
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol>
+<p>But there appears to be no direct way of cross-referencing within standard Rmd <span class="math inline">\(\rightarrow\)</span> HTML.</p>
+<div id="bookdown-with-html_document2-output-type-1" class="section level4">
+<h4><span class="header-section-number">3.3.2.1</span> <code>bookdown</code> with <code>html_document2</code> output type</h4>
+<p>Similarly for figures, the <code>bookdown</code> package with <code>html_document2</code> output type, it is possible to cross-reference using the chunk name. For example, download and run this code <a href="files/table_cap_bookdown.Rmd">table_cap_bookdown.Rmd</a></p>
+<p>Which renders a file:</p>
+<div class="figure">
+<img src="images/week03/tab_ref.png" />
+
+</div>
+</div>
+</div>
+<div id="equations" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Equations</h3>
+<p>Equations should be numbered in manuscripts. Using <code>bookdown</code> makes this quite easy. The equations themselves require <span class="math inline">\(\LaTeX\)</span> syntax. There are numerous web sites with examples and tutorials for creating mathematical expressions with <span class="math inline">\(\LaTeX\)</span> In this example, we include Einstein's famous equation:</p>
+<pre>
+\begin{equation}
+  E=mc^2
+  (\#eq:emc)
+\end{equation}
+</pre>
+<p>and the sum of squares:</p>
+<pre>
+\begin{equation}
+  \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}
+  (\#eq:sumn)
+\end{equation}
+</pre>
+<p>The label for the equation is set with <code>(\#eq:emc)</code> and can be referenced using <code>\@ref(eq:emc)</code>. Operationalized, we see:</p>
+<p>Einstein's equation, energy equals mass times the square of the speed of light is shown in <a href="week3.html#eq:emc">(3.1)</a>.</p>
+<span class="math display" id="eq:emc">\[\begin{equation}
+  E=mc^2
+  \tag{3.1}
+\end{equation}\]</span>
+<p>To make a sum of squares of <em>n</em> first integers, see <a href="week3.html#eq:sumn">(3.2)</a>.</p>
+<span class="math display" id="eq:sumn">\[\begin{equation}
+  \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}
+  \tag{3.2}
+\end{equation}\]</span>
+</div>
+<div id="captioner-for-any-captioning-and-cross-referencing-figures-and-tables" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> <code>captioner</code> for any captioning and cross-referencing figures and tables</h3>
+<p>The <code>captioner</code> package provides a flexible framework for captioning both tables and figures.</p>
+<p>The R code to do this:</p>
+<pre><code>library(captioner)
+table_nums &lt;- captioner(prefix = &quot;Table&quot;)
+figure_nums &lt;- captioner(prefix = &quot;Figure&quot;)</code></pre>
+<p>The <code>table_nums()</code> and <code>figure_nums()</code> functions are used to create captions and cross-references, and are not tied to any specific figure or table, as is the case with <code>kable</code> table captions and R code chunk <code>fig.cap</code>.</p>
+<p>A caption is created, e.g., for a figure:</p>
+<p><code>`r figure_nums(name = &quot;figname&quot;, caption = &quot;My Caption&quot;)`</code></p>
+<p>and referenced, e.g.,</p>
+<p><code>`r figure_nums(name = &quot;figname&quot;, display = &quot;cite&quot;)`</code></p>
+<p>It does not matter whether the reference precedes or comes after the caption itself.</p>
+<p>Another benefit to using <code>captioner</code> is that the output can be formatted using markdown syntax. For example, to format the caption in italics, use underscores:</p>
+<p><code>_`r figure_nums(name = &quot;figname&quot;, caption = &quot;My Caption&quot;)`_</code></p>
+<p>Although this method requires a bit more coding, it allows great flexibility. A comlete example:</p>
+<p>As shown in Figure 1, the distribution of age has a slight negative skew.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># how many unique bins? </span>
+bins &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(ages<span class="op">$</span>age))
+
+<span class="co"># create the graphic</span>
+g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> ages, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> age)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> bins)
+
+<span class="co"># print the graphic</span>
+<span class="kw">print</span>(g)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-89-1.png" width="288" /></p>
+<p><em>Figure 1: Add Health age histogram</em></p>
+<p>Similarly, we can present the same data as a frequency table, as shown in Table 1.</p>
+<p><em>Table 1: Add Health age frequency table</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ages <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(age) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">cumsum =</span> <span class="kw">cumsum</span>(n),
+        <span class="st">&quot;%&quot;</span> =<span class="st"> </span><span class="kw">round</span>(n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">1</span>),
+        <span class="st">&quot;cum %&quot;</span> =<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>), <span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">kable</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> 
+        <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>), 
+        <span class="dt">full_width =</span> F, 
+        <span class="dt">position =</span> <span class="st">&quot;left&quot;</span>) </code></pre></div>
+<pre><code>## Warning in if (!full_width) {: the condition has length &gt; 1 and only the first element will be used</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style>
+<thead>
+<tr>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+cumsum
+</th>
+<th style="text-align:right;">
+%
+</th>
+<th style="text-align:right;">
+cum %
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0.1
+</td>
+<td style="text-align:right;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+578
+</td>
+<td style="text-align:right;">
+587
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+903
+</td>
+<td style="text-align:right;">
+1490
+</td>
+<td style="text-align:right;">
+13.9
+</td>
+<td style="text-align:right;">
+22.9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+1081
+</td>
+<td style="text-align:right;">
+2571
+</td>
+<td style="text-align:right;">
+16.6
+</td>
+<td style="text-align:right;">
+39.5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1162
+</td>
+<td style="text-align:right;">
+3733
+</td>
+<td style="text-align:right;">
+17.9
+</td>
+<td style="text-align:right;">
+57.4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+1169
+</td>
+<td style="text-align:right;">
+4902
+</td>
+<td style="text-align:right;">
+18.0
+</td>
+<td style="text-align:right;">
+75.4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1149
+</td>
+<td style="text-align:right;">
+6051
+</td>
+<td style="text-align:right;">
+17.7
+</td>
+<td style="text-align:right;">
+93.1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+389
+</td>
+<td style="text-align:right;">
+6440
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+99.1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+6483
+</td>
+<td style="text-align:right;">
+0.7
+</td>
+<td style="text-align:right;">
+99.7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+6501
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="r-markdown-to-microsoft-word" class="section level2">
+<h2><span class="header-section-number">3.4</span> R Markdown to Microsoft Word</h2>
+<p>Microsoft Word (&quot;Word&quot;), is used widely to document research. Because of its advanced word processing and &quot;track changes&quot; capabilities, it is commonly used for preparation of manuscripts. Using R to generate output for Word is often a tedious process (e.g., create CSV files <span class="math inline">\(\rightarrow\)</span> paste the contents <span class="math inline">\(\rightarrow\)</span> convert to table; export R graphics with <code>png()</code> or <code>ggsave()</code> <span class="math inline">\(\rightarrow\)</span> insert the file).</p>
+<p>RMarkdown can be used to generate Word documents. This should be thought of as a one-way operation. That is to say, when a team works on a manuscript using Word, the typical work flow is that the lead author creates the first draft. Other authors make changes to the document using tracked changes. When the manuscript circulates over all authors, the lead author decides which changes to accept and which to reject, resulting in a new version. The process continues until the group of authors agrees that the manuscript is ready for publication.</p>
+<p>Unfortunately there is no backwards path to take an existing Word docx and regenerate an Rmd (e.g., after you and your colleagues made a lot of changes to the Word docx). Nevertheless using this method could save you some &quot;busy work&quot; time in Word, as well as to provide a common stylistic template for your R outputs if you will be generating Word documents.</p>
+<p>To export to a Word document, the following work flow should be followed:</p>
+<ol style="list-style-type: decimal">
+<li>Create a bare-bones Rmd file that contains all of the elements you want in your output, but little actual content.</li>
+<li>Render the Rmd file to a Word docx file.</li>
+<li>Open the docx file in Word and make any stylistic changes <strong>using Word styles</strong> (see the workshop <a href="https://csde.washington.edu/workshop/microsoft-word-for-the-social-sciences/">Microsoft Word for the Social Sciences</a>)</li>
+<li>Use the style-edited docx file as a template in the Rmd file.</li>
+<li>Write your complete Rmd file with the content you want to have placed in the Word docx file and then render. The output docx file will have the same stylistic configuration as the template docx.</li>
+</ol>
+<p>A more detailed work flow:</p>
+<p>To use Word output, first make a minimal RMarkdown document with Word output.</p>
+<div class="figure">
+<img src="images/week03/20200419_233754-C__Users_phurvitz_nextcloud_uw_csde_courses_msword_soc_sci_-_RStudio.png" />
+
+</div>
+<p>Save the Rmd file and knit to to Word.</p>
+<div class="figure">
+<img src="images/week03/20200419_233851-Window.png" />
+
+</div>
+<p>The output document will have the elements from the Rmd file.</p>
+<div class="figure">
+<img src="images/week03/20200419_234510-minimal.docx_[Read-Only]_[Compatibility_Mode]_-_Word.png" />
+
+</div>
+<p>The important part of this is that the Word document will have a number of styles. Make any changes to the styles or margins. This will become the template for the output containing the actual scientific content. <strong><em>Do not add, remove, or rename any styles in this document!</em></strong> Save a copy of the document with any stylistic changes.</p>
+<p>For example, here are some changes to the header styles:</p>
+<div class="figure">
+<img src="images/week03/20200420_002233-Window.png" />
+
+</div>
+<p>Presumably, all of the styles in the output docx can be modified:</p>
+<div class="figure">
+<img src="images/week03/20210121_020407-Window.png" />
+
+</div>
+<p>After you have made any changes, save the file as a &quot;template&quot;:</p>
+<div class="figure">
+<img src="images/week03/20200419_235426-Save_As.png" />
+
+</div>
+<p>In the YAML header of the Rmd file with your scientific content, this construction, in which you specify the path name to the template document.</p>
+<pre><code>output:
+  word_document:  
+    reference_docx: &quot;template.docx&quot;</code></pre>
+<p>When the Rmd file is rendered to a Word document, the stylistic changes will be applied to the output. For example, just changing the head matter of the previous document and re-rendering shows that the heading styles were applied as defined.</p>
+<div class="figure">
+<img src="images/week03/20200420_002536-minimal.docx_[Read-Only]_[Compatibility_Mode]_-_Word.png" />
+
+</div>
+<p>Although this overall functionality is somewhat limited, if you do have some Rmd code that generates some scientific content, and you want to output to a Word document with predefined formats, this will save you some busy work of reformatting.</p>
+</div>
+<div id="r-markdown-output" class="section level2">
+<h2><span class="header-section-number">3.5</span> R Markdown output</h2>
+<p>There are two different basic output formats available, document and presentation. As of this writing, the list of specific output types includes:</p>
+<ul>
+<li><code>beamer_presentation</code></li>
+<li><code>context_document</code></li>
+<li><code>github_document</code></li>
+<li><code>html_document</code></li>
+<li><code>ioslides_presentation</code></li>
+<li><code>latex_document</code></li>
+<li><code>md_document</code></li>
+<li><code>odt_document</code></li>
+<li><code>pdf_document</code></li>
+<li><code>powerpoint_presentation</code></li>
+<li><code>rtf_document</code></li>
+<li><code>slidy_presentation</code></li>
+<li><code>word_document</code></li>
+</ul>
+<p>Various packages can also specify their own output types, e.g., <code>bookdown::html_document2</code> or `tufte::tufte_html.</p>
+<div id="r-markdown-rendering-to-specific-formats" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> R Markdown rendering to specific formats</h3>
+<p>Remdering R Markdown files is done at the R console using the <code>rmarkdown::render()</code> function, e.g.,</p>
+<pre><code>rmarkdown::render(input = &quot;input_filename.Rmd&quot;)</code></pre>
+<p>or by clicking the <code>Knit</code> control in RSTudio.</p>
+<p>If the YAML header specifies multiple output formats, the first listed format will be used for the output if other options are not specified in the <code>render()</code> function call. For example, for this header, the default output format is <code>bookdown::html_document2</code></p>
+<pre><code>---
+title: &quot;A Document&quot;
+author: &quot;Jane Doe&quot;
+date: &quot;2021-01-23&quot;
+output: 
+    bookdown::html_document2: default
+    pdf_document: default
+    html_document: default
+    word_document: default
+---</code></pre>
+<p>The RStudio interface will present the listed choices in the <code>Knit</code> pick list in the GUI, so the desired output format can be selected interactively:</p>
+<p><img src="../images/week03/20210124_010442-C__Users_phurvitz_OneDrive_uw_courses_csde502_csde502_winter_2021_course - RStud.png" class="border1"></p>
+<p>Other supported outputs can be created, including those that are not listed in the YAML header by specifying the output format in the <code>render()</code> function, e.g. to create a <a href="https://www.w3.org/Talks/Tools/Slidy2/#(1)">Slidy</a> presentation:</p>
+<pre><code>rmarkdown::render(input = &quot;input_filename.Rmd&quot;, output_format = &quot;slidy_presentation&quot;)</code></pre>
+<p>To render a PDF file, use e.g.,</p>
+<pre><code>rmarkdown::render(input = &quot;input_filename.Rmd&quot;, output_format = &quot;pdf_document&quot;)</code></pre>
+<p>Using code rather than the RStudio GUI allows more flexible automation; you could have an R script that runs the <code>render()</code> function as part of a multi-step workflow. For example, if you had a continuous data collection process, the work flow could be coded and run with <a href="https://www.rdocumentation.org/packages/cronR">cron</a> to generate a new PDF (or other file type) file on a daily basis.</p>
+</div>
+<div id="testing-output_type" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Testing <code>output_type()</code></h3>
+<p>Because different output formats support (or do not support) different features, a test can be made for the output format to determine which code to run, using <code>is_html_output()</code> and <code>is_latex_output()</code>. Any R code within the Rmd file can be run or not run based on these tests. For a working example, download and render the file <a href="files/output_type_test.Rmd">output_type_test</a>. Using a single source, the <a href="files/output_type_test.html">output rendered as HTML</a> appears as</p>
+<div class="figure">
+<img src="images/week03/20210124_190945-R%20Markdown%20Output%20Type%20Test%20-%20Work%20-%20MicrosoftEdge.png" />
+
+</div>
+<p>whereas the <a href="files/output_type_test.pdf">PDF output</a> is rendered as</p>
+<div class="figure">
+<img src="images/week03/20210124_191706-output_type_test.pdf%20-%20[R%20Markdown%20Output%20Type%20Test]%20-%20SumatraPDF.png" />
+
+</div>
+<p>There appears to be no similar test for MS Word output, so for creating Word documents from Rmd files, it is suggested to create the Rmd from scratch with the intention of creating only Word output.</p>
+</div>
+</div>
+<div id="advantages-and-disadvantages-of-pdf" class="section level2">
+<h2><span class="header-section-number">3.6</span> Advantages and disadvantages of PDF</h2>
+<p>Portable document format (PDF) has a number of advantages:</p>
+<ol style="list-style-type: decimal">
+<li>Document formatting is maintained. Font face and positioning of elements is consistent. When some other formats are shared (e.g., MS Word), formatting is inconsistent.</li>
+<li>The format is widely used and able to be created from a variety of different proprietary and open software applications.</li>
+<li>Files are often parsimonious in size. When large images are embedded, the file sizes can grow, but there are often options for downscaling images for smaller file size.</li>
+<li>Files can be protected with passwords.</li>
+<li>Files are supported across all operating systems (Windows, Mac, Linux, UNIX).</li>
+<li>Multiple different elements can be included (text, images, tables).</li>
+<li>The format has stood the test of time, having been introduced 1993. The standard was opened in 2008, allowing developers to create PDF outputs. This has led to PDF being the standard for fixed-format documents.</li>
+</ol>
+<p>The disadvantages: 1. Direct editing of PDF files is not straightforward (usually requires dedicated software), and often results in undesired layout changes. Therefore this is not a good format for collaborative editing. 1. Copy-and-paste from PDF often results in missing or extra spaces or strange characters. 1. R functions that produce HTML output cannot be used in PDF outputs.</p>
+</div>
+<div id="bibliography-in-r-markdown" class="section level2">
+<h2><span class="header-section-number">3.7</span> Bibliography in R Markdown</h2>
+<p>The <code>pandoc</code> engine that performs document conversion can generate bibliographies. See <a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">Bibliographies and Citations</a> for detailed information.</p>
+<p>For this exercise, we will be using <span class="math inline">\({B\kern-0.1emi\kern-0.017emb}\kern-0.15em\TeX\)</span> formatted references.</p>
+<p>The YAML header needs to be formatted to include the bibliography file, which should either have a complete path name or be located in the same directory as the Rmd file. Similarly, any CSL (Citation Style Language) file should be specified. CSL files can be obtained from the <a href="https://www.zotero.org/styles">Zotero Style Repository</a></p>
+<p>The YAML header would include something of the form:</p>
+<pre><code>---
+title: &quot;My glorious, shiny dissertation&quot;
+output: 
+    bookdown::html_document2
+bibliography: myreferences_20200121.bib
+csl: biomed-central.csl
+---</code></pre>
+<p>When citations are made to references, the corresponding record will be automatically added to the end of the document.</p>
+<p>For examples of syntax for both APA-like and AMA-like references and bibliographies, see the files</p>
+<ul>
+<li>APA: <a href="files/bibliography.html">HTML</a>; <a href="files/bibliography.Rmd">Rmd</a></li>
+<li>AMA: <a href="files/bibliography_ama.html">HTML</a>; <a href="files/bibliography_ama.Rmd">Rmd</a></li>
+</ul>
+<h4>
+Source code for this document
+</h4>
+<p><a href="03-week03.Rmd" class="uri">03-week03.Rmd</a></p>
+<pre><code># Week 3 {#week3}
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(magrittr)
+library(kableExtra)
+library(stargazer)
+library(pander)
+library(psych)
+library(readstata13)
+library(knitr)
+library(pander)
+library(stargazer)
+library(animation)
+library(captioner)
+
+table_nums &lt;- captioner(prefix = &quot;Table&quot;)
+figure_nums &lt;- captioner(prefix = &quot;Figure&quot;)
+```
+
+&lt;style&gt;
+.border1 {   
+    border-width: 1px;   
+    border-color: black;   
+    border-style: solid; } 
+&lt;/style&gt;
+
+&lt;h2&gt;Topics: Graphics and Tables in R; Captions and cross-references; R Markdown to MS Word; Bibliography&lt;/h2&gt;
+
+Because of its extensibility, HTML can be considered a preferred output from R Markdown. However, document formats are often necessary, particularly for term papers, theses/dissertations, and manuscripts for submission to scholarly journals. In this week&#39;s lesson, we will focus on the creation of these two output types, including adding bibliographies (which also applies to HTML output), and some basic `ggplot` graphics. 
+
+For both PDF and Word output, much of the structure of your Rmd files will be the same as for HTML output. The major difference is how tables are handled, which we will explore in some detail. Static graphics are handled similarly across all output formats, other than HTML output can support dynamic graphics, such as the Leaflet map we saw in the first lesson, and responsive graphics as in [Shiny](https://shiny.rstudio.com/).
+
+## Graphics in R Markdown
+Data-driven graphics in Rmd files are typically created as base R graphics or with the `ggplot2` package. This tutorial is not intended to provide anywhere near a comprehensive treatment of creating graphics from data, but will provide instruction on some options for creating and including data-driven graphics as well as inserting graphics from image files.
+
+See [Tips and tricks for working with images and figures in R Markdown documents](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/) for a good explanation.
+
+### Base R graphics
+To include base R graphics, simply place the code to generate the graphic in an R code block, e.g., using the Add Health data from last week ([AHWave1_v1.dta](data/AHWave1_v1.dta)):
+
+````
+```{r}`r &#39;&#39;`
+# since loading the data takes awhile, only do this if necessary
+if(!exists(&quot;dat&quot;)){
+    dat &lt;- read.dta13(&quot;data/AHwave1_v1.dta&quot;)
+}
+# birth year = h1gi1y
+# drop &quot;Refused&quot; birth year
+# for birth year and interview year, replace anything before white space, convert to numeric
+# subtract interview year - birth year
+ages &lt;- dat %&gt;% 
+    filter(! str_detect(h1gi1y, &quot;Refused&quot;)) %&gt;% 
+    select(iyear, h1gi1y) %&gt;% 
+    mutate(yi = str_replace(iyear, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           yb = str_replace(h1gi1y, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           age = yi - yb)
+           
+# create a histogram using base graphics
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+```
+````
+
+... which will render the graph:
+
+```{r, echo=FALSE, warning=FALSE}
+# since loading the data takes awhile, only do this if necessary
+if(!exists(&quot;dat&quot;)){
+    dat &lt;- read.dta13(&quot;data/AHwave1_v1.dta&quot;)
+}
+# birth year = h1gi1y
+# drop &quot;Refused&quot; birth year
+# for birth year and interview year, replace anything before white space, convert to numeric
+# subtract interview year - birth year
+ages &lt;- dat %&gt;% 
+    filter(! str_detect(h1gi1y, &quot;Refused&quot;)) %&gt;% 
+    select(iyear, h1gi1y) %&gt;% 
+    mutate(yi = str_replace(iyear, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           yb = str_replace(h1gi1y, &quot;.*\\s&quot;, &quot;&quot;) %&gt;% as.numeric(),
+           age = yi - yb)
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+```
+
+### `ggplot2` graphics
+The `ggplot2` package creates compelling graphics that use a common syntax. The main difference between base R graphics and `ggplot2` graphics is that simply issuing the `plot()` or related command (e.g., `hist()`, `barplot()`) adds the graphic to the output, whereas with `ggplot()` it is necessary to issue a command that prints the graphic.
+
+Following the previous example:
+
+```{r}
+# how many unique bins? 
+bins &lt;- length(unique(ages$age))
+
+# create the graphic
+g &lt;- ggplot(data = ages, mapping = aes(x = age)) +
+    geom_histogram(bins = bins)
+
+# print the graphic
+print(g)
+```
+
+
+### Embedding graphics files
+Journals frequently require graphics files to be submitted separately from the manuscript. In this case, the graphic can be created and saved as a file and then inserted in the Rmd using code, but also accessed as a a stand-alone file. Let&#39;s take the previous example, but add correlation coefficients and other embellishments, create a graphics file and add the graphics into the Rmd.
+
+The base graphics file is created using the `pdf()` function, although `png()` also works if that is the desired output format. PDF is a vector format, so it generally renders better over different zoom levels.
+
+```{r, message=FALSE}
+pdf(file = &quot;ah_age_hist.pdf&quot;, width = 5, height = 5)
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+x &lt;- dev.off()
+```
+
+Here we create a PNG format file:
+
+```{r, message=FALSE}
+png(file = &quot;ah_age_hist.png&quot;, width = 5, height = 5, units = &quot;in&quot;, res = 300)
+hist(ages$age, xlab = &quot;age (years)&quot;, las = 1)
+x &lt;- dev.off()
+```
+
+`ggplot2` graphics can be saved using `ggsave()`, e.g., for both PDF and PNG outputs. The `dpi` argument is important for bitmap images.
+
+```{r}
+ggsave(filename = &quot;ah_age_hist_ggplot.pdf&quot;, plot = g, device = &quot;pdf&quot;, width = 5, height = 5)
+ggsave(filename = &quot;ah_age_hist_ggplot.png&quot;, plot = g, device = &quot;png&quot;, width = 5, height = 5, units = &quot;in&quot;, dpi = 300)
+```
+
+Graphics can be added using several methods.
+
+#### `knitr`
+The `knitr::include_graphics()` function can be used to insert image files, with the caution that inserted PDF files may produce unwanted results. The syntax is:
+
+````
+```{r}`r &#39;&#39;`
+include_graphics(&quot;graphics_filename&quot;)
+```
+````
+
+and the code chunk can include `out.width`, `out.height` and other options.
+\  
+Here we insert a PDF with no code chunk options, which presents the image with a scroll bar, rather than the full image:
+
+```{r}
+include_graphics(&quot;ah_age_hist.pdf&quot;)
+```
+
+Here we specify in the code chunk options `out.height = &quot;360px&quot;, out.width=&#39;360px&#39;, fig.align=&#39;left&#39;`, 
+
+```{r, out.height = &quot;360px&quot;, out.width=&#39;360px&#39;, fig.align=&#39;left&#39;}
+include_graphics(&quot;ah_age_hist.pdf&quot;)
+
+```
+
+\  
+
+... and with code chunk options `out.height = &quot;400px&quot;, out.width=&#39;100%&#39;, fig.align=&#39;left&#39;`
+
+```{r, out.height = &quot;400px&quot;, out.width=&#39;100%&#39;, fig.align=&#39;left&#39;}
+include_graphics(&quot;ah_age_hist.pdf&quot;)
+```
+
+\  
+
+It seems that embedding PDF files is not optimal.
+
+Here we insert a PNG: with no code chunk options:
+
+```{r}
+include_graphics(&quot;ah_age_hist_ggplot.png&quot;)
+```
+
+and with code chunk option `out.width = &quot;50%&quot;`
+
+```{r, out.width = &quot;50%&quot;}
+include_graphics(&quot;ah_age_hist_ggplot.png&quot;)
+```
+
+So embedding bitmapped images appears to work better than embedding PDF files. 
+
+#### Markdown: `![caption](filename)`
+
+The native Markdown syntax:
+
+```
+![](filename)
+```
+
+includes a graphics file with an optional caption, e.g., here, a PDF with no caption, 
+
+`![](ah_age_hist.pdf)`
+
+![](ah_age_hist.pdf)
+
+\  
+
+The structure `![]()` indicates this is an inserted graphic; a caption can be specified by including text within the square brackets, e.g., displays the caption below the inserted image (but with no caption number!). 
+
+```![Add Health respondent age histogram](ah_age_hist_ggplot.pdf)```
+
+![Add Health respondent age histogram](ah_age_hist_ggplot.pdf)
+
+... although it seems that inserting a PDF does odd things with image scrolling, while a PNG inserts the complete image without scroll bars.
+
+```![Add Health respondent age histogram](ah_age_hist_ggplot.png)```:
+
+![Add Health respondent age histogram](ah_age_hist_ggplot.png)
+
+#### HTML `&lt;img&gt;` tag
+If the file is to be rendered as HTML, _and_ the image is a bitmap, rather than vector PDF graphics, the `&lt;img&gt;` tag can be used. Different utilities can be used to convert PDF to bitmapped formats, e.g., [ImageMagick](https://imagemagick.org/index.php) and [GraphicsMagick](http://www.graphicsmagick.org/).
+
+```&lt;img src=&quot;ah_age_hist_ggplot.png&quot;&gt;```
+
+&lt;img src=&quot;ah_age_hist_ggplot.png&quot;&gt;
+
+Including a percentage of page width:
+
+```&lt;img src=&quot;ah_age_hist_ggplot.png&quot; width=&quot;30%&quot;&gt;```
+
+&lt;img src=&quot;ah_age_hist_ggplot.png&quot; width=&quot;30%&quot;&gt;
+
+
+## Tables in R Markdown
+
+We will look at three methods of including tables in R Markdown documents, using the packages `knitr` (with `kableExtra`), `pander`, and `stargazer`.
+
+For the example table, we will use the frequency table of health $\times$ White and African American from Assignment 2:
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+dat &lt;- readstata13::read.dta13(&quot;http://staff.washington.edu/phurvitz/csde502_winter_2021/data/AHwave1_v1.dta&quot;)
+
+
+# ordered factor; use fct_rev to establish the correct ordering where better health ranks higher
+dat %&lt;&gt;% 
+    mutate(h1gh1 = fct_rev(as.ordered(h1gh1)))
+
+# stratify health; first we need to catch the &quot;don&#39;t know&quot; and &quot;refused&quot; as NAs
+dat %&lt;&gt;%  
+    mutate(health = 
+    case_when(
+        h1gh1 &lt;= &quot;(6) Refused&quot; ~ as.character(NA),
+        h1gh1 &gt;  &quot;(3) Good&quot; ~ &quot;high&quot;,
+        h1gh1 &lt;= &quot;(3) Good&quot; ~ &quot;low&quot;
+    ))
+
+# tabulate by White
+tabhealth_white &lt;- dat %&gt;% 
+    group_by(health, white = h1gi6a) %&gt;% 
+    summarise(n = n(), .groups = &quot;drop_last&quot;) %&gt;% 
+    mutate(&quot;%&quot; = round(n / sum(n) * 100, 2))
+
+# tabulate by African Americal
+tabhealth_afram &lt;- dat %&gt;% 
+    group_by(health, afram = h1gi6b) %&gt;% 
+    summarise(n = n(), .groups = &quot;drop_last&quot;) %&gt;% 
+    mutate(&quot;%&quot; = round(n / sum(n) * 100, 2))
+
+# column-bind and remove the second &quot;health&quot; column
+sum_health_white_afram &lt;- cbind(tabhealth_white, tabhealth_afram) %&gt;% 
+    select(-5)
+```
+
+### `kntir` (`kable()`) and `kableExtra`
+The simple table using `kable()` is not too nice to read.
+
+```{r}
+kable(sum_health_white_afram)
+```
+
+So we add some `kabelExtra` options, :
+
+```{r}
+kable(sum_health_white_afram,
+      col.names = c(&quot;health&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;)) %&gt;% 
+        kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;), full_width = F, position = &quot;left&quot;) 
+```
+
+However, because some column names are duplicated, it is necessary to add some column grouping:
+
+```{r}
+kable(sum_health_white_afram,
+      col.names = c(&quot;health&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;)) %&gt;% 
+    kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;), full_width = F, position = &quot;left&quot;) %&gt;% 
+    add_header_above(c(&quot; &quot; = 1, &quot;White&quot; = 3, &quot;African American&quot; = 3))
+```
+
+We could also add some row groupings:
+
+```{r}
+
+sum_health_white_afram %&gt;% 
+    select(-1) %&gt;% 
+    kable(col.names = c(&quot;race&quot;, &quot;n&quot;, &quot;%&quot;, &quot;race&quot;, &quot;n&quot;, &quot;%&quot;), align=c(rep(&#39;r&#39;,times=6))) %&gt;% 
+    kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;), full_width = F, position = &quot;left&quot;) %&gt;% 
+    add_header_above(c(&quot;White&quot; = 3, &quot;African American&quot; = 3)) %&gt;% 
+    pack_rows(&quot;health high&quot;, 1, 4) %&gt;% 
+    pack_rows(&quot;health low&quot;, 5, 8) %&gt;% 
+    pack_rows(&quot;health N/A&quot;, 9, 12)
+```
+
+### `stargazer`
+The [`stargazer`](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf) package is especially good for PDF outputs, but is fairly limited for HTML output.
+
+```{r results=&#39;asis&#39;}
+stargazer(sum_health_white_afram, 
+          type = &quot;html&quot;, 
+          summary = FALSE,
+          rownames = FALSE)
+```
+
+### `pander`
+`pander` can be used to create output HTML tables as well, although also with fewer options than `knitr` with `kableExtra`.
+
+```{r}
+pander(sum_health_white_afram)
+```
+
+## Captions to support tables, figures, and equations
+There are several ways to support captions in R Markdown. The two main requirements for good captions: (1) automatic sequential numbering, and (2) ability to cross-reference.
+
+Here are some options for adding captions:
+
+### Figures
+
+#### R Markdown code chunk `fig.cap`
+Code chunks can include `fig_cap` as an option, as shown below. However, in standard Rmd $\rightarrow$ HTML there does not appear to be a method for cross-referencing. The code chunk would look like
+
+&lt;pre&gt;&lt;code&gt;```{r plotcars, fig.cap=&quot;Cars: speed and distance&quot;}
+plot(cars)
+```&lt;/code&gt;&lt;/pre&gt;
+
+```{r plotcars, fig.cap=&quot;Cars: speed and distance&quot;, echo=FALSE}
+plot(cars)
+```
+
+#### `bookdown` with `html_document2` output type
+
+Using the `bookdown` package with `html_document2` output type, it is possible to cross-reference using the chunk name. For example, download and run this code [fig_cap_bookdown.Rmd](files/fig_cap_bookdown.Rmd)
+
+Which renders a file:
+
+![](images/week03/fig_ref.png)
+
+There seems to be no difference in the HTML output using
+
+```
+output: 
+    bookdown::html_document2:
+```
+
+versus 
+
+```
+output: 
+    html_document:
+````
+
+so the former is suggested as one way to include captions that support cross-referencing.
+
+### Tables: `kable()` &quot;caption&quot;
+Tables created with `kable()` can include the `caption` option. For example:
+
+```{r}
+kable(x = sum_health_white_afram, caption = &quot;Self-reported health by race&quot;)
+```
+
+But there appears to be no direct way of cross-referencing within standard  Rmd $\rightarrow$ HTML.
+
+#### `bookdown` with `html_document2` output type
+
+Similarly for figures, the `bookdown` package with `html_document2` output type, it is possible to cross-reference using the chunk name. For example, download and run this code [table_cap_bookdown.Rmd](files/table_cap_bookdown.Rmd)
+
+Which renders a file:
+
+![](images/week03/tab_ref.png)
+
+### Equations
+Equations should be numbered in manuscripts. Using `bookdown` makes this quite easy. The equations themselves require $\LaTeX$ syntax. There are numerous web sites with examples and tutorials for creating mathematical expressions with $\LaTeX$ In this example, we include Einstein&#39;s famous equation:
+
+&lt;pre&gt;
+\begin{equation}
+  E=mc^2
+  (\#eq:emc)
+\end{equation}
+&lt;/pre&gt;
+
+and the sum of squares:
+
+&lt;pre&gt;
+\begin{equation}
+  \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}
+  (\#eq:sumn)
+\end{equation}
+&lt;/pre&gt;
+
+The label for the equation is set with `(\#eq:emc)` and can be referenced using `\@ref(eq:emc)`. Operationalized, we see:
+
+Einstein&#39;s equation, energy equals mass times the square of the speed of light is shown in \@ref(eq:emc).
+
+\begin{equation}
+  E=mc^2
+  (\#eq:emc)
+\end{equation}
+
+To make a sum of squares of _n_ first integers, see \@ref(eq:sumn).
+
+\begin{equation}
+  \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}
+  (\#eq:sumn)
+\end{equation}
+
+
+### `captioner` for any captioning and cross-referencing figures and tables
+The `captioner` package provides a flexible framework for captioning both tables and figures. 
+
+The R code to do this:
+
+```
+library(captioner)
+table_nums &lt;- captioner(prefix = &quot;Table&quot;)
+figure_nums &lt;- captioner(prefix = &quot;Figure&quot;)
+```
+
+The `table_nums()` and `figure_nums()` functions are used to create captions and cross-references, and are not tied to any specific figure or table, as is the case with `kable` table captions and R code chunk `fig.cap`.
+
+A caption is created, e.g., for a figure:
+
+`` `r
+figure_nums(name = &quot;figname&quot;, caption = &quot;My Caption&quot;)` ``
+
+and referenced, e.g., 
+
+`` `r
+figure_nums(name = &quot;figname&quot;, display = &quot;cite&quot;)` ``
+
+It does not matter whether the reference precedes or comes after the caption itself.
+
+Another benefit to using `captioner` is that the output can be formatted using markdown syntax. For example, to format the caption in italics, use underscores:
+
+`` _`r
+figure_nums(name = &quot;figname&quot;, caption = &quot;My Caption&quot;)`_ ``
+
+Although this method requires a bit more coding, it allows great flexibility. A comlete example:
+
+As shown in `r figure_nums(name = &quot;ageplot&quot;, display = &quot;cite&quot;)`, the distribution of age has a slight negative skew.
+
+```{r, fig.width=3, fig.height=3}
+# how many unique bins? 
+bins &lt;- length(unique(ages$age))
+
+# create the graphic
+g &lt;- ggplot(data = ages, mapping = aes(x = age)) +
+    geom_histogram(bins = bins)
+
+# print the graphic
+print(g)
+```
+
+_`r figure_nums(name = &quot;ageplot&quot;, caption = &quot;Add Health age histogram&quot;)`_
+
+Similarly, we can present the same data as a frequency table, as shown in `r table_nums(name = &quot;agetab&quot;, display = &quot;cite&quot;)`.
+
+_`r table_nums(name = &quot;agetab&quot;, caption = &quot;Add Health age frequency table&quot;)`_
+
+```{r}
+ages %&gt;% 
+    group_by(age) %&gt;% 
+    summarise(n = n()) %&gt;% 
+    mutate(cumsum = cumsum(n),
+        &quot;%&quot; = round(n / sum(n) * 100, 1),
+        &quot;cum %&quot; = round(cumsum(n / sum(n) * 100), 1)) %&gt;% 
+    kable() %&gt;% 
+    kable_styling(bootstrap_options = 
+        c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;), 
+        full_width = F, 
+        position = &quot;left&quot;) 
+```
+
+
+## R Markdown to Microsoft Word
+Microsoft Word (&quot;Word&quot;), is used widely to document research. Because of its advanced word processing and &quot;track changes&quot; capabilities, it is commonly used for preparation of manuscripts. Using R to generate output for Word is often a tedious process (e.g., create CSV files $\rightarrow$ paste the contents $\rightarrow$ convert to table; export R graphics with `png()` or `ggsave()` $\rightarrow$ insert the file).  
+
+RMarkdown can be used to generate Word documents. This should be thought of as a one-way operation. That is to say, when a team works on a manuscript using Word, the typical work flow is that the lead author creates the first draft. Other authors make changes to the document using tracked changes. When the manuscript circulates over all authors, the lead author decides which changes to accept and which to reject, resulting in a new version. The process continues until the group of authors agrees that the manuscript is ready for publication.
+
+Unfortunately there is no backwards path to take an existing Word docx and regenerate an Rmd (e.g., after you and your colleagues made a lot of changes to the Word docx). Nevertheless using this method could save you some &quot;busy work&quot; time in Word, as well as to provide a common stylistic template for your R outputs if you will be generating Word documents.
+
+To export to a Word document, the following work flow should be followed:
+
+1. Create a bare-bones Rmd file that contains all of the elements you want in your output, but little actual content.
+1. Render the Rmd file to a Word docx file.
+1. Open the docx file in Word and make any stylistic changes __using Word styles__ (see the workshop  [Microsoft Word for the Social Sciences](https://csde.washington.edu/workshop/microsoft-word-for-the-social-sciences/))
+1. Use the style-edited docx file as a template in the Rmd file.
+1. Write your complete Rmd file with the content you want to have placed in the Word docx file and then render. The output docx file will have the same stylistic configuration as the template docx.
+
+A more detailed work flow:
+
+To use Word output, first make a minimal RMarkdown document with Word output. 
+
+![](images/week03/20200419_233754-C__Users_phurvitz_nextcloud_uw_csde_courses_msword_soc_sci_-_RStudio.png) 
+
+Save the Rmd file and knit to to Word.
+
+![](images/week03/20200419_233851-Window.png) 
+
+The output document will have the elements from the Rmd file.
+
+![](images/week03/20200419_234510-minimal.docx_[Read-Only]_[Compatibility_Mode]_-_Word.png) 
+
+The important part of this is that the Word document will have a number of styles. Make any changes to the styles or margins. This will become the template for the output containing the actual scientific content. ___Do not add, remove, or rename any styles in this document!___ Save a copy of the document with any stylistic changes. 
+
+For example, here are some changes to the header styles:
+
+![](images/week03/20200420_002233-Window.png) 
+
+Presumably, all of the styles in the output docx can be modified:
+
+![](images/week03/20210121_020407-Window.png)
+
+After you have made any changes, save the file as a &quot;template&quot;:
+
+![](images/week03/20200419_235426-Save_As.png)
+
+In the YAML header of the Rmd file with your scientific content, this construction, in which you specify the path name to the template document.
+
+```
+output:
+  word_document:  
+    reference_docx: &quot;template.docx&quot;
+```
+
+When the Rmd file is rendered to a Word document, the stylistic changes will be applied to the output. For example, just changing the head matter of the previous document and re-rendering shows that the heading styles were applied as defined.
+
+![](images/week03/20200420_002536-minimal.docx_[Read-Only]_[Compatibility_Mode]_-_Word.png)
+
+Although this overall functionality is somewhat limited, if you do have some Rmd code that generates some scientific content, and you want to output to a Word document with predefined formats, this will save you some busy work of reformatting.
+
+## R Markdown output 
+There are two different basic output formats available, document and presentation. As of this writing, the list of specific output types includes:
+
+* `beamer_presentation`
+* `context_document`
+* `github_document`
+* `html_document`
+* `ioslides_presentation`
+* `latex_document`
+* `md_document`
+* `odt_document`
+* `pdf_document`
+* `powerpoint_presentation`
+* `rtf_document`
+* `slidy_presentation`
+* `word_document`
+
+Various packages can also specify their own output types, e.g., `bookdown::html_document2` or `tufte::tufte_html.
+
+
+### R Markdown rendering to specific formats
+Remdering R Markdown files is done at the R console using the `rmarkdown::render()` function, e.g., 
+
+```
+rmarkdown::render(input = &quot;input_filename.Rmd&quot;)
+```
+
+or by clicking the `Knit` control in RSTudio.
+
+If the YAML header specifies multiple output formats, the first listed format will be used for the output if  other options are not specified in the `render()` function call. For example, for this header, the default output format is `bookdown::html_document2`
+
+```
+---
+title: &quot;A Document&quot;
+author: &quot;Jane Doe&quot;
+date: &quot;2021-01-23&quot;
+output: 
+    bookdown::html_document2: default
+    pdf_document: default
+    html_document: default
+    word_document: default
+---
+```
+
+The RStudio interface will present the listed choices in the `Knit` pick list in the GUI, so the desired output format can be selected interactively:
+
+&lt;img src=&quot;../images/week03/20210124_010442-C__Users_phurvitz_OneDrive_uw_courses_csde502_csde502_winter_2021_course - RStud.png&quot; class=&quot;border1&quot;&gt;
+
+Other supported outputs can be created, including those that are not listed in the YAML header by specifying the output format in the `render()` function, e.g. to create a [Slidy](https://www.w3.org/Talks/Tools/Slidy2/#(1)) presentation: 
+
+```
+rmarkdown::render(input = &quot;input_filename.Rmd&quot;, output_format = &quot;slidy_presentation&quot;)
+```
+
+To render a PDF file, use e.g., 
+
+```
+rmarkdown::render(input = &quot;input_filename.Rmd&quot;, output_format = &quot;pdf_document&quot;)
+```
+
+Using code rather than the RStudio GUI allows more flexible automation; you could have an R script that runs the `render()` function as part of a multi-step workflow. For example, if you had a continuous data collection process, the work flow could be coded and run with [cron](https://www.rdocumentation.org/packages/cronR) to generate a new PDF (or other file type) file on a daily basis.
+
+### Testing `output_type()`
+Because different output formats support (or do not support) different features, a test can be made for the output format to determine which code to run, using `is_html_output()` and `is_latex_output()`. Any R code within the Rmd file can be run or not run based on these tests. For a working example, download and render the file [output_type_test](files/output_type_test.Rmd). Using a single source, the [output rendered as HTML](files/output_type_test.html) appears as
+
+![](images/week03/20210124_190945-R Markdown Output Type Test - Work - MicrosoftEdge.png)
+
+whereas the [PDF output](files/output_type_test.pdf) is rendered as
+
+![](images/week03/20210124_191706-output_type_test.pdf - [R Markdown Output Type Test] - SumatraPDF.png)
+
+There appears to be no similar test for MS Word output, so for creating Word documents from Rmd files, it is suggested to create the Rmd from scratch with the intention of creating only Word output.
+
+## Advantages and disadvantages of PDF
+Portable document format (PDF) has a number of advantages:
+
+1. Document formatting is maintained. Font face and positioning of elements is consistent. When some other formats are shared (e.g., MS Word), formatting is inconsistent. 
+1. The format is widely used and able to be created from a variety of different proprietary and open software applications.
+1. Files are often parsimonious in size. When large images are embedded, the file sizes can grow, but there are often options for downscaling images for smaller file size.
+1. Files can be protected with passwords.
+1. Files are supported across all operating systems (Windows, Mac, Linux, UNIX).
+1. Multiple different elements can be included (text, images, tables).
+1. The format has stood the test of time, having been introduced 1993. The standard was opened in 2008, allowing developers to create PDF outputs. This has led to PDF being the standard for fixed-format documents. 
+
+The disadvantages:
+1. Direct editing of PDF files is not straightforward (usually requires dedicated software), and often results in undesired layout changes. Therefore this is not a good format for collaborative editing.
+1. Copy-and-paste from PDF often results in missing or extra spaces or strange characters.
+1. R functions that produce HTML output cannot be used in PDF outputs.
+
+## Bibliography in R Markdown
+The `pandoc` engine that performs document conversion can generate bibliographies. See [Bibliographies and Citations](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) for detailed information.
+
+For this exercise, we will be using ${B\kern-0.1emi\kern-0.017emb}\kern-0.15em\TeX$ formatted references.
+
+The YAML header needs to be formatted to include the bibliography file, which should either have a complete path name or be located in the same directory as the Rmd file. Similarly, any CSL (Citation Style Language) file should be specified. CSL files can be obtained from the [Zotero Style Repository
+](https://www.zotero.org/styles)
+
+The YAML header would include something of the form:
+
+```
+---
+title: &quot;My glorious, shiny dissertation&quot;
+output: 
+    bookdown::html_document2
+bibliography: myreferences_20200121.bib
+csl: biomed-central.csl
+---
+```
+
+When citations are made to references, the corresponding record will be automatically added to the end of the document.
+
+For examples of syntax for both APA-like and AMA-like references and bibliographies, see the files 
+
+* APA: [HTML](files/bibliography.html); [Rmd](files/bibliography.Rmd)
+* AMA: [HTML](files/bibliography_ama.html); [Rmd](files/bibliography_ama.Rmd)
+
+
+&lt;h4&gt;Source code for this document&lt;/h4&gt;
+[03-week03.Rmd](03-week03.Rmd)
+
+```{r, comment=&#39;&#39;, echo=FALSE}
+cat(readLines(&quot;03-week03.Rmd&quot;), sep = &#39;\n&#39;)
+```</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="week4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-week03.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

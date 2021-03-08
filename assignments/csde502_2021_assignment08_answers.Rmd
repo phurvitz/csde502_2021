@@ -1,0 +1,573 @@
+---
+title: "CSDE 502 Winter 2021, Assignment 8"
+author: "Answer Key"
+output: 
+    bookdown::html_document2:
+        number_sections: true
+        self_contained: true
+        code_folding: hide
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: false
+    pdf_document:
+        number_sections: true
+        toc: true
+        fig_cap: yes
+        keep_tex: yes
+urlcolor: blue 
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(captioner)
+library(tidyverse)
+library(magrittr)
+library(knitr)
+library(kableExtra)
+
+figure_nums <- captioner(prefix = "Figure")
+table_nums <- captioner(prefix = "Table")
+```
+
+___Explanation___:
+This assignment is intended to give you more practice in manipulating variables. 
+
+___Instructions___: 
+
+1. Make sure your Rmd file has no local file system dependencies (i.e., anyone should be able to recreate the output HTML using only the Rmd source file).
+1. Make a copy of this Rmd file and add answers below each question. The code that generated the answers should be included, as well as the complete source code for the document.
+1. Change the YAML header above to identify yourself and include contact information.
+1. For any tables or figures, include captions and cross-references and any other document automation methods as necessary.
+1. Make sure your output HTML file looks appealing to the reader.
+1. Upload the final Rmd to your github repository.
+1. Download [`assn_08_id.txt`](http://staff.washington.edu/phurvitz/csde502_winter_2021/assignments/assn_08_id.txt) and include the URL to your Rmd file on github.com.
+1. Create a zip file from your copy of `assn_08_id.txt` and upload the zip file to the Canvas site for Assignment 8. ___The zip file should contain only the text file. Do not include any additional files in the zip file--everything should be able to run from the file you uploaded to github.com. Use zip format and not 7z or any other compression/archive format.___
+
+
+#
+Imagine a new variable: multirace, using the following value definitions:
+
+	1 = one race, White
+	2 = one race, not White
+	3 = two races, includes White
+	4 = two races, both non-White
+	5 = three or more races, includes White
+	6 = three or more races, all non-White
+	9 = any race missing (White, Black/African American, American Indian, Asian, other)
+
+
+## 
+__Fill in the codes for the hypothetical cases below (`r table_nums(name = "t01", display = "cite")`).__
+
+`r table_nums(name = "t01", caption = "A hypothetical data set")`
+
+| white| black| AI| asian| raceother|multirace |
+|-----:|-----:|--:|-----:|---------:|---------:|
+|     1|     0|  0|     0|         0|         1|
+|     0|     1|  0|     0|         0|         2|
+|     1|     0|  0|     1|         0|         3|
+|     0|     1|  1|     0|         0|         4|
+|     1|     1|  0|     1|         0|         5|
+|     0|     1|  0|     0|         1|         4|
+|     0|     1|  1|     0|         1|         6|
+|     1|     0|  1|     0|         0|         3|
+|     1|     1|  1|     0|         1|         5|
+|     6|     1|  8|     1|         6|         9|	
+
+
+## 
+__Using this data frame (code below), report how many cases checked more than one race.__ Use R code to make this calculation and use inline expressions.
+
+The last record contains values of 6 and 8. Under the assumption that 6 = "refused" and 8 = "don't know", these will be recoded as "NA" and counted as zeros in the sum across rows.
+
+```
+dat <-
+  structure(
+    list(
+      white = c(1L, 0L, 1L, 0L, 1L, 0L, 0L, 1L, 1L, 6L),
+      black = c(0L, 1L, 0L, 1L, 1L, 1L, 1L, 0L, 1L, 1L),
+      AI = c(0L, 0L, 0L, 1L, 0L, 0L, 1L, 1L, 1L, 8L),
+      asian = c(0L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, 0L, 1L),
+      raceother = c(0L, 0L, 0L, 0L, 0L, 1L, 1L, 0L, 1L, 6L),
+      multirace = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA)
+    ),
+    class = "data.frame",
+    row.names = c(NA, -10L)
+  )
+```
+
+The code recreates the data frame and runs all of the processing and recoding, resulting in Table \@ref(tab:dat0).
+
+```{r dat0}
+d01 <-
+  structure(
+    list(
+      white = c(1L, 0L, 1L, 0L, 1L, 0L, 0L, 1L, 1L, 6L),
+      black = c(0L, 1L, 0L, 1L, 1L, 1L, 1L, 0L, 1L, 1L),
+      AI = c(0L, 0L, 0L, 1L, 0L, 0L, 1L, 1L, 1L, 8L),
+      asian = c(0L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, 0L, 1L),
+      raceother = c(0L, 0L, 0L, 0L, 0L, 1L, 1L, 0L, 1L, 6L),
+      multirace = c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA)
+    ),
+    class = "data.frame",
+    row.names = c(NA, -10L)
+  ) %>%
+  # mutate all columns
+  mutate_all(
+    # the mutate function is "case_when" to change values
+    #   anything other than 1 becomes NA
+    list(
+      ~ case_when(
+        . == 1 ~ 1,
+        TRUE ~ as.numeric(NA)
+      )
+    )
+  ) %>%
+  # # sum across all rows
+  mutate(
+    multirace = rowSums(., na.rm = TRUE)
+  )
+
+d01 %>%
+  kable(caption = "Recoded example data frame") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "left"
+  )
+```
+
+##
+__Write R code to create the multirace variable, using the data set [AHwave1_v3.rds](http://staff.washington.edu/phurvitz/csde502_winter_2021/data/AHwave1_v3.rds).__ _Hint: You may want to create another variable, numrace, that counts the number of races._ Use [`download_file()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/download.file.html) and `Sys.getenv("TEMP")` to download the file to your system's `TEMP` directory to avoid local file system dependencies.
+
+```{r}
+# locate the system temp dir. This will be the dirname of a dir created with tempdir().
+# avoids OS dependency
+mytempdir <- dirname(tempdir())
+# the RDS file
+ah1fname <- file.path(mytempdir, "AHwave1_v3.rds")
+# download if necessary
+if (!file.exists(ah1fname)) {
+  # a URL
+  myurl <- "http://staff.washington.edu/phurvitz/csde502_winter_2021/data/AHwave1_v3.rds"
+  # download it
+  download.file(
+    url = myurl,
+    destfile = ah1fname, quiet = TRUE
+  )
+}
+# read into mem
+d02 <- read_rds(ah1fname)
+
+# run the pipeline
+d03 <- d02 %>%
+  # pull the columns we want
+  select(
+    aid,
+    white,
+    black,
+    AI,
+    asian,
+    raceother
+  ) %>%
+  # recode 6 and 8 to NA for all but aid
+  mutate_at(
+    .vars = vars(-aid),
+    # the mutate function is "case_when" to change values
+    #   any marked value (1) becomes TRUE
+    #   anything that was 6 or 8 becomes NA
+    #   anything else (0) becomes FALSE
+    #       we can sum, e.g., TRUE + FALSE + NA = 1 (if na.rm = TRUE)
+    #   using these as Booleans allows more straightforward `case_when' later.
+    list(
+      ~ case_when(
+        . == 1 ~ TRUE,
+        . == 6 | . == 8 ~ NA,
+        TRUE ~ FALSE
+      )
+    )
+  ) %>%
+  # row sums
+  mutate(
+    numraces = rowSums(select(., -aid), na.rm = TRUE)
+  ) %>%
+  # classify multirace
+  mutate(
+    multirace =
+      #   1 = one race, White
+    # 	2 = one race, not White
+    # 	3 = two races, includes White
+    # 	4 = two races, both non-White
+    # 	5 = three or more races, includes White
+    # 	6 = three or more races, all non-White
+    # 	9 = any race missing (White, Black/African American, American Indian, Asian, other)
+    case_when(
+      numraces == 1 & white ~ 1,
+      numraces == 1 & !white ~ 2,
+      numraces == 2 & white ~ 3,
+      numraces == 2 & !white ~ 4,
+      numraces >= 3 & white ~ 5,
+      numraces >= 3 & !white ~ 6,
+      TRUE ~ 9
+    )
+  )
+
+## verify
+# d03_m4 <- d03 %>% filter(multirace==4)
+# View(d03_m4)
+#
+# d02 %>% select(aid, white, black, AI, asian, raceother) %>% filter(aid %in% d03_m4$aid)
+```
+
+## 
+__Label the multirace variable as well as its values using attribute labels.__
+
+The following code creates an attribute label for the `multirace` column, labels the values, and converts the column to a factor.
+
+```{r}
+attributes(d03$multirace)$label <- "A variable to represent race combinations:
+1 = one race, White
+2 = one race, not White
+3 = two races, includes White
+4 = two races, both non-White
+5 = three or more races, includes White
+6 = three or more races, all non-White
+9 = any race missing (White, Black/African American, American Indian, Asian, other)"
+
+labels_multirace <- c(
+  "one race: White" = 1,
+  "one race: not White" = 2,
+  "two races: includes White" = 3,
+  "two races: both non-White" = 4,
+  "three or more races: includes White" = 5,
+  "three or more races: all non-White" = 6,
+  "any race missing" = 9
+)
+
+attributes(d03$multirace)$labels <- labels_multirace
+
+d03$multirace <- factor(d03$multirace,
+  levels = labels_multirace,
+  labels = labels_multirace %>% names()
+)
+```
+
+
+## 
+__Include below a contingency table of the multirace variable. Make sure that the values are labelled so the table is readable, and also include any missing values.__
+
+Table \@ref(tab:d03tab) presents a tabulation of the `multirace` variable.
+
+```{r d03tab}
+d03 %>%
+  group_by(multirace) %>%
+  summarise(n = n()) %>%
+  mutate(
+    `%` = round(n / sum(n) * 100, 1)
+  ) %>%
+  kable(caption = "Tabulation of `multirace` variable") %>%
+  kable_styling(full_width = FALSE, position = "left")
+```
+
+Compare that with the tabulation of the variable representing the total count of races for each subject (Table \@ref(tab:d03tabnumraces)).
+
+```{r d03tabnumraces}
+d03 %>%
+  group_by(numraces) %>%
+  summarise(n = n()) %>%
+  mutate(
+    `%` = round(n / sum(n) * 100, 1)
+  ) %>%
+  kable(caption = "Tabulation of number of marked races") %>%
+  kable_styling(full_width = FALSE, position = "left")
+```
+
+# 
+__Review part B of each of the answers (i.e., `H1KQ1B .. H1KQ10B`) to the Knowledge Quiz (Section 19 of the Add Health questionnaire, documented in `INH19PUB.PDF`). The 10 questions each ask: “How confident are you that your answer is correct?”__
+
+## 
+__Write R code that creates a single summary variable named `kqconfidence`, with a larger number representing the respondent being more confident across all questions (scale of 0 to 3 for each individual question; `kqconfidence` will be the sum for each subject across the 10 questions). Note that any observations with value 7 (i.e., age less than 15) should be removed from the data frame, and values 6, 8, and 9 should be coded as `NA` (i.e., missing) for the purposes of scoring confidence. Document your code so that the reader knows how you scored the scale and how you handled missing values. Make sure to label the new variable.__
+
+```{r}
+# pull the same filter and select but no recoding for checking later
+kqc0 <- d02 %>%
+  # select only those columns that are confidence from the Knowldge Quiz
+  select(matches("aid|h1kq.*b$")) %>%
+  # drop records with value of 7
+  filter(h1kq1b != 7) %>%
+  data.frame()
+
+# the pipeline
+kqc <- d02 %>%
+  # select only those columns that are confidence from the Knowldge Quiz
+  select(matches("aid|h1kq.*b$")) %>%
+  # drop records with value of 7
+  filter(h1kq1b != 7) %>%
+  # convert to numeric everything but aid by using ".vars = vars(-(aid))"
+  mutate_at(
+    .vars = vars(-aid),
+    list(
+      ~ as.numeric(.)
+    )
+  ) %>%
+  # recode 5, 8, 9 as NA
+  # reorder the others by subtracting from 4
+  # ignore aid
+  mutate_at(
+    .vars = vars(-aid),
+    list(
+      ~ case_when(
+        as.numeric(.) %in% c(6, 8, 9) ~ as.numeric(NA),
+        TRUE ~ 4 - .
+      )
+    )
+  ) %>%
+  # run the rowSums. We can ignore aid by using an inline "select"
+  mutate(
+    kqconfidence =
+      rowSums(select(., -aid),
+        na.rm = TRUE
+      )
+  )
+
+# create the label
+attributes(kqc$kqconfidence)$label <- "A summary of confidence of correct answers in the Add Health Knowledge Quiz. For each individual question, original scores of 1-4 (high to low) were recoded to 0-3 (low to high), and summed across the 10 questions."
+
+# update the labels
+newlabels <- c(
+  "(0) Not at all" = 0,
+  "(1) Slightly" = 1,
+  "(2) Moderately" = 2,
+  "(3) Very" = 3
+)
+
+# update the value labels
+kqc %<>%
+  mutate_at(
+    .vars = vars(-kqconfidence, -aid),
+    list(
+      ~ labelled::labelled(x = ., labels = newlabels)
+    )
+  )
+```
+
+## 
+__Create and include below a contingency table from `kqconfidence` with raw counts, percentages, and cumulative percentages.__
+
+Table \@ref(tab:kqcsum) presents the count, percent, and cumulative counts and percentages of overall confidence in answers to the Knowledge Quiz questions.
+
+```{r kqcsum}
+kqc %>%
+  group_by(kqconfidence) %>%
+  summarise(n = n()) %>%
+  mutate(
+    `cumulative sum` = cumsum(n),
+    `%` = round(n / sum(n) * 100, 1),
+    `cumulative %` = cumsum(`%`)
+  ) %>%
+  kable(caption = "Distribution of overall confidence in Knowledge Quiz answers") %>%
+  kable_styling(full_width = FALSE, position = "left")
+```
+
+## 
+__[BONUS] For each subject there were zero to 10 “missing” answers to each of the 10 component questions. We would like to know what this distribution is. Include below a table that shows the count of subjects for each unique value of the count of missing questions.__
+
+Here we assume based on the attributes of the substantive questions that any answer other than 1 or 2 is missing, as shown for the attribute labels of `h1kq1a`. 
+
+```{r, comment = ""}
+attributes(d02$h1kq1a)$labels %>%
+  t() %>%
+  t()
+```
+
+Therefore we can recode 1 or 2 to zero and all other values to 1 and sum across rows, as the code demonstrates. The tabulation is shown in Table \@ref(tab:missings).
+
+```{r missings}
+# pull and don't mutate for comparisin
+kkq0 <- d02 %>%
+  # drop under 15 y
+  filter(h1kq1b != 7) %>%
+  # create a data frame of the component questions
+  select(matches("aid|h1kq.*a$")) %>%
+  data.frame()
+
+kkq <- d02 %>%
+  # drop under 15 y
+  filter(h1kq1b != 7) %>%
+  # create a data frame of the component questions
+  select(matches("aid|h1kq.*a$")) %>%
+  # convert missings to 1 and others to zero
+  mutate_at(
+    .vars = vars(-aid),
+    list(
+      ~ case_when(
+        . > 2 ~ 1,
+        TRUE ~ 0
+      )
+    )
+  ) %>%
+  # rowSums of missings
+  mutate(
+    `count of missing values` =
+      rowSums(select(., -aid))
+  )
+
+# tabulate
+kkq %>%
+  group_by(`count of missing values`) %>%
+  summarise(n = n()) %>%
+  mutate(
+    `cumulative sum` = cumsum(n),
+    `%` = round(n / sum(n) * 100, 1),
+    `cumulative %` = cumsum(`%`)
+  ) %>%
+  kable(caption = "Distribution of total missing values") %>%
+  kable_styling(full_width = FALSE, position = "left")
+```
+
+## 
+__For each possible value of the Knowledge Quiz Part A sum score (from [Lesson 8](http://staff.washington.edu/phurvitz/csde502_winter_2021/week8.html#scoring-across-columns)), what is the mean `kqconfidence` level? __
+
+Here we will create a data frame with the count of correct answers, using the code from Lesson 8. We use a `left_join()` by the identifier `aid` to join the count of correct scores with the overall confidence to generate a single data frame, which is then summarized and presented in \@ref(tab:correct_confidence).
+
+```{r correctconfidence}
+# correct responses
+correct <- c(2, 1, 2, 2, 2, 2, 2, 1, 2, 2)
+
+# substantive answers
+# a subset of only those who took the KQ, and only substantive answers
+KQsubset <- d02 %>%
+  filter(h1kq1a != 7) %>%
+  select(matches("aid|h1k.*a")) %>%
+  data.frame()
+
+# tdrop aid and ranspose
+KQans <- KQsubset %>%
+  select(-aid) %>%
+  t()
+
+# compare, transpose, and make a data frame
+# rowSum for total correct
+KQcorrect <- (KQans == correct) %>%
+  t(.) %>%
+  data.frame() %>%
+  mutate(
+    ncorrect = rowSums(.),
+    aid = KQsubset %>%
+      pull(aid)
+  ) %>%
+  select(aid, ncorrect, everything())
+
+# join with kqconfidence
+KQcorrect_confidence <-
+  KQcorrect %>%
+  left_join(kqc, by = "aid")
+
+KQcorrect_confidence %>%
+  # summarise by sum correct
+  group_by(ncorrect) %>%
+  summarise(`mean confidence` = mean(kqconfidence) %>% round(1)) %>%
+  kable(caption = "Mean confidence by count of correct answers to the Knowledge Quiz") %>%
+  kable_styling(full_width = FALSE, position = "left")
+```
+
+## 
+__[BONUS] For each respondent, create two different confidence scores: a confidence score for the items answered correctly and a confidence score for the items answered incorrectly. How many respondents are more confident when answering incorrectly?__
+
+The approach to answering this question is to effectively stratify correct and incorrect answers as logical values by comparing the subjects' responses to the correct responses. This is implemented efficiently using the `sweep()` function that compares a vector of values to the values in the same vector positions in each row of a data frame. Using the equality operator (`==`) we can easily compare the correct answer key with the subjects' submitted answers.
+
+For each subject, there is a vector of logical values (or a data frame of logical values for all subjects). When these are multiplied by the confidence scores, the `TRUE` values (i.e., correct and automatically converted to numerical values of 1), the result is a vector of confidence values only for the `TRUE` responses (or a data frame with confidence values for all subjects for only correct responses). 
+
+We can negate the data frame of correct responses so that incorrect responses are flagged `TRUE` and repeat the process, resulting in a data frame of confidence values for _incorrect_ responses.
+
+With these data frames, we can use `rowSums()` to get the total confidence score for all subjects, stratified by correct and incorrect responses. 
+
+The highly commented code below gives all of the necessary steps and a summary is presented in Table \@ref(tab:confcomp).
+
+```{r confcomp}
+# substantive answers
+# a subset of only those who took the KQ, and only substantive answers
+KQsubset <- d02 %>%
+  filter(h1kq1a != 7) %>%
+  select(matches("h1k.*a")) %>%
+  data.frame()
+
+# correct responses
+correct <- c(2, 1, 2, 2, 2, 2, 2, 1, 2, 2)
+names(correct) <- names(KQsubset)
+
+# sweep is an efficient way to mark the answers correct
+correct_answers <- as_tibble(
+  data.frame(
+    sweep(
+      x = KQsubset,
+      MARGIN = 2,
+      STATS = correct,
+      FUN = "=="
+    )
+  )
+)
+
+# make a data frame from only our recoded confidences, convert to integer
+conf_values <- kqc %>%
+  select(-c(aid, kqconfidence)) %>%
+  mutate_all(
+    list(
+      ~ as.integer(.)
+    )
+  )
+
+# if we multiply the "correct_answers" data frame by the confidence data frame
+# we should get confidence values for only correct answers. We can the rowSums to get total
+correct_conf <- (conf_values * correct_answers) %>%
+  mutate(
+    conf_correct = rowSums(., na.rm = TRUE)
+  )
+
+# we will also multiply by the negation of correct answers
+incorrect_conf <- (conf_values * !correct_answers) %>%
+  mutate(
+    conf_incorrect = rowSums(., na.rm = TRUE)
+  )
+
+# column bind and select the total confidence scores and compare
+conf_compare <-
+  correct_conf %>%
+  select(conf_correct) %>%
+  bind_cols(
+    incorrect_conf %>%
+      select(conf_incorrect)
+  ) %>%
+  mutate(
+    `more confident in correct answers` = conf_correct > conf_incorrect
+  )
+
+# tabulate
+conf_compare_sum <- conf_compare %>%
+  group_by(`more confident in correct answers`) %>%
+  summarise(
+    n = n(),
+    `mean confidence in correct answers` = mean(conf_correct) %>% round(1),
+    `mean confidence in incorrect answers` = mean(conf_incorrect) %>% round(1)
+  )
+
+# print the table
+conf_compare_sum %>%
+  kable(caption = "Comparison of overall confidence by correct or incorrect answers") %>%
+  kable_styling(full_width = FALSE, position = "left")
+
+# change the column names
+conf_compare_sum2 <- conf_compare_sum
+colnames(conf_compare_sum2) <- c(
+  "trueconf",
+  "n",
+  "mcc",
+  "mci"
+)
+```
+
+There were more subjects who were confident in correct answers than who were confident in incorrect answers. Of those who were more confident in their incorrect answers, their mean confidence in incorrect answers (`r conf_compare_sum2 %>% filter(!trueconf) %>% pull(mci)`) was _higher_ than their mean confidence in correct answers (`r conf_compare_sum2 %>% filter(trueconf) %>% pull(mcc)`). For those who were more confident in correct answers, the opposite pattern held, with a mean confidence in correct answers of `r conf_compare_sum2 %>% filter(trueconf) %>% pull(mcc)` and `r conf_compare_sum2 %>% filter(trueconf) %>% pull(mci)`, respectively. These values point to the need for better sex education, particularly for those who were more confident in fallacious knowledge.
+
+<h2>Source code</h2>
+```{r comment=''}
+cat(readLines(con = "csde502_2021_assignment08_answers.Rmd"), sep = "\n")
+```

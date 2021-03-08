@@ -1,0 +1,326 @@
+---
+title: "Assignment 7 example answer key"
+author: "Phil Hurvitz | [e-mail](mailto:phurvitz@uw.edu) | [www](http://gis.washington.edu/phurvitz)"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+header-includes: #allows you to add in your own Latex packages
+- \usepackage{float} #use the 'float' package
+- \floatplacement{figure}{H} #make every figure with caption = h
+output: 
+    bookdown::html_document2:
+        number_sections: true
+        self_contained: true
+        code_folding: hide
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: false
+urlcolor: blue
+---
+
+<!--these following settings control width and also make a DIV tag for black outlines for figures-->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<style>
+.outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+</style>
+
+```{r setup, message=FALSE, warning=FALSE}
+# key setups
+library(knitr) # knitr for kable tables
+library(kableExtra) # pretty tables
+library(ggplot2)
+library(tidyverse)
+library(pdftools)
+library(labelled)
+library(magrittr)
+
+# captions
+library(captioner)
+table_nums <- captioner(prefix = "Table")
+figure_nums <- captioner(prefix = "Figure")
+
+# for having DIV tags
+knitr::knit_hooks$set(class = function(before, options, envir) {
+    if(before){
+        sprintf("<div class = '%s'>", options$class)
+    }else{
+        "</div>"
+    }
+})
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+<!-- for a wide presentation -->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<!-- a DIV for black outline, good for figures-->
+<style>
+.outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+</style>
+
+This document presents some possible answers for Assignment 7.
+
+<h2>1.</h2>
+__Generate a new data frame from the full public Add Health data set (http://staff.washington.edu/phurvitz/csde502_winter_2021/data/21600-0001-Data.dta.zip) that consists of a subset of at least four of the original columns. Do not use any of the variables used as examples in Lesson 7.__
+
+In this code chunk, the file is downloaded, unzipped, read in as a data frame, and limited to five columns with a `select()`.
+
+```{r}
+myUrl <- "http://staff.washington.edu/phurvitz/csde502_winter_2021/data/21600-0001-Data.dta.zip"
+# zipfile in $temp
+zipfile <- file.path(Sys.getenv("TEMP"), basename(myUrl))
+# dta file in $temp
+dtafile <- tools::file_path_sans_ext(zipfile)
+# check if the dta file exists
+if(!file.exists(dtafile)){
+    # if the dta file doesn't exist, check for the zip file
+    # check if the zip file exists, download if necessary
+    if(!file.exists(zipfile)){
+        curl::curl_download(url = myUrl, destfile = zipfile)
+    }
+    # unzip the downloaded zip file
+    unzip(zipfile = zipfile, exdir = Sys.getenv("TEMP"))
+}
+
+# if the data set has not been read, read it in 
+if(!exists("ahcomplete")){
+    ahcomplete <- haven::read_dta(dtafile)
+}
+# lowercase column names
+colnames(ahcomplete) %<>% str_to_lower()
+
+# create a subset of columns
+dat <- ahcomplete %>% 
+    select(aid, 
+           s2,
+           s10a,
+           s46c,
+           s47,
+           s62m)
+# new column names
+newcolnames <- c("aid", "sex", "mathgrade", "homework", "tvtime", "likemyself")
+```
+
+
+<h3>1.a</h3>
+__At least one of the variables should be able to stratify the respondents into meaningful analytic groups.__
+
+All of the variables other than `aid` could be used to stratify. The variables I selected are ``r dat %>% names() %>% str_c(collapse = ", ")``, renamed to ``r newcolnames %>% str_c(collapse = ", ")``
+
+```{r}
+# set the column names
+names(dat) <- newcolnames
+```
+
+<h3>1.b</h3>
+__The data frame should have a “label” attribute that provides a brief but informative description of the table.__
+
+```{r}
+attributes(dat)$label <- "A subset of Add Health public data.
+Selected variables were:
+s2, s10a, s46c, s47, and s62m. 
+The variables were renamed to:
+aid, sex, mathgrade, homework, tvtime, and likemyself."
+```
+
+The descriptive label is:
+
+```{r, comment=""}
+# show the labels
+cat(attributes(dat)$label)
+```
+
+<h3>1.c</h3> 
+__The columns should be formatted as factor variables with proper value labels and ordering if applicable.__
+
+The following code converts the variables to factors.
+
+```{r}
+# save a previous version for comparison
+datorig <- dat
+
+# a function to convert a column with value attribute labels to a factor
+f_fct <- function(x){
+    factor(x, labels = attributes(x)$labels %>% names(), ordered = TRUE)
+}
+
+# mutate all columns other than the first (aid), using the f_fct function
+#   to convert the columns to factors
+dat %<>%
+    mutate_at(.vars = -1,
+              .funs = f_fct
+    )
+```
+
+Here we see the first few records of the data frame before and after converting variables to factors (\@ref(tab:datorig), \@ref(tab:datfact), respectively).
+
+```{r datorig}
+# show the first few records
+datorig %>% 
+    head() %>% 
+    kable(caption = "Raw data") %>% 
+    kable_styling(full_width = FALSE, position = "left")
+```
+
+```{r datfact}
+# show the first few records
+dat %>% 
+    head() %>% 
+    kable(align = rep("r", ncol(dat)), caption = "Data converted to factors") %>% 
+    kable_styling(full_width = FALSE, position = "left")
+```
+
+
+<h3>1.d</h3> 
+__The columns should have informative attributes as you see fit.__
+
+I have used the labels from the original data set to label the new variables, which are listed below.
+
+```{r}
+# column label
+labs <- datorig %>% 
+    map(~ attributes(.)$label) %>% 
+    unlist()
+
+# run a loop to label the columns
+for(i in 1:ncol(dat)){
+    # get the label
+    mylab <- labs[i]
+    # get the column name
+    cname <- names(dat)[i]
+    # formulate a command
+    mycmd <- sprintf("attributes(dat$%s)$label <- '%s'", cname, mylab)
+    # run the command
+    eval(parse(text = mycmd))
+}
+
+# print the labels
+dat %>% 
+    map(~ attributes(.)$label)
+```
+
+
+<h2>2</h2>
+__The code should save the data frame as an RDS file in the $TEMP location, which can be specified in R as Sys.getenv("TEMP").__
+
+The following code saves the data set as an RDS file (``file.path(tmpdir, "phurvitz_assn8.Rmd")``).
+
+```{r}
+# save the data set
+tmpdir <- Sys.getenv("TEMP")
+saveRDS(object = dat, file = file.path(tmpdir, "phurvitz_assn8.Rmd"))
+```
+
+
+<h2>3</h2>
+__Create some frequency tables:__
+
+<h3>3.a</h3>
+__Create a frequency table from each variable, using both counts and percentages.__
+
+The following code runs a loop over each column other than `aid` to create and print a tabulation.
+
+```{r, results='asis'}
+# create a tabulation for each column other than aid
+for(i in 2:ncol(dat)){
+    # column name
+    cname <- names(dat)[i]
+    
+    # tabulate
+    ftab <- dat %>% 
+        group_by(dat[,i]) %>% 
+        summarise(n = n()) %>% 
+        mutate(`%` = (n / sum(n) * 100) %>% round(1)) %>% 
+        kable() %>% 
+        kable_styling(full_width = FALSE,
+                      position = "left") %>% 
+        print()
+}
+```
+
+
+<h3>3.b</h3>
+__Create a frequency table based on at least two variables, also with counts and percentages.__
+
+The following tables present tabulations of grades in math by time spent watching TV. Table \@ref(tab:mt) presents percentage sums by grade, and \@ref(tab:tm) presents percentage sums by TV time.
+
+```{r mt}
+dat %>% 
+    filter(mathgrade <= "(4) D or lower" &
+               tvtime < "(9) Multiple response") %>% 
+    group_by(mathgrade, tvtime) %>% 
+    summarise(n = n()) %>% 
+    mutate(pct = (n / sum(n) * 100) %>% round(1),
+           `n (%)` = str_c(n, " (", pct, ")", sep = "")) %>% 
+    select(mathgrade, tvtime, `n (%)`) %>% 
+    spread(mathgrade, `n (%)`) %>% 
+    kable(caption = "Tabulation of grades in math and TV time, percent total by grade") %>% 
+    kable_styling(full_width = FALSE,
+                  position = "left") %>% 
+    add_header_above(header = c(" " = 1, "math grade, n (%)" = 4))
+```
+```{r tm}
+dat %>% 
+    filter(mathgrade <= "(4) D or lower" &
+               tvtime < "(9) Multiple response") %>% 
+    group_by(tvtime, mathgrade) %>% 
+    summarise(n = n()) %>% 
+    mutate(pct = (n / sum(n) * 100) %>% round(1),
+           `n (%)` = str_c(n, " (", pct, ")", sep = "")) %>% 
+    select(mathgrade, tvtime, `n (%)`) %>% 
+    spread(mathgrade, `n (%)`) %>% 
+    kable(caption = "Tabulation of grades in math and TV time, percent total by TV time") %>% 
+    kable_styling(full_width = FALSE,
+                  position = "left") %>% 
+    add_header_above(header = c(" " = 1, "math grade, n (%)" = 4))
+
+```
+
+<h2>4</h2>
+__Create at least one graph from data in the data frame.__
+
+Figure \@ref(fig:mathgrade) shows the count of subjects by math grades and frequency of having trouble getting homework done. For those who never had a problem getting homework done, grade A was most prevalent. But for all other groups, grade B was most prevalent. The most prevalent group had trouble completing their homework "just a few times a week."
+
+```{r mathgrade, fig.cap="Math grades by frequency of trouble getting homework done"}
+dsum <- dat %>% 
+    filter(mathgrade <= "(4) D or lower" &
+               homework < "(9) Multiple response") %>% 
+    group_by(homework, mathgrade) %>% 
+    summarise(n = n())
+
+ggplot(data = dsum, mapping = aes(x = mathgrade, y = n)) +
+    geom_bar(stat = "identity") +
+    facet_grid(~ homework) +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+    
+```
+
+
+
+<h2>Source code</h2>
+[csde502_2021_assignment07_answers.Rmd](csde502_2021_assignment07_answers.Rmd)
+
+```{r comment=''}
+cat(readLines(con = "csde502_2021_assignment07_answers.Rmd"), sep = '\n')
+```

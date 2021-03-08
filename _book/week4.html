@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Week 4 | CSDE 502 Winter 2021</title>
+  <meta name="description" content="These are the class notes and assignments for CSDE 502." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Week 4 | CSDE 502 Winter 2021" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the class notes and assignments for CSDE 502." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Week 4 | CSDE 502 Winter 2021" />
+  
+  <meta name="twitter:description" content="These are the class notes and assignments for CSDE 502." />
+  
+
+<meta name="author" content="Phil Hurvitz" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week3.html"/>
+<link rel="next" href="week5.html"/>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.17/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">CSDE 502</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-logistics"><i class="fa fa-check"></i>Course logistics</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#canvas"><i class="fa fa-check"></i>Canvas</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#computing"><i class="fa fa-check"></i>Computing</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="week1.html"><a href="week1.html"><i class="fa fa-check"></i><b>1</b> Week 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="week1.html"><a href="week1.html#getting-started-on-terminal-server-4"><i class="fa fa-check"></i><b>1.1</b> Getting started on Terminal Server 4</a></li>
+<li class="chapter" data-level="1.2" data-path="week1.html"><a href="week1.html#introduction-to-r-markdown-in-rstudio"><i class="fa fa-check"></i><b>1.2</b> Introduction to R Markdown in RStudio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="week1.html"><a href="week1.html#create-a-project"><i class="fa fa-check"></i><b>1.2.1</b> Create a project</a></li>
+<li class="chapter" data-level="1.2.2" data-path="week1.html"><a href="week1.html#create-an-r-markdown-file-from-built-in-rstudio-functionality"><i class="fa fa-check"></i><b>1.2.2</b> Create an R Markdown file from built-in RStudio functionality</a><ul>
+<li class="chapter" data-level="1.2.2.1" data-path="week1.html"><a href="week1.html#render-the-rmd-file-as-html"><i class="fa fa-check"></i><b>1.2.2.1</b> Render the Rmd file as HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2.3" data-path="week1.html"><a href="week1.html#create-an-r-markdown-file-with-some-enhancements"><i class="fa fa-check"></i><b>1.2.3</b> Create an R Markdown file with some enhancements</a><ul>
+<li class="chapter" data-level="1.2.3.1" data-path="week1.html"><a href="week1.html#render-and-view-the-enhanced-output"><i class="fa fa-check"></i><b>1.2.3.1</b> Render and view the enhanced output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="week1.html"><a href="week1.html#file-systems"><i class="fa fa-check"></i><b>1.3</b> File systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week2.html"><a href="week2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="week2.html"><a href="week2.html#code-to-run-for-the-in-class-exercise"><i class="fa fa-check"></i><b>2.1</b> Code to run for the in-class exercise</a></li>
+<li class="chapter" data-level="2.2" data-path="week2.html"><a href="week2.html#r-data-types"><i class="fa fa-check"></i><b>2.2</b> R data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="week2.html"><a href="week2.html#logical"><i class="fa fa-check"></i><b>2.2.1</b> Logical</a></li>
+<li class="chapter" data-level="2.2.2" data-path="week2.html"><a href="week2.html#numeric"><i class="fa fa-check"></i><b>2.2.2</b> Numeric</a></li>
+<li class="chapter" data-level="2.2.3" data-path="week2.html"><a href="week2.html#integer"><i class="fa fa-check"></i><b>2.2.3</b> Integer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="week2.html"><a href="week2.html#complex"><i class="fa fa-check"></i><b>2.2.4</b> Complex</a></li>
+<li class="chapter" data-level="2.2.5" data-path="week2.html"><a href="week2.html#character"><i class="fa fa-check"></i><b>2.2.5</b> Character</a></li>
+<li class="chapter" data-level="2.2.6" data-path="week2.html"><a href="week2.html#raw"><i class="fa fa-check"></i><b>2.2.6</b> Raw</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="week2.html"><a href="week2.html#r-data-structures"><i class="fa fa-check"></i><b>2.3</b> R data structures</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="week2.html"><a href="week2.html#vector"><i class="fa fa-check"></i><b>2.3.1</b> Vector</a></li>
+<li class="chapter" data-level="2.3.2" data-path="week2.html"><a href="week2.html#matrix"><i class="fa fa-check"></i><b>2.3.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.3.3" data-path="week2.html"><a href="week2.html#array"><i class="fa fa-check"></i><b>2.3.3</b> Array</a></li>
+<li class="chapter" data-level="2.3.4" data-path="week2.html"><a href="week2.html#list"><i class="fa fa-check"></i><b>2.3.4</b> List</a></li>
+<li class="chapter" data-level="2.3.5" data-path="week2.html"><a href="week2.html#factor"><i class="fa fa-check"></i><b>2.3.5</b> Factor</a></li>
+<li class="chapter" data-level="2.3.6" data-path="week2.html"><a href="week2.html#data-frame"><i class="fa fa-check"></i><b>2.3.6</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="week2.html"><a href="week2.html#tidyverse"><i class="fa fa-check"></i><b>2.4</b> tidyverse</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="week2.html"><a href="week2.html#magrittr"><i class="fa fa-check"></i><b>2.4.1</b> magrittr</a></li>
+<li class="chapter" data-level="2.4.2" data-path="week2.html"><a href="week2.html#data-subsetting-dplyr"><i class="fa fa-check"></i><b>2.4.2</b> Data subsetting (dplyr)</a><ul>
+<li class="chapter" data-level="2.4.2.0.1" data-path="week2.html"><a href="week2.html#logical-tests"><i class="fa fa-check"></i><b>2.4.2.0.1</b> Logical tests</a></li>
+<li class="chapter" data-level="2.4.2.1" data-path="week2.html"><a href="week2.html#subset-rows-filter"><i class="fa fa-check"></i><b>2.4.2.1</b> Subset rows (<code>filter()</code>)</a></li>
+<li class="chapter" data-level="2.4.2.2" data-path="week2.html"><a href="week2.html#subset-columns-select"><i class="fa fa-check"></i><b>2.4.2.2</b> Subset columns (<code>select()</code>)</a></li>
+<li class="chapter" data-level="2.4.2.3" data-path="week2.html"><a href="week2.html#subset-rows-and-columns-filter-and-select"><i class="fa fa-check"></i><b>2.4.2.3</b> Subset rows and columns: <code>filter()</code> and <code>select()</code></a></li>
+<li class="chapter" data-level="2.4.2.4" data-path="week2.html"><a href="week2.html#create-or-calculate-columns-mutate"><i class="fa fa-check"></i><b>2.4.2.4</b> Create or calculate columns: <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.4.2.5" data-path="week2.html"><a href="week2.html#summarizingaggregating-data"><i class="fa fa-check"></i><b>2.4.2.5</b> Summarizing/aggregating data</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week3.html"><a href="week3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="week3.html"><a href="week3.html#graphics-in-r-markdown"><i class="fa fa-check"></i><b>3.1</b> Graphics in R Markdown</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="week3.html"><a href="week3.html#base-r-graphics"><i class="fa fa-check"></i><b>3.1.1</b> Base R graphics</a></li>
+<li class="chapter" data-level="3.1.2" data-path="week3.html"><a href="week3.html#ggplot2-graphics"><i class="fa fa-check"></i><b>3.1.2</b> <code>ggplot2</code> graphics</a></li>
+<li class="chapter" data-level="3.1.3" data-path="week3.html"><a href="week3.html#embedding-graphics-files"><i class="fa fa-check"></i><b>3.1.3</b> Embedding graphics files</a><ul>
+<li class="chapter" data-level="3.1.3.1" data-path="week3.html"><a href="week3.html#knitr"><i class="fa fa-check"></i><b>3.1.3.1</b> <code>knitr</code></a></li>
+<li class="chapter" data-level="3.1.3.2" data-path="week3.html"><a href="week3.html#markdown-captionfilename"><i class="fa fa-check"></i><b>3.1.3.2</b> Markdown: <code>![caption](filename)</code></a></li>
+<li class="chapter" data-level="3.1.3.3" data-path="week3.html"><a href="week3.html#html-img-tag"><i class="fa fa-check"></i><b>3.1.3.3</b> HTML <code>&lt;img&gt;</code> tag</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="week3.html"><a href="week3.html#tables-in-r-markdown"><i class="fa fa-check"></i><b>3.2</b> Tables in R Markdown</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="week3.html"><a href="week3.html#kntir-kable-and-kableextra"><i class="fa fa-check"></i><b>3.2.1</b> <code>kntir</code> (<code>kable()</code>) and <code>kableExtra</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="week3.html"><a href="week3.html#stargazer"><i class="fa fa-check"></i><b>3.2.2</b> <code>stargazer</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="week3.html"><a href="week3.html#pander"><i class="fa fa-check"></i><b>3.2.3</b> <code>pander</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="week3.html"><a href="week3.html#captions-to-support-tables-figures-and-equations"><i class="fa fa-check"></i><b>3.3</b> Captions to support tables, figures, and equations</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="week3.html"><a href="week3.html#figures"><i class="fa fa-check"></i><b>3.3.1</b> Figures</a><ul>
+<li class="chapter" data-level="3.3.1.1" data-path="week3.html"><a href="week3.html#r-markdown-code-chunk-fig.cap"><i class="fa fa-check"></i><b>3.3.1.1</b> R Markdown code chunk <code>fig.cap</code></a></li>
+<li class="chapter" data-level="3.3.1.2" data-path="week3.html"><a href="week3.html#bookdown-with-html_document2-output-type"><i class="fa fa-check"></i><b>3.3.1.2</b> <code>bookdown</code> with <code>html_document2</code> output type</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3.2" data-path="week3.html"><a href="week3.html#tables-kable-caption"><i class="fa fa-check"></i><b>3.3.2</b> Tables: <code>kable()</code> &quot;caption&quot;</a><ul>
+<li class="chapter" data-level="3.3.2.1" data-path="week3.html"><a href="week3.html#bookdown-with-html_document2-output-type-1"><i class="fa fa-check"></i><b>3.3.2.1</b> <code>bookdown</code> with <code>html_document2</code> output type</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3.3" data-path="week3.html"><a href="week3.html#equations"><i class="fa fa-check"></i><b>3.3.3</b> Equations</a></li>
+<li class="chapter" data-level="3.3.4" data-path="week3.html"><a href="week3.html#captioner-for-any-captioning-and-cross-referencing-figures-and-tables"><i class="fa fa-check"></i><b>3.3.4</b> <code>captioner</code> for any captioning and cross-referencing figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="week3.html"><a href="week3.html#r-markdown-to-microsoft-word"><i class="fa fa-check"></i><b>3.4</b> R Markdown to Microsoft Word</a></li>
+<li class="chapter" data-level="3.5" data-path="week3.html"><a href="week3.html#r-markdown-output"><i class="fa fa-check"></i><b>3.5</b> R Markdown output</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="week3.html"><a href="week3.html#r-markdown-rendering-to-specific-formats"><i class="fa fa-check"></i><b>3.5.1</b> R Markdown rendering to specific formats</a></li>
+<li class="chapter" data-level="3.5.2" data-path="week3.html"><a href="week3.html#testing-output_type"><i class="fa fa-check"></i><b>3.5.2</b> Testing <code>output_type()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="week3.html"><a href="week3.html#advantages-and-disadvantages-of-pdf"><i class="fa fa-check"></i><b>3.6</b> Advantages and disadvantages of PDF</a></li>
+<li class="chapter" data-level="3.7" data-path="week3.html"><a href="week3.html#bibliography-in-r-markdown"><i class="fa fa-check"></i><b>3.7</b> Bibliography in R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week4.html"><a href="week4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a><ul>
+<li class="chapter" data-level="4.1" data-path="week4.html"><a href="week4.html#environments"><i class="fa fa-check"></i><b>4.1</b> Environments</a></li>
+<li class="chapter" data-level="4.2" data-path="week4.html"><a href="week4.html#functions"><i class="fa fa-check"></i><b>4.2</b> Functions</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="week4.html"><a href="week4.html#function-components"><i class="fa fa-check"></i><b>4.2.1</b> Function Components</a><ul>
+<li class="chapter" data-level="4.2.1.1" data-path="week4.html"><a href="week4.html#name"><i class="fa fa-check"></i><b>4.2.1.1</b> Name</a></li>
+<li class="chapter" data-level="4.2.1.2" data-path="week4.html"><a href="week4.html#arguments"><i class="fa fa-check"></i><b>4.2.1.2</b> Arguments</a><ul>
+<li class="chapter" data-level="4.2.1.2.1" data-path="week4.html"><a href="week4.html#default-values-for-arguments"><i class="fa fa-check"></i><b>4.2.1.2.1</b> Default values for arguments</a></li>
+<li class="chapter" data-level="4.2.1.2.2" data-path="week4.html"><a href="week4.html#the-...-argument"><i class="fa fa-check"></i><b>4.2.1.2.2</b> The <code>...</code> argument</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2.1.3" data-path="week4.html"><a href="week4.html#body"><i class="fa fa-check"></i><b>4.2.1.3</b> Body</a></li>
+<li class="chapter" data-level="4.2.1.4" data-path="week4.html"><a href="week4.html#return-value"><i class="fa fa-check"></i><b>4.2.1.4</b> Return value</a></li>
+<li class="chapter" data-level="4.2.1.5" data-path="week4.html"><a href="week4.html#function-environments"><i class="fa fa-check"></i><b>4.2.1.5</b> Function environments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="week4.html"><a href="week4.html#sampling"><i class="fa fa-check"></i><b>4.3</b> Sampling</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="week4.html"><a href="week4.html#sampling-with-replacement"><i class="fa fa-check"></i><b>4.3.1</b> Sampling with replacement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="week4.html"><a href="week4.html#sampling-without-replacement"><i class="fa fa-check"></i><b>4.3.2</b> Sampling without replacement</a></li>
+<li class="chapter" data-level="4.3.3" data-path="week4.html"><a href="week4.html#bootstrapping"><i class="fa fa-check"></i><b>4.3.3</b> Bootstrapping</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week5.html"><a href="week5.html"><i class="fa fa-check"></i><b>5</b> Week 5</a><ul>
+<li class="chapter" data-level="5.1" data-path="week5.html"><a href="week5.html#why-use-version-control"><i class="fa fa-check"></i><b>5.1</b> Why use version control?</a></li>
+<li class="chapter" data-level="5.2" data-path="week5.html"><a href="week5.html#why-use-git"><i class="fa fa-check"></i><b>5.2</b> Why use Git?</a></li>
+<li class="chapter" data-level="5.3" data-path="week5.html"><a href="week5.html#limitations-of-version-control-systems"><i class="fa fa-check"></i><b>5.3</b> Limitations of version control systems</a></li>
+<li class="chapter" data-level="5.4" data-path="week5.html"><a href="week5.html#a-brief-git-tutorial"><i class="fa fa-check"></i><b>5.4</b> A brief Git tutorial</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="week5.html"><a href="week5.html#setting-up-git-in-rstudio"><i class="fa fa-check"></i><b>5.4.1</b> Setting up Git in RStudio</a></li>
+<li class="chapter" data-level="5.4.2" data-path="week5.html"><a href="week5.html#creating-a-repository"><i class="fa fa-check"></i><b>5.4.2</b> Creating a repository</a></li>
+<li class="chapter" data-level="5.4.3" data-path="week5.html"><a href="week5.html#tracking-changes"><i class="fa fa-check"></i><b>5.4.3</b> Tracking changes</a></li>
+<li class="chapter" data-level="5.4.4" data-path="week5.html"><a href="week5.html#git-bash-shell"><i class="fa fa-check"></i><b>5.4.4</b> Git bash shell</a></li>
+<li class="chapter" data-level="5.4.5" data-path="week5.html"><a href="week5.html#ignoring-specific-files"><i class="fa fa-check"></i><b>5.4.5</b> Ignoring specific files</a></li>
+<li class="chapter" data-level="5.4.6" data-path="week5.html"><a href="week5.html#exploring-file-change-history"><i class="fa fa-check"></i><b>5.4.6</b> Exploring file change history</a></li>
+<li class="chapter" data-level="5.4.7" data-path="week5.html"><a href="week5.html#restoring-a-previous-version"><i class="fa fa-check"></i><b>5.4.7</b> Restoring a previous version</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="week5.html"><a href="week5.html#conclusion"><i class="fa fa-check"></i><b>5.5</b> Conclusion</a></li>
+<li class="chapter" data-level="5.6" data-path="week5.html"><a href="week5.html#source-code"><i class="fa fa-check"></i><b>5.6</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="week6.html"><a href="week6.html"><i class="fa fa-check"></i><b>6</b> Week 6</a><ul>
+<li class="chapter" data-level="6.1" data-path="week6.html"><a href="week6.html#the-add-health-study-data"><i class="fa fa-check"></i><b>6.1</b> The Add Health study data</a></li>
+<li class="chapter" data-level="6.2" data-path="week6.html"><a href="week6.html#documentation"><i class="fa fa-check"></i><b>6.2</b> Documentation</a></li>
+<li class="chapter" data-level="6.3" data-path="week6.html"><a href="week6.html#data-sets"><i class="fa fa-check"></i><b>6.3</b> Data sets</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="week6.html"><a href="week6.html#ahwave1_v1.dta"><i class="fa fa-check"></i><b>6.3.1</b> <code>AHwave1_v1.dta</code></a><ul>
+<li class="chapter" data-level="6.3.1.1" data-path="week6.html"><a href="week6.html#havenread_dta"><i class="fa fa-check"></i><b>6.3.1.1</b> <code>haven::read_dta()</code></a></li>
+<li class="chapter" data-level="6.3.1.2" data-path="week6.html"><a href="week6.html#readstata13read.dta13"><i class="fa fa-check"></i><b>6.3.1.2</b> <code>readstata13::read.dta13()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3.2" data-path="week6.html"><a href="week6.html#data.dta"><i class="fa fa-check"></i><b>6.3.2</b> <code>21600-0001-Data.dta</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="week6.html"><a href="week6.html#searching-through-documentation"><i class="fa fa-check"></i><b>6.4</b> Searching through documentation</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="week6.html"><a href="week6.html#pdfgrep"><i class="fa fa-check"></i><b>6.4.1</b> <code>pdfgrep</code></a><ul>
+<li class="chapter" data-level="6.4.1.1" data-path="week6.html"><a href="week6.html#a-few-use-examples"><i class="fa fa-check"></i><b>6.4.1.1</b> A few use examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4.2" data-path="week6.html"><a href="week6.html#pdftoolspdf_text"><i class="fa fa-check"></i><b>6.4.2</b> <code>pdftools::pdf_text()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="week6.html"><a href="week6.html#conclusion-1"><i class="fa fa-check"></i><b>6.5</b> Conclusion</a></li>
+<li class="chapter" data-level="6.6" data-path="week6.html"><a href="week6.html#source-code-1"><i class="fa fa-check"></i><b>6.6</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="week7.html"><a href="week7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a><ul>
+<li class="chapter" data-level="7.1" data-path="week7.html"><a href="week7.html#creating-value-labels"><i class="fa fa-check"></i><b>7.1</b> Creating value labels</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="week7.html"><a href="week7.html#creating-factor-variables"><i class="fa fa-check"></i><b>7.1.1</b> Creating factor variables</a></li>
+<li class="chapter" data-level="7.1.2" data-path="week7.html"><a href="week7.html#creating-attributes"><i class="fa fa-check"></i><b>7.1.2</b> Creating attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="week7.html"><a href="week7.html#tabulation"><i class="fa fa-check"></i><b>7.2</b> Tabulation</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="week7.html"><a href="week7.html#raw-counts"><i class="fa fa-check"></i><b>7.2.1</b> Raw counts</a></li>
+<li class="chapter" data-level="7.2.2" data-path="week7.html"><a href="week7.html#proportionspercentages"><i class="fa fa-check"></i><b>7.2.2</b> Proportions/percentages</a></li>
+<li class="chapter" data-level="7.2.3" data-path="week7.html"><a href="week7.html#stratified-tabulation"><i class="fa fa-check"></i><b>7.2.3</b> Stratified tabulation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="week7.html"><a href="week7.html#source-code-2"><i class="fa fa-check"></i><b>7.3</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="week8.html"><a href="week8.html"><i class="fa fa-check"></i><b>8</b> Week 8</a><ul>
+<li class="chapter" data-level="8.1" data-path="week8.html"><a href="week8.html#scale-scoring"><i class="fa fa-check"></i><b>8.1</b> Scale scoring</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="week8.html"><a href="week8.html#selecting-specific-columns"><i class="fa fa-check"></i><b>8.1.1</b> Selecting specific columns</a></li>
+<li class="chapter" data-level="8.1.2" data-path="week8.html"><a href="week8.html#comparing-participant-answers-to-correct-answers"><i class="fa fa-check"></i><b>8.1.2</b> Comparing participant answers to correct answers</a></li>
+<li class="chapter" data-level="8.1.3" data-path="week8.html"><a href="week8.html#scoring-across-columns"><i class="fa fa-check"></i><b>8.1.3</b> Scoring across columns</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="week8.html"><a href="week8.html#reordering-values"><i class="fa fa-check"></i><b>8.2</b> Reordering values</a></li>
+<li class="chapter" data-level="8.3" data-path="week8.html"><a href="week8.html#source-code-3"><i class="fa fa-check"></i><b>8.3</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="week9.html"><a href="week9.html"><i class="fa fa-check"></i><b>9</b> Week 9</a><ul>
+<li class="chapter" data-level="9.1" data-path="week9.html"><a href="week9.html#substituting-text"><i class="fa fa-check"></i><b>9.1</b> Substituting text</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="week9.html"><a href="week9.html#paste-paste0"><i class="fa fa-check"></i><b>9.1.1</b> <code>paste()</code>, <code>paste0()</code></a></li>
+<li class="chapter" data-level="9.1.2" data-path="week9.html"><a href="week9.html#sprintf"><i class="fa fa-check"></i><b>9.1.2</b> <code>sprintf()</code></a><ul>
+<li class="chapter" data-level="9.1.2.1" data-path="week9.html"><a href="week9.html#formatting-numerical-values"><i class="fa fa-check"></i><b>9.1.2.1</b> Formatting numerical values</a></li>
+<li class="chapter" data-level="9.1.2.2" data-path="week9.html"><a href="week9.html#string-substitutions"><i class="fa fa-check"></i><b>9.1.2.2</b> String substitutions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.1.3" data-path="week9.html"><a href="week9.html#str_replace-str_replace_all"><i class="fa fa-check"></i><b>9.1.3</b> <code>str_replace()</code>, <code>str_replace_all()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="week9.html"><a href="week9.html#showing-progress"><i class="fa fa-check"></i><b>9.2</b> Showing progress</a></li>
+<li class="chapter" data-level="9.3" data-path="week9.html"><a href="week9.html#turning-text-into-code-evalparsetext-some-string"><i class="fa fa-check"></i><b>9.3</b> Turning text into code: <code>eval(parse(text = &quot;some string&quot;))</code></a></li>
+<li class="chapter" data-level="9.4" data-path="week9.html"><a href="week9.html#sql-in-r-with-rsqlite-and-sqldf"><i class="fa fa-check"></i><b>9.4</b> SQL in R with <code>RSQLite</code> and <code>sqldf</code></a></li>
+<li class="chapter" data-level="9.5" data-path="week9.html"><a href="week9.html#downloading-files-from-password-protected-web-sites"><i class="fa fa-check"></i><b>9.5</b> Downloading files from password-protected web sites</a></li>
+<li class="chapter" data-level="9.6" data-path="week9.html"><a href="week9.html#dates-and-time-stamps-posixct-and-lubridate"><i class="fa fa-check"></i><b>9.6</b> Dates and time stamps: <code>POSIXct</code> and <code>lubridate</code></a></li>
+<li class="chapter" data-level="9.7" data-path="week9.html"><a href="week9.html#timing-with-sys.time-and-difftime"><i class="fa fa-check"></i><b>9.7</b> Timing with <code>Sys.time()</code> and <code>difftime()</code></a></li>
+<li class="chapter" data-level="9.8" data-path="week9.html"><a href="week9.html#faster-files-with-fst"><i class="fa fa-check"></i><b>9.8</b> Faster files with <code>fst()</code></a></li>
+<li class="chapter" data-level="9.9" data-path="week9.html"><a href="week9.html#getting-us-census-data-with-tigris-tidycensus"><i class="fa fa-check"></i><b>9.9</b> Getting US Census data with <code>tigris</code>, <code>tidycensus</code></a></li>
+<li class="chapter" data-level="9.10" data-path="week9.html"><a href="week9.html#easier-regular-expressions-with-rverbalexpressions"><i class="fa fa-check"></i><b>9.10</b> Easier regular expressions with <code>RVerbalExpressions</code></a></li>
+<li class="chapter" data-level="9.11" data-path="week9.html"><a href="week9.html#quick-copy-from-excel-windows-only"><i class="fa fa-check"></i><b>9.11</b> Quick copy from Excel (Windows only)</a></li>
+<li class="chapter" data-level="9.12" data-path="week9.html"><a href="week9.html#running-system-commands"><i class="fa fa-check"></i><b>9.12</b> Running system commands</a></li>
+<li class="chapter" data-level="9.13" data-path="week9.html"><a href="week9.html#code-styling"><i class="fa fa-check"></i><b>9.13</b> Code styling</a></li>
+<li class="chapter" data-level="9.14" data-path="week9.html"><a href="week9.html#session-information"><i class="fa fa-check"></i><b>9.14</b> Session information</a></li>
+<li class="chapter" data-level="9.15" data-path="week9.html"><a href="week9.html#comment-out-rmdhtml-code"><i class="fa fa-check"></i><b>9.15</b> Comment out Rmd/HTML code</a></li>
+<li class="chapter" data-level="9.16" data-path="week9.html"><a href="week9.html#source-code-4"><i class="fa fa-check"></i><b>9.16</b> Source code</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="zoom.html"><a href="zoom.html"><i class="fa fa-check"></i><b>10</b> Zoom Recordings</a><ul>
+<li class="chapter" data-level="10.1" data-path="zoom.html"><a href="zoom.html#start-time-jan-8-2021-1027-am"><i class="fa fa-check"></i><b>10.1</b> Start Time: Jan 8, 2021 10:27 AM</a></li>
+<li class="chapter" data-level="10.2" data-path="zoom.html"><a href="zoom.html#start-time-jan-22-2021-1021-am"><i class="fa fa-check"></i><b>10.2</b> Start Time: Jan 22, 2021 10:21 AM</a></li>
+<li class="chapter" data-level="10.3" data-path="zoom.html"><a href="zoom.html#start-time-jan-29-2021-1025-am"><i class="fa fa-check"></i><b>10.3</b> Start Time: Jan 29, 2021 10:25 AM</a></li>
+<li class="chapter" data-level="10.4" data-path="zoom.html"><a href="zoom.html#start-time-feb-5-2021-1028-am"><i class="fa fa-check"></i><b>10.4</b> Start Time: Feb 5, 2021 10:28 AM</a></li>
+<li class="chapter" data-level="10.5" data-path="zoom.html"><a href="zoom.html#start-time-feb-12-2021-1027-am"><i class="fa fa-check"></i><b>10.5</b> Start Time: Feb 12, 2021 10:27 AM</a></li>
+<li class="chapter" data-level="10.6" data-path="zoom.html"><a href="zoom.html#start-time-feb-19-2021-1021-am"><i class="fa fa-check"></i><b>10.6</b> Start Time: Feb 19, 2021 10:21 AM</a></li>
+<li class="chapter" data-level="10.7" data-path="zoom.html"><a href="zoom.html#start-time-feb-26-2021-1029-am"><i class="fa fa-check"></i><b>10.7</b> Start Time : Feb 26, 2021 10:29 AM</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">CSDE 502 Winter 2021</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week4" class="section level1">
+<h1><span class="header-section-number">4</span> Week 4</h1>
+<h2>
+Topics: Functions and sampling
+</h2>
+<p>This week's topics are functions and sampling, the latter including a cursory treatment of loops and bootstrapping.</p>
+<div id="environments" class="section level2">
+<h2><span class="header-section-number">4.1</span> Environments</h2>
+<p>Functions exist in <code>environments</code>, which are &quot;frames&quot; or collections containing objects including variables, functions, etc.). There is a global environment (<code>.GlobalEnv</code>) that contains all of the data, functions, in the current R session. Those objects can be enumerated with the <code>ls()</code> function.</p>
+<p>The reason environments are mentioned at this time is because functions instantiate environments that exist while the function is running. More on this in a bit....</p>
+</div>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">4.2</span> Functions</h2>
+<p>Functions are sets of statements in R that are grouped together to perform a specific task or set of tasks. Functions are either built in, included in packages, or user-defined. Functions are used mainly to simplify running a series of individual commands or functions, for situations where the same process will need to be run multiple times on different inputs, or when control structures are needed (e.g., looping, logical branching).</p>
+<div id="function-components" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Function Components</h3>
+<p>The different parts of a function are:</p>
+<ol style="list-style-type: decimal">
+<li>(Usually) Name: This is the actual name of the function. It is stored in an R environment as an object with this name.</li>
+<li>(Optional) Arguments: Arguments specify the inputs or options to the function. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.</li>
+<li>Body: The function body contains a collection of statements that defines what the function does.</li>
+<li>Return value: The return value of a function is the last expression in the function body to be evaluated.</li>
+</ol>
+<p>Another important concept for functions is environments.</p>
+<div id="name" class="section level4">
+<h4><span class="header-section-number">4.2.1.1</span> Name</h4>
+<p>Most functions are created with code of the form</p>
+<pre><code>function_name &lt;- function(argument(s)){
+    statement(s)
+}</code></pre>
+<p>For example, to square a vector of numerical values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_square &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+    x<span class="op">^</span><span class="dv">2</span>
+}</code></pre></div>
+<p>the function name is <code>f_square</code>.</p>
+<p>Some functions are not named, and are referred to as &quot;anonymous&quot; functions. For example, functions can be used within the <code>apply</code> family of functions. Here is an oprationalized example.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a list of three vectors of random numbers of different random lengths</span>
+
+<span class="co"># set.seed() makes the random process reproducible.</span>
+<span class="kw">set.seed</span>(<span class="dv">10</span>)
+<span class="co"># vector lengths</span>
+v.len &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">30</span>, <span class="dt">sd =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">0</span>)
+
+<span class="co"># make the random vectors</span>
+<span class="kw">set.seed</span>(<span class="dv">5</span>)
+v1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> v.len[<span class="dv">1</span>])
+<span class="kw">set.seed</span>(<span class="dv">3</span>)
+v2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> v.len[<span class="dv">2</span>])
+<span class="kw">set.seed</span>(<span class="dv">6</span>)
+v3 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> v.len[<span class="dv">3</span>])
+
+<span class="co"># create the list</span>
+L &lt;-<span class="st"> </span><span class="kw">list</span>(v1, v2, v3)
+
+<span class="co"># get the first value from each vector in the list</span>
+<span class="kw">lapply</span>(<span class="dt">X =</span> L, <span class="dt">FUN =</span> <span class="cf">function</span>(x) {x[<span class="dv">1</span>]})</code></pre></div>
+<pre><code>## [[1]]
+## [1] -0.8408555
+## 
+## [[2]]
+## [1] -0.9619334
+## 
+## [[3]]
+## [1] 0.269606</code></pre>
+<p>The last line of the code chunk is:</p>
+<pre><code>lapply(X = L, FUN = function(x) {x[1]})
+</code></pre>
+<p>in which the body of the function is <code>x[1]</code>, i.e., obtain the first element of a vector. But the function itself is not named, and hence &quot;anonymous.&quot;</p>
+</div>
+<div id="arguments" class="section level4">
+<h4><span class="header-section-number">4.2.1.2</span> Arguments</h4>
+<p>Most functions require arguments. Arguments are used to instantiate variables within the function's environment that can be used later in the body of the function. Each argument is named, and the name is used within the function as a local variable within the function's environment.</p>
+<p>Following our example from above, <code>f_square</code> takes an argument named &quot;x&quot; that is a numeric vector.</p>
+<p>Here, let's modify the function to demonstrate that within the environment of the function, <code>x</code> is a variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_square_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+    <span class="kw">message</span>(<span class="st">&quot;input:&quot;</span>)
+    <span class="kw">print</span>(x)
+    <span class="kw">message</span>(<span class="st">&quot;output:&quot;</span>)
+    x<span class="op">^</span><span class="dv">2</span>
+}
+
+<span class="kw">f_square_2</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</code></pre></div>
+<pre><code>## input:</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre><code>## output:</code></pre>
+<pre><code>## [1] 1 4 9</code></pre>
+<p>We can try running the function using different (or no) arguments:</p>
+<p>Here, using a vector of a single NA numeric</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f_square</span>(<span class="kw">as.numeric</span>(<span class="ot">NA</span>))</code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>... or a vector that contains a numeric NA:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f_square</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NA</span>))</code></pre></div>
+<pre><code>## [1]  1  4 NA</code></pre>
+<p>... or a null:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f_square</span>(<span class="ot">NULL</span>)</code></pre></div>
+<pre><code>## numeric(0)</code></pre>
+<p>... or a vector containing a null:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f_square</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NULL</span>))</code></pre></div>
+<pre><code>## [1] 1 4</code></pre>
+<p>... or with no argument at all:</p>
+<pre><code>f_square()</code></pre>
+<p><font color="red"></p>
+<pre><code>## Error in f_square() : argument &quot;x&quot; is missing, with no default</code></pre>
+<p></font></p>
+<p>Some functions do not require arguments, e.g., to get the current date or time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()</code></pre></div>
+<pre><code>## [1] &quot;2021-03-06&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
+<pre><code>## [1] &quot;2021-03-06 12:23:29 PST&quot;</code></pre>
+<p>... and if we try to use an argument we get an error:</p>
+<pre><code>Sys.Date(1)</code></pre>
+<p><font color="red"></p>
+<pre><code>## Error in Sys.Date(1) : unused argument (1)</code></pre>
+<p></font></p>
+<div id="default-values-for-arguments" class="section level5">
+<h5><span class="header-section-number">4.2.1.2.1</span> Default values for arguments</h5>
+<p>If you want an argument to have a default value, it is specified in the listed arguments in the form <code>argument = value</code>. Following our previous <code>f_square_2()</code> function, we can modify to print the input based on the logical argument <code>verbose</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_square_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">verbose =</span> <span class="ot">FALSE</span>){
+    <span class="co"># only run the next lines if verbose is true</span>
+    <span class="cf">if</span>(verbose){
+        <span class="kw">message</span>(<span class="st">&quot;input:&quot;</span>)
+        <span class="kw">print</span>(x)
+        <span class="kw">message</span>(<span class="st">&quot;output:&quot;</span>)
+    }
+    x<span class="op">^</span><span class="dv">2</span>
+}</code></pre></div>
+<p>Here we run with the default <code>verbose</code> option (<code>FALSE</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f_square_3</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</code></pre></div>
+<pre><code>## [1] 1 4 9</code></pre>
+<p>... and with <code>verbose = TRUE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f_square_3</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## input:</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre><code>## output:</code></pre>
+<pre><code>## [1] 1 4 9</code></pre>
+<p>A more meaningful example demonstrates stratification of counts into intensity bins using accelerometry data. We will be using accelerometry from one day's data from one subject in a study.</p>
+<p>The cut points for accelerometry were identified at 0, 2690, 6167, and 9642 counts per minute, from Sasaki et al. (2011).</p>
+<p>__Sasaki JE, John D, Freedson PS. Validation and comparison of ActiGraph activity monitors. J Sci Med Sport. 2011;14(5):411-416. <a href="doi:10.1016/j.jsams.2011.04.003__" class="uri">doi:10.1016/j.jsams.2011.04.003__</a></p>
+<p>The variable <code>vm3</code> is the vector magnitude measured with the accelerometer for each minute. Data: <a href="files/accelerometry.csv">accelerometry.csv</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;files/accelerometry.csv&quot;</span>)
+
+<span class="kw">head</span>(acc)</code></pre></div>
+<pre><code>##                 time_acc vm3
+## 1 2018-09-13 02:59:00-07   0
+## 2 2018-09-13 02:58:00-07   0
+## 3 2018-09-13 02:57:00-07   0
+## 4 2018-09-13 02:56:00-07   0
+## 5 2018-09-13 02:55:00-07   0
+## 6 2018-09-13 02:54:00-07   0</code></pre>
+<p>The following function codes intensity by the aforementioned cut points by default and using default labels:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_acc_intensity &lt;-<span class="st"> </span><span class="cf">function</span>(x, 
+                            <span class="dt">cuts =</span> <span class="kw">c</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">2690</span>, <span class="dv">6167</span>, <span class="dv">9642</span>, <span class="ot">Inf</span>),
+                            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;sedentary/low&quot;</span>, <span class="st">&quot;moderate&quot;</span>, <span class="st">&quot;vigorous&quot;</span>, <span class="st">&quot;very vigorous&quot;</span>)){
+    <span class="kw">cut</span>(<span class="dt">x =</span> acc<span class="op">$</span>vm3, <span class="dt">breaks =</span> cuts, <span class="dt">labels =</span> labels)
+}</code></pre></div>
+<p>... and when run with the defaults to tabulate the minutes spent in different PA levels</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acc<span class="op">$</span>intens_default &lt;-<span class="st"> </span><span class="kw">f_acc_intensity</span>(acc<span class="op">$</span>vm3)
+<span class="kw">table</span>(acc<span class="op">$</span>intens_default)</code></pre></div>
+<pre><code>## 
+## sedentary/low      moderate      vigorous very vigorous 
+##          1435             4             1             0</code></pre>
+<p>But we could run this with different thresholds and levels, where SPLA = &quot;sedentary/low physical activity&quot; and MVPA = &quot;moderate-to-very vigorous physical activity):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acc<span class="op">$</span>intens_2lev &lt;-<span class="st"> </span><span class="kw">f_acc_intensity</span>(<span class="dt">x =</span> acc<span class="op">$</span>vm3,
+                                <span class="dt">cuts =</span> <span class="kw">c</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">2690</span>, <span class="ot">Inf</span>),
+                                <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;SLPA&quot;</span>, <span class="st">&quot;MVVPA&quot;</span>))
+<span class="kw">table</span>(acc<span class="op">$</span>intens_2lev)</code></pre></div>
+<pre><code>## 
+##  SLPA MVVPA 
+##  1435     5</code></pre>
+</div>
+<div id="the-...-argument" class="section level5">
+<h5><span class="header-section-number">4.2.1.2.2</span> The <code>...</code> argument</h5>
+<p>When functions do not have a known <em>a priori</em> number or set of arguments, or when a large number of arguments is to be passed to another function the <code>...</code> argument is used. We will not cover this but you are encouraged to read more: <a href="https://www.dummies.com/programming/r/how-to-use-the-dots-argument-in-r/">How to Use the Dots Argument in R</a>; <a href="https://www.r-bloggers.com/2013/01/the-three-dots-construct-in-r/">The three-dots construct in R</a>.</p>
+</div>
+</div>
+<div id="body" class="section level4">
+<h4><span class="header-section-number">4.2.1.3</span> Body</h4>
+<p>The function's body contains all of the code to perform the purpose of the function. Following our initial example, the body of the function is simply</p>
+<pre><code>x^2</code></pre>
+<p>The body can be as simple or complicated as it needs to be in order to achieve the desired result.</p>
+</div>
+<div id="return-value" class="section level4">
+<h4><span class="header-section-number">4.2.1.4</span> Return value</h4>
+<p>The return value is either the last evaluated expression in the function or an object specified using the <code>return()</code> function.</p>
+<p>In our original <code>f_square()</code> function, the return value is <code>x^2</code> since no other <code>return()</code> value was specified, e.g., for a vector of one element:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_square &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+    x<span class="op">^</span><span class="dv">2</span>
+}
+<span class="kw">f_square</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<p>or a vector with multiple elements:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f_square</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</code></pre></div>
+<pre><code>## [1] 1 4 9</code></pre>
+<p>An simple example of explicitly specifying return values is shown in this numerical comparison function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_compare &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){
+    <span class="co"># either missing?</span>
+    <span class="cf">if</span>(<span class="kw">nargs</span>() <span class="op">!=</span><span class="st"> </span><span class="dv">2</span>)
+        <span class="kw">return</span>(<span class="st">&quot;invalid number of arguments&quot;</span>)
+    <span class="co"># numeric?</span>
+    <span class="cf">if</span>(<span class="op">!</span><span class="kw">is.numeric</span>(x) <span class="op">|</span><span class="st"> </span><span class="op">!</span><span class="kw">is.numeric</span>(y)){
+        <span class="kw">return</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%s or %s is not numeric.&quot;</span>, x, y))
+    }
+    <span class="co"># comparisons follow</span>
+    <span class="cf">if</span>(x <span class="op">&gt;</span><span class="st"> </span>y){
+        <span class="kw">return</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%s is greater than %s&quot;</span>, x, y))
+    } 
+    <span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span>y) {
+        <span class="kw">return</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%s is less than %s&quot;</span>, x, y))
+    }
+    <span class="cf">if</span>(x <span class="op">==</span><span class="st"> </span>y){
+        <span class="kw">return</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%s equals %s&quot;</span>, x, y))
+    }
+}</code></pre></div>
+<p>If you want to handle an expected error, you can print an informative message and use <code>return(invisible())</code>, which returns nothing at all (whereas <code>return()</code> results in a <code>NULL</code>) e.g., here without <code>invisible()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_readfile &lt;-<span class="st"> </span><span class="cf">function</span>(fname){
+    <span class="cf">if</span>(<span class="op">!</span><span class="kw">file.exists</span>(fname)){
+        <span class="kw">warning</span>(<span class="kw">paste</span>(fname, <span class="st">&quot;does not exist!&quot;</span>))
+        <span class="kw">return</span>()
+    } <span class="cf">else</span> {
+        <span class="kw">read.csv</span>(fname)
+    }
+}
+
+<span class="kw">f_readfile</span>(<span class="st">&quot;foobar.txt&quot;</span>)</code></pre></div>
+<pre><code>## Warning in f_readfile(&quot;foobar.txt&quot;): foobar.txt does not exist!</code></pre>
+<pre><code>## NULL</code></pre>
+<p>... and with <code>invisible()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_readfile &lt;-<span class="st"> </span><span class="cf">function</span>(fname){
+    <span class="cf">if</span>(<span class="op">!</span><span class="kw">file.exists</span>(fname)){
+        <span class="kw">warning</span>(<span class="kw">paste</span>(fname, <span class="st">&quot;does not exist!&quot;</span>))
+        <span class="kw">return</span>(<span class="kw">invisible</span>())
+    } <span class="cf">else</span> {
+        <span class="kw">read.csv</span>(fname)
+    }
+}
+
+<span class="kw">f_readfile</span>(<span class="st">&quot;foobar.txt&quot;</span>)</code></pre></div>
+<pre><code>## Warning in f_readfile(&quot;foobar.txt&quot;): foobar.txt does not exist!</code></pre>
+</div>
+<div id="function-environments" class="section level4">
+<h4><span class="header-section-number">4.2.1.5</span> Function environments</h4>
+<p>As mentioned before, functions instantiate environments that exist only while the function is being evaluated. This means that functions can include named variables that have the same name as a variable in a different environment. For example here is a function that only lists what objects are in the local and global environments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># declare a few variables</span>
+x &lt;-<span class="st"> </span><span class="dv">1</span>
+y &lt;-<span class="st"> &quot;hello&quot;</span>
+
+<span class="co"># a simple function</span>
+f &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+    <span class="co"># create a local variable</span>
+    y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">2</span>
+    <span class="co"># another function inside this function</span>
+    g &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+        x <span class="op">*</span><span class="st"> </span><span class="dv">3</span>
+    }
+    <span class="co"># what variables are in this environment?</span>
+    <span class="kw">print</span>(<span class="st">&quot;----------&quot;</span>)
+    <span class="kw">print</span>(<span class="st">&quot;objects in this function&#39;s environment:&quot;</span>)
+    <span class="kw">print</span>(<span class="kw">ls</span>())
+    <span class="co"># what is in the global env?</span>
+    <span class="kw">print</span>(<span class="st">&quot;----------&quot;</span>)
+    <span class="kw">print</span>(<span class="st">&quot;objects in the global environment:&quot;</span>)
+    <span class="kw">print</span>(<span class="kw">ls</span>(<span class="dt">envir =</span> .GlobalEnv))
+    <span class="co"># return the output of the function</span>
+    <span class="kw">print</span>(<span class="st">&quot;----------&quot;</span>)
+    y
+}
+
+<span class="kw">f</span>(<span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] &quot;----------&quot;
+## [1] &quot;objects in this function&#39;s environment:&quot;
+## [1] &quot;g&quot; &quot;x&quot; &quot;y&quot;
+## [1] &quot;----------&quot;
+## [1] &quot;objects in the global environment:&quot;
+##  [1] &quot;a&quot;                      &quot;acc&quot;                    &quot;age_jane&quot;               &quot;age_john&quot;              
+##  [5] &quot;ages&quot;                   &quot;bins&quot;                   &quot;bins2&quot;                  &quot;BMI&quot;                   
+##  [9] &quot;boston_zip&quot;             &quot;census_vars&quot;            &quot;ci_95&quot;                  &quot;cmd&quot;                   
+## [13] &quot;csvfname&quot;               &quot;csvsize&quot;                &quot;ctdat&quot;                  &quot;d&quot;                     
+## [17] &quot;dat&quot;                    &quot;dat_1&quot;                  &quot;dat_sub&quot;                &quot;dat_sub_sel&quot;           
+## [21] &quot;dtafname&quot;               &quot;excel_fname&quot;            &quot;f&quot;                      &quot;F&quot;                     
+## [25] &quot;f_acc_intensity&quot;        &quot;f_compare&quot;              &quot;f_readfile&quot;             &quot;f_square&quot;              
+## [29] &quot;f_square_2&quot;             &quot;f_square_3&quot;             &quot;figure_nums&quot;            &quot;fname&quot;                 
+## [33] &quot;fnames&quot;                 &quot;foo&quot;                    &quot;fstfname&quot;               &quot;fstsize&quot;               
+## [37] &quot;g&quot;                      &quot;i&quot;                      &quot;inc&quot;                    &quot;income&quot;                
+## [41] &quot;income_factor&quot;          &quot;iris_summary&quot;           &quot;ja&quot;                     &quot;jo&quot;                    
+## [45] &quot;l&quot;                      &quot;L&quot;                      &quot;labels&quot;                 &quot;m&quot;                     
+## [49] &quot;m1&quot;                     &quot;m2&quot;                     &quot;m3&quot;                     &quot;my_zip&quot;                
+## [53] &quot;mystr&quot;                  &quot;mytext&quot;                 &quot;myUrl&quot;                  &quot;n&quot;                     
+## [57] &quot;n_fnames&quot;               &quot;normvec1000&quot;            &quot;p&quot;                      &quot;pal&quot;                   
+## [61] &quot;pal2&quot;                   &quot;pb&quot;                     &quot;pop&quot;                    &quot;s&quot;                     
+## [65] &quot;sqlc&quot;                   &quot;states_5&quot;               &quot;subjects&quot;               &quot;sum_health_white_afram&quot;
+## [69] &quot;t&quot;                      &quot;tabhealth_afram&quot;        &quot;tabhealth_white&quot;        &quot;table_nums&quot;            
+## [73] &quot;tbs&quot;                    &quot;tempdirfiles&quot;           &quot;tmp&quot;                    &quot;tmpdir&quot;                
+## [77] &quot;txt&quot;                    &quot;urls&quot;                   &quot;v&quot;                      &quot;v.len&quot;                 
+## [81] &quot;v1&quot;                     &quot;v2&quot;                     &quot;v3&quot;                     &quot;vals&quot;                  
+## [85] &quot;x&quot;                      &quot;X&quot;                      &quot;xlsclip&quot;                &quot;y&quot;                     
+## [89] &quot;zip_bad&quot;                &quot;zip_good&quot;               &quot;zipfile&quot;               
+## [1] &quot;----------&quot;</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>Once the function completes, all objects in its local environment are purged. If you are running a complicated function that creates intermediate values that you want to examine for troubleshooting, this kind of thing can be done, to assign a variable with a specific value to a different environment created specifically for examining the intermediate products of the function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create an environment for holding intermediate objects created in the function run</span>
+foo &lt;-<span class="st"> </span><span class="kw">new.env</span>()
+g &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+    <span class="co"># code for a bunch of complicated operations</span>
+    <span class="co"># ...</span>
+    <span class="co"># generates an intermediate data frame named &quot;bar&quot;</span>
+    bar &lt;-<span class="st"> </span><span class="kw">head</span>(iris)
+    <span class="co"># save to the other env</span>
+    <span class="kw">assign</span>(<span class="dt">x =</span> <span class="st">&quot;bar&quot;</span>, <span class="dt">value =</span> bar, <span class="dt">envir =</span> foo)
+    <span class="co"># more code to do more complicated stuff</span>
+    <span class="co"># ...</span>
+    foobar &lt;-<span class="st"> </span><span class="kw">head</span>(cars)
+    <span class="co"># assign this too</span>
+    <span class="kw">assign</span>(<span class="dt">x =</span> <span class="st">&quot;foobar&quot;</span>, <span class="dt">value =</span> foobar, <span class="dt">envir =</span> foo)
+    <span class="co"># yet more complicated stuff here</span>
+    <span class="co"># ...</span>
+}</code></pre></div>
+<p>When the function runs, the objects <code>bar</code> and <code>foobar</code> are placed in the <code>foo</code> environment. We can examine those:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># run the function</span>
+<span class="kw">g</span>()
+
+<span class="co"># what is in envornment &quot;foo&quot;?</span>
+<span class="kw">ls</span>(<span class="dt">envir =</span> foo)</code></pre></div>
+<pre><code>## [1] &quot;bar&quot;    &quot;foobar&quot;</code></pre>
+<p>And we can view their values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(foo<span class="op">$</span>bar)</code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(foo<span class="op">$</span>foobar)</code></pre></div>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10</code></pre>
+</div>
+</div>
+</div>
+<div id="sampling" class="section level2">
+<h2><span class="header-section-number">4.3</span> Sampling</h2>
+<p>The general topic of sampling is far greater than what we can cover in this course. However, a few examples may be helpful for students who have little experience in sampling.</p>
+<p>The main R function for sampling is <code>sample()</code>, which draws a random sample from a vector or data frame. Options for <code>sample()</code> include the size of the sample, whether or not to replace sampled individuals to the pool, and a probability weight of the same length (or number of rows) as the population from which the sample is drawn.</p>
+<div id="sampling-with-replacement" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Sampling with replacement</h3>
+<p>Sampling with replacement is similar to rolling a die. Each roll of the die has a 1/6 probability of coming up with each value. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a vector to represent the faces of a die</span>
+d &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
+
+<span class="co"># now make a sample of 100,000 rolls of the die</span>
+s &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> d, <span class="dt">size =</span> <span class="dv">100000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># tabulate the result</span>
+(tbs &lt;-<span class="st"> </span><span class="kw">table</span>(s))</code></pre></div>
+<pre><code>## s
+##     1     2     3     4     5     6 
+## 16391 16931 16557 16728 16609 16784</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># proportions</span>
+(<span class="kw">prop.table</span>(tbs))</code></pre></div>
+<pre><code>## s
+##       1       2       3       4       5       6 
+## 0.16391 0.16931 0.16557 0.16728 0.16609 0.16784</code></pre>
+<p>The probability of rolling two of the same number in a row is 1/6 <span class="math inline">\(\times\)</span> 1/6, or <span class="math inline">\(\approx\)</span> 0.028</p>
+</div>
+<div id="sampling-without-replacement" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Sampling without replacement</h3>
+<p>Sampling without replacement removes from the population the individual that was sampled. For example, the probability of selecting an ace from a whole deck of cards is 4/52, or <span class="math inline">\(\approx\)</span> 0.077. If we drew once from the deck and returned the card back to the deck to draw again, both samples would be independent. The probability of drawing two aces would be 4/52 <span class="math inline">\(\times\)</span> 4/52, or <span class="math inline">\(\approx\)</span> 0.0059. <em>That</em> is an example of sampling <em>with</em> replacement.</p>
+<p>Performing the same sample <em>without</em> replacement, i.e., finding an ace, removing it, and then sampling again would have a probability of drawing two aces being 4/52 <span class="math inline">\(\times\)</span> 3/51, or <span class="math inline">\(\approx\)</span> 0.0045.</p>
+<p>For a population of sufficient size relative to the sample, sampling with or without replacement will lead to nearly identical results.</p>
+<p>Let's use an example of a population of 50,000 persons, where 30,000 are female and 20,000 are male. If we were to sample two persons with replacement, the probability that they would both be female would be 30000/50000 <span class="math inline">\(\times\)</span> 30000/50000, or 0.36.</p>
+<p>If we sample without replacement, the probability of selecting a female in the first sample of one would be 30000/50000, and the second sample of 1 would have a probability of selecting a female 29999/49999, with a joint probability of <span class="math inline">\(\approx\)</span> 0.359995.</p>
+</div>
+<div id="bootstrapping" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Bootstrapping</h3>
+<p>Bootstrapping is used to estimate the characteristics of a population by repeating a large number of random samples (with replacement) and then calculating summary statistics on the set of samples. The reason replacement is used is that each sample represents a &quot;snapshot&quot; of the population. As the number of samples increases, the summary continues to approach the true population characteristics.</p>
+<p>We will use a simple example from our previously created hypothetical population. If we had no idea what the male/female split was, we could generate a large number of small-is samples and the take the mean.</p>
+<p>Here we will use an R loop. A loop is constructed using the form</p>
+<pre><code>for (element in set){
+    do something
+}</code></pre>
+<p>A few simple examples follow.</p>
+<p>Print each letter in the first 5 letters of the alphabet. In this example, the iterated element is a letter. The built in vector <code>letters</code> is used:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">head</span>(letters, <span class="dv">5</span>)){
+    <span class="kw">print</span>(i)
+}</code></pre></div>
+<pre><code>## [1] &quot;a&quot;
+## [1] &quot;b&quot;
+## [1] &quot;c&quot;
+## [1] &quot;d&quot;
+## [1] &quot;e&quot;</code></pre>
+<p>A similar approach, but using a numerical index:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw">head</span>(state.name, <span class="dv">5</span>)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(states_<span class="dv">5</span>)){
+    s &lt;-<span class="st"> </span>states_<span class="dv">5</span>[i]
+    <span class="kw">print</span>(s)
+}</code></pre></div>
+<pre><code>## [1] &quot;Alabama&quot;
+## [1] &quot;Alaska&quot;
+## [1] &quot;Arizona&quot;
+## [1] &quot;Arkansas&quot;
+## [1] &quot;California&quot;</code></pre>
+<p>The bootstrap will use 5,000 samples of size 100 from our hypothetical population to estimate the proportion of females.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create the population</span>
+<span class="co"># 1 indicates female and 0 indicates male</span>
+pop &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="fl">5e4</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="fl">5e4</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">5</span>))
+
+<span class="co"># initialize a vector</span>
+F &lt;-<span class="st"> </span><span class="ot">NULL</span>
+
+<span class="co"># run the bootstrap</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">5000</span>, <span class="dt">by =</span> <span class="dv">1</span>)){
+    <span class="co"># sample once</span>
+    s &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> pop, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+    <span class="co"># calculate percent female</span>
+    p &lt;-<span class="st"> </span><span class="kw">sum</span>(s) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(s)
+    <span class="co"># concatenate the result with the running result</span>
+    F &lt;-<span class="st"> </span><span class="kw">c</span>(F, p)
+}
+
+<span class="co"># mean and standard deviation of the bootstrap</span>
+<span class="kw">mean</span>(F)</code></pre></div>
+<pre><code>## [1] 0.600582</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(F)</code></pre></div>
+<pre><code>## [1] 0.04883276</code></pre>
+<p>Using the bootstrap results, we can estimate the 95% confidence interval around the mean using the <code>Rmisc::CI()</code> function, and make a density plot showing the mean and the confidence interval.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 95% CI</span>
+ci_<span class="dv">95</span> &lt;-<span class="st"> </span>Rmisc<span class="op">::</span><span class="kw">CI</span>(<span class="dt">x =</span> F, <span class="dt">ci =</span> <span class="fl">0.95</span>)
+
+<span class="co"># plot with 95 % CI</span>
+<span class="kw">plot</span>(<span class="kw">density</span>(F), <span class="dt">main =</span> <span class="st">&quot;density plot of bootstrap&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v =</span> ci_<span class="dv">95</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p>If we already had an enumeration of the population, this method would be unnecessary. However, most survey-derived data are generated from samples. If the sample is representative of the underlying population, the sample can be considered an acceptable proxy.</p>
+<h4>
+Source code for this document
+</h4>
+<p><a href="04-week04.Rmd" class="uri">04-week04.Rmd</a></p>
+<pre><code># Week 4 {#week4}
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(magrittr)
+library(knitr)
+library(kableExtra)
+library(readstata13)
+```
+
+&lt;h2&gt;Topics: Functions and sampling&lt;/h2&gt;
+This week&#39;s topics are functions and sampling, the latter including a cursory treatment of loops and bootstrapping.
+
+## Environments
+Functions exist in `environments`, which are &quot;frames&quot; or collections containing objects including variables, functions, etc.). There is a global environment (`.GlobalEnv`) that contains all of the data, functions, in the current R session. Those objects can be enumerated with the `ls()` function. 
+
+The reason environments are mentioned at this time is because functions instantiate environments that exist while the function is running. More on this in a bit....
+
+## Functions
+Functions are sets of statements in R that are grouped together to perform a specific task or set of tasks. Functions are either built in, included in packages, or user-defined. Functions are used mainly to simplify running a series of individual commands or functions, for situations where the same process will need to be run multiple times on different inputs, or when control structures are needed (e.g., looping, logical branching).
+
+### Function Components
+The different parts of a function are:
+
+1. (Usually) Name: This is the actual name of the function. It is stored in an R environment as an object with this name.
+1. (Optional) Arguments: Arguments specify the inputs or options to the function. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.
+1. Body: The function body contains a collection of statements that defines what the function does.
+1. Return value: The return value of a function is the last expression in the function body to be evaluated.
+
+Another important concept for functions is environments.
+
+#### Name
+Most functions are created with code of the form
+
+```
+function_name &lt;- function(argument(s)){
+    statement(s)
+}
+```
+
+For example, to square a vector of numerical values:
+
+```{r}
+f_square &lt;- function(x){
+    x^2
+}
+```
+
+the function name is `f_square`.
+
+Some functions are not named, and are referred to as &quot;anonymous&quot; functions. For example, functions can be used within the `apply` family of functions. Here is an oprationalized example.
+
+```{r}
+# create a list of three vectors of random numbers of different random lengths
+
+# set.seed() makes the random process reproducible.
+set.seed(10)
+# vector lengths
+v.len &lt;- rnorm(n = 3, mean = 30, sd = 10) %&gt;% round(0)
+
+# make the random vectors
+set.seed(5)
+v1 &lt;- rnorm(n = v.len[1])
+set.seed(3)
+v2 &lt;- rnorm(n = v.len[2])
+set.seed(6)
+v3 &lt;- rnorm(n = v.len[3])
+
+# create the list
+L &lt;- list(v1, v2, v3)
+
+# get the first value from each vector in the list
+lapply(X = L, FUN = function(x) {x[1]})
+```
+
+The last line of the code chunk is:
+
+```
+lapply(X = L, FUN = function(x) {x[1]})
+
+```
+
+in which the body of the function is `x[1]`, i.e., obtain the first element of a vector. But the function itself is not named, and hence &quot;anonymous.&quot;
+
+#### Arguments
+Most functions require arguments. Arguments are used to instantiate variables within the function&#39;s environment that can be used later in the body of the function. Each argument is named, and the name is used within the function as a local variable within the function&#39;s environment.
+
+Following our example from above, `f_square` takes an argument named &quot;x&quot; that is a numeric vector.
+
+Here, let&#39;s modify the function to demonstrate that within the environment of the function, `x` is a variable:
+
+```{r}
+f_square_2 &lt;- function(x){
+    message(&quot;input:&quot;)
+    print(x)
+    message(&quot;output:&quot;)
+    x^2
+}
+
+f_square_2(c(1,2,3))
+```
+
+We can try running the function using different (or no) arguments:
+
+Here, using a vector of a single NA numeric
+
+```{r}
+f_square(as.numeric(NA))
+```
+
+... or a vector that contains a numeric NA:
+
+```{r}
+f_square(c(1, 2, NA))
+```
+
+... or a null:
+
+```{r}
+f_square(NULL)
+```
+
+... or a vector containing a null:
+
+```{r}
+f_square(c(1, 2, NULL))
+```
+
+... or with no argument at all:
+
+```
+f_square()
+```
+
+&lt;font color=&quot;red&quot;&gt;
+```
+## Error in f_square() : argument &quot;x&quot; is missing, with no default
+```
+&lt;/font&gt;
+
+Some functions do not require arguments, e.g., to get the current date or time:
+
+```{r}
+Sys.Date()
+Sys.time()
+```
+
+... and if we try to use an argument we get an error:
+
+```
+Sys.Date(1)
+```
+
+&lt;font color=&quot;red&quot;&gt;
+```
+## Error in Sys.Date(1) : unused argument (1)
+```
+&lt;/font&gt;
+
+##### Default values for arguments
+If you want an argument to have a default value, it is specified in the listed arguments in the form `argument = value`. Following our previous `f_square_2()` function, we can modify to print the input based on the logical argument `verbose`:
+
+```{r, collapse=TRUE}
+f_square_3 &lt;- function(x, verbose = FALSE){
+    # only run the next lines if verbose is true
+    if(verbose){
+        message(&quot;input:&quot;)
+        print(x)
+        message(&quot;output:&quot;)
+    }
+    x^2
+}
+```
+
+Here we run with the default `verbose` option (`FALSE`):
+
+```{r}
+f_square_3(x = c(1, 2, 3))
+```
+
+... and with `verbose = TRUE`:
+
+```{r}
+f_square_3(x = c(1, 2, 3), verbose = TRUE)
+```
+
+A more meaningful example demonstrates stratification of counts into intensity bins using accelerometry data. We will be using accelerometry from one day&#39;s data from one subject in a study.
+
+The cut points for accelerometry were identified at 0, 2690, 6167, and 9642 counts per minute, from Sasaki et al. (2011).
+
+__Sasaki JE, John D, Freedson PS. Validation and comparison of ActiGraph activity monitors. J Sci Med Sport. 2011;14(5):411-416. doi:10.1016/j.jsams.2011.04.003__
+
+The variable `vm3` is the vector magnitude measured with the accelerometer for each minute. Data: [accelerometry.csv](files/accelerometry.csv).
+
+```{r}
+acc &lt;- read.csv(&quot;files/accelerometry.csv&quot;)
+
+head(acc)
+```
+
+
+The following function codes intensity by the aforementioned cut points by default and using default labels:
+
+```{r}
+f_acc_intensity &lt;- function(x, 
+                            cuts = c(-Inf, 2690, 6167, 9642, Inf),
+                            labels = c(&quot;sedentary/low&quot;, &quot;moderate&quot;, &quot;vigorous&quot;, &quot;very vigorous&quot;)){
+    cut(x = acc$vm3, breaks = cuts, labels = labels)
+}
+```
+
+... and when run with the defaults to tabulate the minutes spent in different PA levels
+
+```{r}
+acc$intens_default &lt;- f_acc_intensity(acc$vm3)
+table(acc$intens_default)
+```
+
+But we could run this with different thresholds and levels, where SPLA = &quot;sedentary/low physical activity&quot; and MVPA = &quot;moderate-to-very vigorous physical activity):
+
+```{r}
+acc$intens_2lev &lt;- f_acc_intensity(x = acc$vm3,
+                                cuts = c(-Inf, 2690, Inf),
+                                labels = c(&quot;SLPA&quot;, &quot;MVVPA&quot;))
+table(acc$intens_2lev)
+```
+
+
+##### The `...` argument
+When functions do not have a known _a priori_ number or set of arguments, or when a large number of arguments is to be passed to another function the `...` argument is used. We will not cover this but you are encouraged to read more: [How to Use the Dots Argument in R](https://www.dummies.com/programming/r/how-to-use-the-dots-argument-in-r/); [The three-dots construct in R](https://www.r-bloggers.com/2013/01/the-three-dots-construct-in-r/).
+
+#### Body
+The function&#39;s body contains all of the code to perform the purpose of the function. Following our initial example, the body of the function is simply 
+
+```
+x^2
+```
+
+The body can be as simple or complicated as it needs to be in order to achieve the desired result.
+
+#### Return value
+The return value is either the last evaluated expression in the function or an object specified using the `return()` function. 
+
+In our original `f_square()` function, the return value is `x^2` since no other `return()` value was specified, e.g., for a vector of one element:
+
+```{r}
+f_square &lt;- function(x){
+    x^2
+}
+f_square(3)
+```
+
+or a vector with multiple elements:
+
+```{r}
+f_square(c(1,2,3))
+```
+
+An simple example of explicitly specifying return values is shown in this numerical comparison function:
+
+```{r}
+f_compare &lt;- function(x, y){
+    # either missing?
+    if(nargs() != 2)
+        return(&quot;invalid number of arguments&quot;)
+    # numeric?
+    if(!is.numeric(x) | !is.numeric(y)){
+        return(sprintf(&quot;%s or %s is not numeric.&quot;, x, y))
+    }
+    # comparisons follow
+    if(x &gt; y){
+        return(sprintf(&quot;%s is greater than %s&quot;, x, y))
+    } 
+    if(x &lt; y) {
+        return(sprintf(&quot;%s is less than %s&quot;, x, y))
+    }
+    if(x == y){
+        return(sprintf(&quot;%s equals %s&quot;, x, y))
+    }
+}
+```
+
+If you want to handle an expected error, you can print an informative message and use `return(invisible())`, which returns nothing at all (whereas `return()` results in a `NULL`) e.g., here without `invisible()`:
+
+```{r}
+f_readfile &lt;- function(fname){
+    if(!file.exists(fname)){
+        warning(paste(fname, &quot;does not exist!&quot;))
+        return()
+    } else {
+        read.csv(fname)
+    }
+}
+
+f_readfile(&quot;foobar.txt&quot;)
+```
+
+... and with `invisible()`:
+
+```{r}
+f_readfile &lt;- function(fname){
+    if(!file.exists(fname)){
+        warning(paste(fname, &quot;does not exist!&quot;))
+        return(invisible())
+    } else {
+        read.csv(fname)
+    }
+}
+
+f_readfile(&quot;foobar.txt&quot;)
+```
+
+
+#### Function environments
+As mentioned before, functions instantiate environments that exist only while the function is being evaluated. This means that functions can include named variables that have the same name as a variable in a different environment. For example here is a function that only lists what objects are in the local and global environments:
+
+```{r}
+# declare a few variables
+x &lt;- 1
+y &lt;- &quot;hello&quot;
+
+# a simple function
+f &lt;- function(x){
+    # create a local variable
+    y &lt;- x + 2
+    # another function inside this function
+    g &lt;- function(x){
+        x * 3
+    }
+    # what variables are in this environment?
+    print(&quot;----------&quot;)
+    print(&quot;objects in this function&#39;s environment:&quot;)
+    print(ls())
+    # what is in the global env?
+    print(&quot;----------&quot;)
+    print(&quot;objects in the global environment:&quot;)
+    print(ls(envir = .GlobalEnv))
+    # return the output of the function
+    print(&quot;----------&quot;)
+    y
+}
+
+f(1)
+```
+
+Once the function completes, all objects in its local environment are purged. If you are running a complicated function that creates intermediate values that you want to examine for troubleshooting, this kind of thing can be done, to assign a variable with a specific value to a different environment created specifically for examining the intermediate products of the function:
+
+```{r}
+# create an environment for holding intermediate objects created in the function run
+foo &lt;- new.env()
+g &lt;- function(x){
+    # code for a bunch of complicated operations
+    # ...
+    # generates an intermediate data frame named &quot;bar&quot;
+    bar &lt;- head(iris)
+    # save to the other env
+    assign(x = &quot;bar&quot;, value = bar, envir = foo)
+    # more code to do more complicated stuff
+    # ...
+    foobar &lt;- head(cars)
+    # assign this too
+    assign(x = &quot;foobar&quot;, value = foobar, envir = foo)
+    # yet more complicated stuff here
+    # ...
+}
+```
+
+When the function runs, the objects `bar` and `foobar` are placed in the `foo` environment. We can examine those:
+
+```{r}
+# run the function
+g()
+
+# what is in envornment &quot;foo&quot;?
+ls(envir = foo)
+```
+
+And we can view their values:
+
+```{r}
+print(foo$bar)
+```
+
+```{r}
+print(foo$foobar)
+```
+
+## Sampling
+The general topic of sampling is far greater than what we can cover in this course. However, a few examples may be helpful for students who have little experience in sampling.
+
+The main R function for sampling is `sample()`, which draws a random sample from a vector or data frame. Options for `sample()` include the size of the sample, whether or not to replace sampled individuals to the pool, and a probability weight of the same length (or number of rows) as the population from which the sample is drawn.
+
+### Sampling with replacement
+Sampling with replacement is similar to rolling a die. Each roll of the die has a 1/6 probability of coming up with each value. For example:
+
+```{r}
+# create a vector to represent the faces of a die
+d &lt;- 1:6
+
+# now make a sample of 100,000 rolls of the die
+s &lt;- sample(x = d, size = 100000, replace = TRUE)
+
+# tabulate the result
+(tbs &lt;- table(s))
+
+# proportions
+(prop.table(tbs))
+```
+
+The probability of rolling two of the same number in a row is 1/6 $\times$ 1/6, or $\approx$ 0.028
+
+### Sampling without replacement
+Sampling without replacement removes from the population the individual that was sampled. For example, the probability of selecting an ace from a whole deck of cards is 4/52, or $\approx$ 0.077. If we drew once from the deck and returned the card back to the deck to draw again, both samples would be independent. The probability of drawing two aces would be 4/52 $\times$ 4/52, or $\approx$ 0.0059. _That_ is an example of sampling _with_ replacement.
+
+Performing the same sample _without_ replacement, i.e., finding an ace, removing it, and then sampling again would have a probability of drawing two aces being 4/52 $\times$ 3/51, or $\approx$ 0.0045.
+
+For a population of sufficient size relative to the sample, sampling with or without replacement will lead to nearly identical results.
+
+Let&#39;s use an example of a population of 50,000 persons, where 30,000 are female and 20,000 are male. If we were to sample two persons with replacement, the probability that they would both be female would be 30000/50000 $\times$ 30000/50000, or 0.36.
+
+If we sample without replacement, the probability of selecting a female in the first sample of one would be 30000/50000, and the second sample of 1 would have a probability of selecting a female 29999/49999, with a joint probability of $\approx$ 0.359995.
+
+### Bootstrapping
+Bootstrapping is used to estimate the characteristics of a population by repeating a large number of random samples (with replacement) and then calculating summary statistics on the set of samples. The reason replacement is used is that each sample represents a &quot;snapshot&quot; of the population. As the number of samples increases, the summary continues to approach the true population characteristics.
+
+We will use a simple example from our previously created hypothetical population. If we had no idea what the male/female split was, we could generate a large number of small-is samples and the take the mean.
+
+Here we will use an R loop. A loop is constructed using the form
+
+```
+for (element in set){
+    do something
+}
+```
+
+A few simple examples follow.
+
+Print each letter in the first 5 letters of the alphabet. In this example, the iterated element is a letter. The built in vector `letters` is used:
+
+```{r}
+for (i in head(letters, 5)){
+    print(i)
+}
+```
+
+A similar approach, but using a numerical index:
+
+```{r}
+states_5 &lt;- head(state.name, 5)
+for (i in 1:length(states_5)){
+    s &lt;- states_5[i]
+    print(s)
+}
+```
+
+The bootstrap will use 5,000 samples of size 100 from our hypothetical population to estimate the proportion of females.
+
+```{r}
+# create the population
+# 1 indicates female and 0 indicates male
+pop &lt;- c(rep(1, 5e4 * 3 / 5), rep(0, 5e4 * 2 / 5))
+
+# initialize a vector
+F &lt;- NULL
+
+# run the bootstrap
+for (i in seq(from = 1, to = 5000, by = 1)){
+    # sample once
+    s &lt;- sample(x = pop, size = 100, replace = TRUE)
+    # calculate percent female
+    p &lt;- sum(s) / length(s)
+    # concatenate the result with the running result
+    F &lt;- c(F, p)
+}
+
+# mean and standard deviation of the bootstrap
+mean(F)
+sd(F)
+```
+
+Using the bootstrap results, we can estimate the 95% confidence interval around the mean using the `Rmisc::CI()` function, and make a density plot showing the mean and the confidence interval.
+
+```{r}
+# 95% CI
+ci_95 &lt;- Rmisc::CI(x = F, ci = 0.95)
+
+# plot with 95 % CI
+plot(density(F), main = &quot;density plot of bootstrap&quot;)
+abline(v = ci_95, col=c(2,1,2))
+```
+
+If we already had an enumeration of the population, this method would be unnecessary. However, most survey-derived data are generated from samples. If the sample is representative of the underlying population,  the sample can be considered an acceptable proxy.
+
+&lt;h4&gt;Source code for this document&lt;/h4&gt;
+[04-week04.Rmd](04-week04.Rmd)
+
+```{r, comment=&#39;&#39;, echo=FALSE}
+cat(readLines(&quot;04-week04.Rmd&quot;), sep = &#39;\n&#39;)
+```</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="week5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-week04.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

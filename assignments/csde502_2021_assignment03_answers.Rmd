@@ -1,0 +1,253 @@
+---
+title: "Assignment 3 example answer key"
+author: "Phil Hurvitz | [e-mail](mailto:phurvitz@uw.edu) | [www](http://gis.washington.edu/phurvitz)"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+header-includes: #allows you to add in your own Latex packages
+- \usepackage{float} #use the 'float' package
+- \floatplacement{figure}{H} #make every figure with caption = h
+output: 
+    bookdown::html_document2:
+        number_sections: true
+        self_contained: true
+        code_folding: hide
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: false
+urlcolor: blue
+bibliography: assignment03.bib
+---
+
+<!--these following settings control width and also make a DIV tag for black outlines for figures-->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<style>
+.outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+</style>
+
+
+```{r setup, message=FALSE, warning=FALSE}
+# key setups
+library(sqldf) # to use sql syntax with data frames
+library(knitr) # knitr for kable tables
+library(kableExtra) # pretty tables
+library(sf) # simple features (GIS)
+library(leaflet) # nice maps
+library(tools) # md5sum
+library(ggplot2)
+library(tidyverse)
+
+# captions
+library(captioner)
+table_nums <- captioner(prefix = "Table")
+figure_nums <- captioner(prefix = "Figure")
+
+# for having DIV tags
+knitr::knit_hooks$set(class = function(before, options, envir) {
+  if(before){
+    sprintf("<div class = '%s'>", options$class)
+  }else{
+    "</div>"
+  }
+})
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+<!-- for a wide presentation -->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<!-- a DIV for black outline, good for figures-->
+<style>
+.outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+</style>
+
+<h1>Introduction</h1>
+
+This document serves the purpose of demonstrating that I have learned to use R Markdown for communicating scientific information. The assignment's instructions included the following requirements:
+
+1. Your name and contact information
+1. Date of creation
+1. A table of contents
+1. Sequentially numbered section headers
+1. At least one figure with a caption
+1. At least one table with a caption
+1. At least one  LaTeX-generated equation with an equation number
+1. Code-generated cross-references within the text to the figure, table, and equation (use any of the cross-referencing methods presented in the lesson)
+1. At least one citation and a bibliography (note: BibTeX formatted reference data can be exported from EndNote, Mendeley, and Zotero)
+1. Source code at the end of the document as shown in previous examples
+
+The scientific content is a brief analysis of the [unrestricted Add Health data](http://staff.washington.edu/phurvitz/csde502_winter_2021/data/AHwave1_v1.dta).
+
+The numbered sections correspond to the assignment requirements, as described in each section.
+
+# Name and contact information
+See above, my name as well as hyperlinks to my e-mail address and web page. These were included in the YAML header as
+
+```
+author: "Phil Hurvitz | [e-mail](mailto:phurvitz@uw.edu) | [www](http://gis.washington.edu/phurvitz)"
+```
+
+# Date of creation
+The time stamp of creation is automatically included as part of the YAML header:
+
+```<code><pre>
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+```
+</pre></code>
+
+# A table of contents
+The table of contents is presented at the upper left of the HTML document using the directive `toc: true` and with options for floating, collapsing, and smooth scrolling in the YAML header code:
+
+```
+output: 
+    bookdown::html_document2:
+    ...
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: false
+```
+
+# Sequentially numbered section headers
+Section numbers are added by including the YAML header directive `number_sections: true`.
+
+```
+output: 
+    bookdown::html_document2:
+        number_sections: true
+```
+
+# At least one figure with a caption
+```{r warning=FALSE}
+# read the data set
+dat <- readstata13::read.dta13("http://staff.washington.edu/phurvitz/csde502_winter_2021/data/AHwave1_v1.dta")
+
+# pull some race and depression data
+# include a conversion to integer, where 1 = false, 2 = true, else NA
+d <- dat %>%
+    select(felt_depressed = h1fs6,
+           White = h1gi6a,
+           AfrAm = h1gi6b,
+           Asian = h1gi6d,
+           Hispanic = h1gi4
+           ) %>% 
+    mutate_all(as.integer) %>% 
+    mutate_all(funs(case_when(
+                    . == 1 ~ FALSE,
+                    . == 2 ~ TRUE, 
+                    TRUE ~ NA)))
+
+
+# melt and tabulate
+dsum <- d %>% 
+    gather(race, race_bool, -felt_depressed) %>% 
+    filter(race_bool) %>% 
+    group_by(race, race_bool, felt_depressed) %>% 
+    summarise(n = n(),
+              .groups = "rowwise") %>% 
+    group_by(race) %>% 
+    mutate("pct" = n / sum(n) * 100,
+           label = pct %>% round(1)) %>% 
+    ungroup()
+
+# some numbers 
+white_depressed <- dsum %>% filter(race == "White" & felt_depressed) %>% select(label)
+asian_depressed <- dsum %>% filter(race == "Asian" & felt_depressed) %>% select(label)
+
+# chi-square test
+chisq_pvalue <- dsum %>% filter(felt_depressed) %>% 
+    select (race, pct) %>% 
+    summarize(pval = chisq.test(pct)$p.value) %>% 
+    pull() %>% round(2) %>% str_replace("^0", "")
+```
+
+The analysis for this document was a comparison of the proportion of respondents who reported feelings of depression stratified by race/ethnicity. The variable `h1fs6` represented whether respondents felt depressed, and the variables `h1gi6a`, `h1gi6b` , `h1gi6d` , `h1gi4` represented White, African American, Asian, and Hispanic race/ethnicity. 
+
+A few important notes about the data: 
+
+* Race/ethnicity categories were not mutually exclusive, therefore, a single respondent could have self-identified in up to all four race/ethnicity categories.
+* Responses that were either refused or "don't know" were classified as "missing" (i.e., `NA`).
+
+As shown in `r figure_nums(name = "barplot", display = "cite")`, there were minor differences in the proportion of respondents who felt depressed, with Whites having the lowest (`r white_depressed`%), and Asians having the highest (`r asian_depressed`%) rates of depression.
+
+
+```{r}
+# boxplot
+g <- ggplot(data = dsum, mapping = aes(x = race, y = `pct`, fill = felt_depressed)) +
+    geom_col(position = 'dodge') + 
+    geom_text(aes(label=label), position=position_dodge(width=0.9), vjust=-0.25) +
+    ylab("percent")
+g
+```
+
+_`r figure_nums(name = "barplot", caption = "Percent of respondents who felt depressed, stratified by race/ethnicity")`_
+
+# At least one table with a caption
+In addition to the proportions shown in `r figure_nums(name = "barplot", display = "cite")`, the raw counts and proportions are shown in `r table_nums(name = "mytable", display = "cite")`.
+
+_`r table_nums(name = "mytable", caption = "Counts and proportions of feeling depressed, by race/ethnicity")`_
+
+```{r}
+dsum_print <- dsum %>% 
+    filter(!is.na(felt_depressed)) %>% 
+    mutate(percent = round(pct, 1)) %>% 
+    select (race, "felt depressed" = felt_depressed, n, percent)
+
+kable(dsum_print, format = "html") %>% 
+  kable_styling(bootstrap_options = 
+                  c("striped", "hover", "condensed", "responsive"), 
+                full_width = F,
+                position = "left")
+``` 
+
+
+# At least one  $\LaTeX$-generated equation with an equation number
+To determine whether these proportions were significantly different across race/ethnicities, a $\chi^{2}$ test `@ref(eq:chisq)` was run.
+
+\begin{equation}
+{\chi}^2=\frac{1}{d}\sum_{k=1}^{n} \frac{(O_k - E_k)^2}{E_k}
+  (\#eq:chisq)
+\end{equation}
+
+The P value of the test was `r chisq_pvalue`. Note: see [Statistical Rounding and the (Mis)Leading Zero](https://amastyleinsider.com/2011/08/17/statistical-rounding-and-the-misleading-zero/) for why there is no leading zero to the left of the decimal place of the P value.
+
+# Code-generated cross-references within the text to the figure, table, and equation (use any of the cross-referencing methods presented in the lesson)
+All of the table, figure, and equation captions and cross references are driven by R code. See the source code for details.
+
+# At least one citation and a bibliography (note: BibTeX formatted reference data can be exported from EndNote, Mendeley, and Zotero)
+The rudimentary analysis presented here pales in comparison to a more nuanced treatment [@Hargrove2020], which used the complete Add Health data, several questions about depressive symptoms, stratified the race/ethnicities by gender, and controlled for age, being born in the US, and the count of waves in which respondents were interviewed (to account for missing waves of data).
+
+The single reference was placed in [assignment03.bib](assignment03.bib) and specified in the YAML header as
+
+```
+bibliography: myreferences_20200121.bib
+```
+
+<h1>References cited</h1>
+<div id="refs"></div>
+
+# Source code at the end of the document as shown in previous examples
+```{r comment=''}
+cat(readLines("csde502_2021_assignment03_answers.Rmd"), sep = '\n')
+```

@@ -1,0 +1,301 @@
+---
+title: "Assignment 4 Answer Key"
+author: "[Phil Hurvitz](mailto:phurvitz@uw.edu)"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+header-includes: #allows you to add in your own Latex packages
+- \usepackage{float} #use the 'float' package
+- \floatplacement{figure}{H} #make every figure with caption = h
+output: 
+    bookdown::html_document2:
+        number_sections: true
+        self_contained: true
+        code_folding: show
+        toc: true
+        toc_float:
+            collapsed: true
+            smooth_scroll: false
+urlcolor: blue        
+---
+
+<!--these following settings control width and also make a DIV tag for black outlines for figures-->
+
+```{css, echo=FALSE}
+outline {
+   background-color: #000000;
+   padding:1px;
+   display: inline-block;
+}
+```
+
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+```{r setup, message=FALSE, warning=FALSE}
+# key setups
+library(sqldf) # to use sql syntax with data frames
+library(knitr) # knitr for kable tables
+library(kableExtra) # pretty tables
+library(sf) # simple features (GIS)
+library(leaflet) # nice maps
+library(tools) # md5sum
+
+# captions
+library(captioner)
+table_nums <- captioner(prefix = "Table")
+figure_nums <- captioner(prefix = "Figure")
+
+# for having DIV tags
+knitr::knit_hooks$set(class = function(before, options, envir) {
+  if(before){
+    sprintf("<div class = '%s'>", options$class)
+  }else{
+    "</div>"
+  }
+})
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+<!-- for a wide presentation -->
+<style type="text/css">
+.main-container {
+  max-width: 2400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<p style="font-size:30px">A note about this document's layout</p>
+The layout of this document is specific to its being an answer key, for maximum transparency. Unfortunately maximum transparency does not necessarily mean maximum readability. To make it more readable, click the `Code` control at the upper right to `Hide all code`. To see the R code chunks that generated the output, you can use the `Code`/`Hide` toggles for each chunk. 
+
+Bear the readability/transparency dichotomy in mind as you compare this answer key with the document you submitted. In judging your own work, try to place yourself in the mind set of the recipient of the work you are creating, so that you can ride the fine line between transparency and readability. Your collaborators will appreciate having a document that is easy to read and understand, as well as explaining everything you did to go from raw data to results.
+
+
+<p style="font-size:30px">Possible answers</p>
+
+This document provides answers to questions in Assignment 4. "Possible" is used because although the summary statistics should match, the approach to generating those may vary depending on how the functions were written.
+
+<p style="font-size:20px">The `gradpain` data set:</p>
+The simulated `gradpain` data set is from a fictitious study asking graduate students to rate graduate school on a pain scale from zero to 10, where zero is no pain and 10 is the worst pain imaginable. A histogram is shown in `r figure_nums(name = "hist", display = "cite")`.
+
+```{r, comment=''}
+gradpain <- c(rep(0,11), 
+              rep(1,1), 
+              rep(2,2), 
+              rep(3,6), 
+              rep(4,8), 
+              rep(5,10),
+              rep(6,8), 
+              rep(7,30), 
+              rep(8,10), 
+              rep(9,6), 
+              rep(10,2))
+
+barplot(table(gradpain), las=1, ylab="Frequency", xlab="Pain Scale", main="How painful is graduate school?")
+```
+
+_`r figure_nums(name = "hist", caption = "Histogram of self-reported pain of graduate school; 0 = no pain and 10 = worst pain imaginable")`_
+
+# How many graduate students are in the sample? Use R code to determine this.
+
+The code below calculates the count of students in the sample.
+
+```{r, comment=''}
+n_students <- length(gradpain)
+```
+
+There are `r n_students` students in the sample.
+
+
+# What is the sample mean?
+
+The code below calculates the sample mean.
+
+```{r, comment=''}
+mean_gradpain <- mean(gradpain)
+```
+
+The sample mean is `r mean_gradpain`.
+
+__Box 1__
+```
+Create a function, with these arguments:
+	1. the vector of data: "d.vec"
+	2. the size of the sample: "n"
+The function will sample with replacement a sample of size "n" from the vector "d.vec". The function will return a list that contains
+	1. the size of the sample
+	2. the mean of the sample
+```
+
+The following code creates a function that generates a list with the length and mean of samples from a numerical vector. The default arguments are `d.vec = gradpain` and `n = 100` so if the function is run without specifying arguments, it will use those.
+
+```{r, comment=''}
+# create a function for Box 1
+f_samp_with_repl <- function(d.vec = gradpain, n = 100){
+    # make a samplefrom the input `d.vec' of sample size `n', with replacement
+    samp <- sample(x = d.vec, size = n, replace = TRUE)
+    list(vec.len = length(samp),
+         vec.mean = mean(samp))
+}
+```
+
+__Box 2__
+```
+Use set.seed(7) then run your function passing in the "gradpain" vector calculated above and a sample size of length(gradpain). Use a loop to do this 100 times and store all 100 returned means. 
+```
+
+The following code will draw 100 samples using the `f_samp_with_repl()` function 100 times using `set.seed(7)`.
+
+```{r, comment=''}
+# create an empty vector to store results
+x <- NULL
+
+# set.seed() for pseudorandomness
+set.seed(7)
+
+# run 100 iterations
+for(i in 1:100){
+    # run the f_samp_with_repl() function; output is length and mean.
+    #   because the output of the function is a named list, we can get the 
+    #   output that represents the mean by using `$vec.mean'.
+    m <- f_samp_with_repl(d.vec = gradpain, n = length(gradpain))$vec.mean
+    # build up the vector
+    x <- c(x, m)
+}
+```
+
+# What is the mean of these 100 means? 
+
+The following code chunk calculates the mean of the 100 samples' means:
+
+```{r, comment=''}
+mean100 <- mean(x)
+```
+
+The mean of the 100 samples is `r mean100`, rounded to two decimal places as `r  round(mean100, 2)`.
+
+
+# What is the standard deviation of these 100 means?
+
+The following code chunk calculates the standard deviation of the 100 samples' means:
+
+```{r, comment=''}
+sd100 <- sd(x)
+```
+
+The standard deviation of the samples is`r sd100`, rounded to two decimal places as `r round(sd100, 2)`.
+
+__Box 3__
+```
+Write another function that performs the steps listed in Box 2. That should be a function with these arguments:
+	1. the vector of data: "d.vec"
+	2. the size of the sample: "n"
+	3. the number of samples: "num.samples"
+
+The function should sample with replacement a sample of size "n" from the vector "d.vec" and does this "num.samples" times.
+
+The function should return a list that contains
+	1. the size of each sample
+	2. the number of samples
+	3. a vector of length num.samples with the mean of each sample
+	4. the mean of the means
+	5. the standard deviation of the means
+	6. the 95% confidence interval around the mean
+
+Run your function with the three arguments 
+d.vec = gradpain, n = length(gradpain), num.samples = 100
+```
+
+The following code performs repeated runs of sampling with replacement (i.e., bootstrapping).
+
+```{r, comment=''}
+f_samp_with_repl <- function(d.vec = gradpain, n = length(gradpain), num.samples = 100) {
+    ### d.vec is a vector to be sampled from
+    ### n is an integer, the sample size
+    ### the function samples WITH replacement a sample of size "n"
+    ###     from the vector "d.vec" repeatedly, num.samples times
+    ### the function returns a list that contains 
+    ###     $sample.size, the size of the samples
+    ###     $num.samples, the number of samples
+    ###     $sample.means, a vector of length num.samples containting the mean of each sample
+    ###     $mean.means, the mean of the sample.means
+    ###     $sd.means, the standard deviation of the sample.means
+    ###     $ci95.means
+    
+    # initialize a vector to hold results
+    x <- NULL
+    
+    # iterate over the number of samples
+    for (i in 1:num.samples) {
+        # run a single sample
+        mySample <- sample(x = d.vec, size = n, replace = TRUE)
+        # combine the sample's mean with the running set
+        x <- c(x, mean(mySample))
+    }
+    
+    return(
+        list(
+            sample.size = n, 
+            num.samples = num.samples, 
+            sample.means = x,
+            mean.means = mean(x),
+            sd.means = sd(x),
+            ci95.means = Rmisc::CI(x = x, ci = 0.95)
+        )
+    )
+}
+
+# run this over gradpain with n = length(gradpain) and number of samples = 100 using set.seed(7)
+
+set.seed(7)
+res <- f_samp_with_repl(d.vec = gradpain,
+                        n = length(gradpain),
+                        num.samples = 100)
+
+```
+
+# What does your function return for the mean of means?
+
+The following code chunk makes a variable of the mean of means:
+
+```{r, comment=''}
+mean_mean_100 <- res$mean.means
+```
+
+The mean of the means is `r mean_mean_100`, rounded to two decimal places as `r round(mean_mean_100, 2)`.
+
+# What does your function return for the standard deviation of means?
+
+The following code chunk makes a variable of the standard deviation of means:
+
+```{r, comment=''}
+sd_mean_100 <- res$sd.means
+```
+
+The standard deviation of the means is `r sd_mean_100`, rounded to two decimal places as `r round(sd_mean_100, 2)`.
+
+# What does your function return for the 95% confidence interval around the mean?
+
+The following code chunk creates variables for the lower and upper bounds of the 95% confidence interval around the mean:
+
+```{r, comment=''}
+# lower & upper
+ci_lower <- res$ci95.means[3]
+ci_upper <- res$ci95.means[1]
+# a nice print of this
+ci <- sprintf("[%s, %s]", round(ci_lower, 2), round(ci_upper, 2))
+```
+
+The 95% confidence interval around the mean is `r ci`, with standard print rounding as [`r ci_lower`, `r ci_upper`].
+
+
+# Source code
+## This document
+```{r comment=''}
+cat(readLines("csde502_2021_assignment04_answers.Rmd"), sep = '\n')
+```
