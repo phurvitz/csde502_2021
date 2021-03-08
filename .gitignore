@@ -37,3 +37,5 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+data/metadata/Wave1_Comprehensive_Codebook/21600-0001-Frequencies.pdf
